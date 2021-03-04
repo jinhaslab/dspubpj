@@ -3,3 +3,16 @@
 .RData
 .Ruserdata
 /data/*.*
+data/Takeout/Tasks/*.*
+data/Takeout/Location History/*.*
+data/Takeout/Location History/Semantic Location History/*.*
+data/Takeout/Location History/Semantic Location History/2014/*.*
+data/Takeout/Location History/Semantic Location History/2015/*.*
+data/Takeout/Location History/Semantic Location History/2016/*.*
+data/Takeout/Location History/Semantic Location History/2017/*.*
+data/Takeout/Location History/Semantic Location History/2018/*.*
+data/Takeout/Location History/Semantic Location History/2019/*.*
+data/Takeout/Location History/Semantic Location History/2020/*.*
+data/Takeout/Location History/Semantic Location History/2021/*.*
+./.RData
+**/data/Takeout/Location History/Location History.json
