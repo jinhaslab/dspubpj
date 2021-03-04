@@ -1,0 +1,1003 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 6 Time series data analysis, regression | DSpub-project</title>
+  <meta name="description" content="Dspub 다음 수업입니다. DSpub-project" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 6 Time series data analysis, regression | DSpub-project" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 6 Time series data analysis, regression | DSpub-project" />
+  
+  <meta name="twitter:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+<meta name="author" content="Jinha Yoon" />
+
+
+<meta name="date" content="2021-03-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="blogdown-1.html"/>
+<link rel="next" href="google-maps-platform.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 사전 과정</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="cloud-droplets.html"><a href="cloud-droplets.html"><i class="fa fa-check"></i><b>3</b> Cloud Droplets</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp"><i class="fa fa-check"></i><b>3.1</b> GCP</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp-에-vm-만들기"><i class="fa fa-check"></i><b>3.1.1</b> GCP 에 VM 만들기</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean"><i class="fa fa-check"></i><b>3.2</b> Digital ocean</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean-cmd-terminal-winscp-putty"><i class="fa fa-check"></i><b>3.2.1</b> digital ocean cmd terminal, winScp, putty</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cloud-droplets.html"><a href="cloud-droplets.html#rstudio-server-shiny-server-만들기"><i class="fa fa-check"></i><b>3.3</b> rstudio-server, shiny-server 만들기</a></li>
+<li class="chapter" data-level="3.4" data-path="cloud-droplets.html"><a href="cloud-droplets.html#r-and-rstudio-install"><i class="fa fa-check"></i><b>3.4</b> R and Rstudio install</a></li>
+<li class="chapter" data-level="3.5" data-path="cloud-droplets.html"><a href="cloud-droplets.html#shiny-server-install"><i class="fa fa-check"></i><b>3.5</b> shiny server install</a></li>
+<li class="chapter" data-level="3.6" data-path="cloud-droplets.html"><a href="cloud-droplets.html#도메인-연결"><i class="fa fa-check"></i><b>3.6</b> 도메인 연결</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html"><i class="fa fa-check"></i><b>4</b> blogdown, hugotheme, Github and Netlify</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#git-hub"><i class="fa fa-check"></i><b>4.1</b> git hub</a></li>
+<li class="chapter" data-level="4.2" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#blogdown"><i class="fa fa-check"></i><b>4.2</b> blogdown</a></li>
+<li class="chapter" data-level="4.3" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#github-and-git"><i class="fa fa-check"></i><b>4.3</b> github and git</a></li>
+<li class="chapter" data-level="4.4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#netlify"><i class="fa fa-check"></i><b>4.4</b> Netlify</a></li>
+<li class="chapter" data-level="4.5" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#도메인-연결-선택"><i class="fa fa-check"></i><b>4.5</b> 도메인 연결 (선택)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="blogdown-1.html"><a href="blogdown-1.html"><i class="fa fa-check"></i><b>5</b> blogdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="blogdown-1.html"><a href="blogdown-1.html#github"><i class="fa fa-check"></i><b>5.1</b> github</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html"><i class="fa fa-check"></i><b>6</b> Time series data analysis, regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#미세먼지와-심혈관사망"><i class="fa fa-check"></i><b>6.2</b> 미세먼지와 심혈관사망</a></li>
+<li class="chapter" data-level="6.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#case-study-influenza-epidemic-and-suicide"><i class="fa fa-check"></i><b>6.3</b> case study: influenza epidemic and suicide</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#실습-데이터"><i class="fa fa-check"></i><b>6.3.1</b> 실습 데이터</a></li>
+<li class="chapter" data-level="6.3.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#simple-time-related-variable-adjusting-regression"><i class="fa fa-check"></i><b>6.3.2</b> simple time-related variable adjusting regression</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#analysis-and-forecasting-regression"><i class="fa fa-check"></i><b>6.4</b> analysis and forecasting, regression</a></li>
+<li class="chapter" data-level="6.5" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima"><i class="fa fa-check"></i><b>6.5</b> ARIMA</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-감기-자살-aic"><i class="fa fa-check"></i><b>6.5.1</b> arima 감기 자살 , AIC</a></li>
+<li class="chapter" data-level="6.5.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#aic-bic-in-generalize-additive-model"><i class="fa fa-check"></i><b>6.5.2</b> AIC BIC in generalize additive model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="google-maps-platform.html"><a href="google-maps-platform.html"><i class="fa fa-check"></i><b>7</b> Google Maps Platform</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-tackeout"><i class="fa fa-check"></i><b>7.1</b> Google Tackeout</a></li>
+<li class="chapter" data-level="7.2" data-path="google-maps-platform.html"><a href="google-maps-platform.html#data-visualization"><i class="fa fa-check"></i><b>7.2</b> Data visualization</a></li>
+<li class="chapter" data-level="7.3" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-api"><i class="fa fa-check"></i><b>7.3</b> google API</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-maps.html"><a href="other-maps.html"><i class="fa fa-check"></i><b>8</b> other maps</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-maps.html"><a href="other-maps.html#leaflet"><i class="fa fa-check"></i><b>8.1</b> leaflet</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSpub-project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="time-series-data-analysis-regression" class="section level1" number="6">
+<h1><span class="header-section-number">Chapter 6</span> Time series data analysis, regression</h1>
+<div id="introduction" class="section level2" number="6.1">
+<h2><span class="header-section-number">6.1</span> introduction</h2>
+<p>시계열적 자료를 분석하고 나타나는 현상과 특정 요인과 관련성을 탐색해보는 시간입니다.
+예를 들어 미세먼지가 높은 날 심혈관 질환이 발생하는가?에 대한 질문에 답하기 위해서 생가할 것이 몇가지 있습니다.
+미세먼지가 높은 날이란? 심혈관 질환 사망이 높은 날이란? 이 두가지 요소를 검토하게 됩니다. <br>
+그런데 심혈관 질환의 사망은 요일마다 다르고, 계절에 따라 변동하며, 장기 적으로는 점차 증가 또는 감소를 합니다. 그런데 미세먼지도 점차 증가하고 있으니, 단순 상관관계를 보면 미세먼지도 증가 심혈관 사망도 증가하면 양의 관련성을 보이게 됩니다.
+GDP와 자살의 관계를 보면 어떨까요? 우리나라의 자살률은 증가하고 있습니다. 그런데 GDP도 증가하고 있습니다. 그러니 GDP의 증가와 자살의 증가는 양의 상관관계가 있다고 나옵니다. 맞나요?
+네 심혈관 사망, 자살의 증가의 계절적 요소, 장기간 추세(trend)가 아니라 변동이 미세먼지나 GDP의 변동가 어떠한 관계가 있는지가 우리의 궁금증일 것 입니다. 이러한 궁금증을 R을 이용해서 풀어보도록 하겠습니다.</p>
+</div>
+<div id="미세먼지와-심혈관사망" class="section level2" number="6.2">
+<h2><span class="header-section-number">6.2</span> 미세먼지와 심혈관사망</h2>
+<p>우선 몇가지 시계열 자료 분석의 이해를 돕기 위해 시뮬레이션 자료를 이용해 보겠습니다.</p>
+<blockquote>
+<p>x를 일(day) 로 생각하고, 300일 동안 랜덤 변수 y1과 이에 4.5를 곱한 pm(미세먼지)를 가상으로 만들어 보겠습니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="time-series-data-analysis-regression.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">1</span>)</span>
+<span id="cb1-2"><a href="time-series-data-analysis-regression.html#cb1-2" aria-hidden="true" tabindex="-1"></a>x  <span class="ot">&lt;-</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">300</span></span>
+<span id="cb1-3"><a href="time-series-data-analysis-regression.html#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="time-series-data-analysis-regression.html#cb1-4" aria-hidden="true" tabindex="-1"></a>y1 <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">*</span><span class="fu">rnorm</span>(<span class="dv">300</span>, <span class="at">sd=</span>.<span class="dv">1</span>)<span class="sc">+</span><span class="dv">15</span></span>
+<span id="cb1-5"><a href="time-series-data-analysis-regression.html#cb1-5" aria-hidden="true" tabindex="-1"></a>pm <span class="ot">&lt;-</span> y1<span class="sc">*</span><span class="fl">4.5</span></span>
+<span id="cb1-6"><a href="time-series-data-analysis-regression.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, pm, <span class="at">type=</span><span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/random%20variable-1.png" width="672" /></p>
+<blockquote>
+<p>여기에 <code>sin()</code> 함수를 통해 계절적 요소를 넣고, 0.03을 곱해 long term trend 가 서서히 증가하는 것으로 가정했습니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="time-series-data-analysis-regression.html#cb2-1" aria-hidden="true" tabindex="-1"></a>y2 <span class="ot">&lt;-</span> y1<span class="sc">*</span><span class="dv">5</span><span class="sc">+</span> <span class="fu">sin</span>(x<span class="sc">/</span><span class="dv">2</span>)<span class="sc">*</span><span class="dv">5</span><span class="sc">+</span> x <span class="sc">*</span> <span class="fl">0.03</span> </span>
+<span id="cb2-2"><a href="time-series-data-analysis-regression.html#cb2-2" aria-hidden="true" tabindex="-1"></a>y2[y2<span class="sc">&lt;</span> <span class="dv">0</span>]<span class="ot">&lt;-</span><span class="dv">0</span></span>
+<span id="cb2-3"><a href="time-series-data-analysis-regression.html#cb2-3" aria-hidden="true" tabindex="-1"></a>y3<span class="ot">&lt;-</span><span class="fu">round</span>(y2)</span>
+<span id="cb2-4"><a href="time-series-data-analysis-regression.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(y3, <span class="at">type=</span><span class="st">&#39;l&#39;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/seasonal%20randome-1.png" width="672" /></p>
+<blockquote>
+<p>지연 효과와 특정 이벤트가 있는 날을 넣어 보았습니다. 그리고 dataframe을 만들었습니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="time-series-data-analysis-regression.html#cb3-1" aria-hidden="true" tabindex="-1"></a>lag <span class="ot">&lt;-</span><span class="dv">6</span></span>
+<span id="cb3-2"><a href="time-series-data-analysis-regression.html#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(y3)</span></code></pre></div>
+<pre><code>## [1] 79.58667</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="time-series-data-analysis-regression.html#cb5-1" aria-hidden="true" tabindex="-1"></a>death <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fu">c</span>(<span class="dv">80</span>,<span class="dv">79</span>,<span class="dv">81</span>), (lag<span class="sc">/</span><span class="dv">3</span>)), y3[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(y3)<span class="sc">-</span>lag)])  </span>
+<span id="cb5-2"><a href="time-series-data-analysis-regression.html#cb5-2" aria-hidden="true" tabindex="-1"></a>event <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">1</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">240</span>)) </span>
+<span id="cb5-3"><a href="time-series-data-analysis-regression.html#cb5-3" aria-hidden="true" tabindex="-1"></a>eventd <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="dv">40</span>,<span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">30</span>, <span class="dv">30</span>), <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">240</span>))</span>
+<span id="cb5-4"><a href="time-series-data-analysis-regression.html#cb5-4" aria-hidden="true" tabindex="-1"></a>death2<span class="ot">&lt;-</span>death<span class="sc">+</span>eventd<span class="sc">+</span><span class="dv">10</span></span>
+<span id="cb5-5"><a href="time-series-data-analysis-regression.html#cb5-5" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(x, pm, y3, death, event, death2) </span>
+<span id="cb5-6"><a href="time-series-data-analysis-regression.html#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(gg)</span></code></pre></div>
+<pre><code>##   x       pm y3 death event death2
+## 1 1 66.09048 76    80     1    130
+## 2 2 67.91320 80    79     1    129
+## 3 3 65.61984 78    81     1    131
+## 4 4 71.08938 84    80     1    130
+## 5 5 68.24139 79    79     1    129
+## 6 6 65.65395 74    81     1    131</code></pre>
+<blockquote>
+<p>이제 그림을 그려 보겠습니다. 첫 50일에 이벤트가 있어 심혈관 사망이 높고 이후 계절적 요소를 보이며 서서히 증가하고 있습니다. 미세먼지는 random + 계절적 요소로 만들었고요.</p>
+</blockquote>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="time-series-data-analysis-regression.html#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, pm, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">140</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">300</span>))</span>
+<span id="cb7-2"><a href="time-series-data-analysis-regression.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb7-3"><a href="time-series-data-analysis-regression.html#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, death2, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.7</span>), <span class="at">type=</span><span class="st">&quot;p&quot;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<blockquote>
+<p>이제 단순 회귀 분석을 해보겠습니다. 어떠한 관계가 관찰되시나요. event 때 많이 사망하고, 미세먼지와는 관련이 없네요. 분명 미세먼지와 관련있게 시뮬레이션 해서 만든 자료인데요. 맞습니다. <code>lag</code> 과 <code>seasonality</code> 보정이 않되었네요.</p>
+</blockquote>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb8-1"><a href="time-series-data-analysis-regression.html#cb8-1" aria-hidden="true" tabindex="-1"></a>mt3 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death2 <span class="sc">~</span> x<span class="sc">+</span><span class="fu">sin</span>(x<span class="sc">/</span><span class="dv">2</span>)<span class="sc">+</span>pm<span class="sc">+</span>event)</span>
+<span id="cb8-2"><a href="time-series-data-analysis-regression.html#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(mt3)<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##                Estimate  Std. Error     t value      Pr(&gt;|t|)
+## (Intercept) 90.10455149 6.861474711  13.1319513  2.476263e-31
+## x            0.02379324 0.003500538   6.7970236  5.915161e-11
+## sin(x/2)    -4.41585403 0.308633540 -14.3077581  1.247252e-35
+## pm          -0.06144597 0.101078610  -0.6079028  5.437196e-01
+## event       35.05109683 0.757861036  46.2500315 3.230388e-137</code></pre>
+<blockquote>
+<p>그림으로 확인해 보겠습니다. 무언가 잘못 예측이 되고 있죠?</p>
+</blockquote>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb10-1"><a href="time-series-data-analysis-regression.html#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, pm, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">50</span>, <span class="dv">140</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">300</span>))</span>
+<span id="cb10-2"><a href="time-series-data-analysis-regression.html#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb10-3"><a href="time-series-data-analysis-regression.html#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, death2, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.7</span>), <span class="at">type=</span><span class="st">&quot;p&quot;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb10-4"><a href="time-series-data-analysis-regression.html#cb10-4" aria-hidden="true" tabindex="-1"></a>mp3 <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">predict</span>(mt3))</span>
+<span id="cb10-5"><a href="time-series-data-analysis-regression.html#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, mp3, <span class="at">col=</span><span class="dv">75</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/plot%20regression%20line%20simple-1.png" width="672" /></p>
+<blockquote>
+<p>차라리 이렇게 해보는 것은 어떨까요? 시계열적인 요소를 뺀 상태 (residual) 과 미세먼지가 관련이 있나 보는 것입니다 .</p>
+</blockquote>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="time-series-data-analysis-regression.html#cb11-1" aria-hidden="true" tabindex="-1"></a>mt2 <span class="ot">&lt;-</span> <span class="fu">glm</span>(death2 <span class="sc">~</span> x<span class="sc">+</span><span class="fu">sin</span>(x<span class="sc">/</span><span class="dv">2</span>)<span class="sc">+</span>event)</span>
+<span id="cb11-2"><a href="time-series-data-analysis-regression.html#cb11-2" aria-hidden="true" tabindex="-1"></a>resid_mt2 <span class="ot">&lt;-</span><span class="fu">resid</span>(mt2)</span>
+<span id="cb11-3"><a href="time-series-data-analysis-regression.html#cb11-3" aria-hidden="true" tabindex="-1"></a>risk.m0<span class="ot">&lt;-</span><span class="fu">glm</span>(resid_mt2 <span class="sc">~</span> pm, <span class="at">family=</span>gaussian)</span>
+<span id="cb11-4"><a href="time-series-data-analysis-regression.html#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(risk.m0)</span></code></pre></div>
+<pre><code>## 
+## Call:
+## glm(formula = resid_mt2 ~ pm, family = gaussian)
+## 
+## Deviance Residuals: 
+##     Min       1Q   Median       3Q      Max  
+## -9.6006  -2.2804  -0.1559   2.3275  14.2142  
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)
+## (Intercept)  4.14114    6.79037    0.61    0.542
+## pm          -0.06128    0.10043   -0.61    0.542
+## 
+## (Dispersion parameter for gaussian family taken to be 14.18007)
+## 
+##     Null deviance: 4230.9  on 299  degrees of freedom
+## Residual deviance: 4225.7  on 298  degrees of freedom
+## AIC: 1650.9
+## 
+## Number of Fisher Scoring iterations: 2</code></pre>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb13-1"><a href="time-series-data-analysis-regression.html#cb13-1" aria-hidden="true" tabindex="-1"></a>risk.mp0 <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">predict</span>(risk.m0))</span>
+<span id="cb13-2"><a href="time-series-data-analysis-regression.html#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pm, resid_mt2, <span class="at">type=</span><span class="st">&#39;p&#39;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb13-3"><a href="time-series-data-analysis-regression.html#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(pm, (risk.mp0), <span class="at">col=</span><span class="dv">25</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/residual%20plot%201-1.png" width="672" /></p>
+<p>저는 이것이 더 직관적인데요. 심혈관사망에서 시계열적으로 변동이 있는 부분을 뺀 나머지 (residual) 이 pm 이 변동할 때 같이 변동하면 관련성이 있다고 보는 것이지요.</p>
+<blockquote>
+<p>자 이제 lag 을 줘서 관찰해 보겠습니다. lag을 주면 초반 데이터 숫자가 맞지 않는데요. 이때 pm의 평균 값으로 결측치를 대신해서 해결해 보겠습니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb14-1"><a href="time-series-data-analysis-regression.html#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pm)</span></code></pre></div>
+<pre><code>## [1] 67.57556</code></pre>
+<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb16-1"><a href="time-series-data-analysis-regression.html#cb16-1" aria-hidden="true" tabindex="-1"></a>lag.pm<span class="ot">&lt;-</span><span class="dv">6</span></span>
+<span id="cb16-2"><a href="time-series-data-analysis-regression.html#cb16-2" aria-hidden="true" tabindex="-1"></a>pm.lag <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="fu">rep</span>(<span class="fl">67.5</span>, lag.pm), pm[<span class="dv">1</span><span class="sc">:</span>(<span class="fu">length</span>(pm)<span class="sc">-</span>lag.pm)])</span>
+<span id="cb16-3"><a href="time-series-data-analysis-regression.html#cb16-3" aria-hidden="true" tabindex="-1"></a>resid_mt3 <span class="ot">&lt;-</span><span class="fu">resid</span>(mt3)</span>
+<span id="cb16-4"><a href="time-series-data-analysis-regression.html#cb16-4" aria-hidden="true" tabindex="-1"></a>risk.m1<span class="ot">&lt;-</span><span class="fu">glm</span>(resid_mt3 <span class="sc">~</span> pm.lag, <span class="at">family=</span>gaussian)</span>
+<span id="cb16-5"><a href="time-series-data-analysis-regression.html#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(risk.m1)<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##               Estimate Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) -76.437599 5.21757250 -14.65003 5.620794e-37
+## pm.lag        1.131554 0.07720006  14.65743 5.276143e-37</code></pre>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="time-series-data-analysis-regression.html#cb18-1" aria-hidden="true" tabindex="-1"></a>risk.mp1 <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="fu">predict</span>(risk.m1))</span>
+<span id="cb18-2"><a href="time-series-data-analysis-regression.html#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pm.lag, resid_mt3, <span class="at">type=</span><span class="st">&#39;p&#39;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb18-3"><a href="time-series-data-analysis-regression.html#cb18-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(pm.lag, risk.mp1, <span class="at">col=</span><span class="dv">25</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/lag%20time%20and%20plot%20and%20regression-1.png" width="672" /></p>
+<p>네 이제 pm 과 양의 심혈관 사망에 양의 상관관계가 생겼네요. 우리가 원했던 데이터를 그렇게 만들었었습니다.<br />
+&gt; 그림으로 관찰해 보면 빨간색이 lag time을 준것입니다. 누가 더 사망과 관련이 있어 보이나요?</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb19-1"><a href="time-series-data-analysis-regression.html#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, resid_mt3, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">15</span>, <span class="dv">40</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">300</span>))</span>
+<span id="cb19-2"><a href="time-series-data-analysis-regression.html#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb19-3"><a href="time-series-data-analysis-regression.html#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, (pm<span class="dv">-50</span>), <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.7</span>), <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb19-4"><a href="time-series-data-analysis-regression.html#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, (pm.lag<span class="dv">-60</span>), <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/fit%20plot%201-1.png" width="672" /></p>
+<blockquote>
+<p>지금 까지 고려한 것은 <code>sin()</code>으로 계절적 요소, <code>lag</code>으로 지연 효과를 고려해서 시계열적 요소를 없앤다음 (residual), pm과 심혈관사망의 관계를 분석하는 방식으로 해보았습니다. 좀더 쉽게 이것을 해보겠습니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb20-1"><a href="time-series-data-analysis-regression.html#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(mgcv)</span></code></pre></div>
+<pre><code>## Loading required package: nlme</code></pre>
+<pre><code>## This is mgcv 1.8-33. For overview type &#39;help(&quot;mgcv-package&quot;)&#39;.</code></pre>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb23-1"><a href="time-series-data-analysis-regression.html#cb23-1" aria-hidden="true" tabindex="-1"></a>mgam<span class="ot">&lt;-</span> <span class="fu">gam</span>(death2 <span class="sc">~</span> <span class="fu">s</span>(x, <span class="at">bs=</span><span class="st">&quot;cc&quot;</span>, <span class="at">k=</span><span class="dv">100</span>)<span class="sc">+</span>event, <span class="at">family=</span>gaussian)</span>
+<span id="cb23-2"><a href="time-series-data-analysis-regression.html#cb23-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">predict</span>(mgam)</span>
+<span id="cb23-3"><a href="time-series-data-analysis-regression.html#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(x, pm, <span class="at">type=</span><span class="st">&quot;l&quot;</span>, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.5</span>), <span class="at">ylim=</span><span class="fu">c</span>(<span class="dv">40</span>, <span class="dv">150</span>), <span class="at">xlim=</span><span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">300</span>), <span class="at">cex=</span><span class="dv">2</span>)</span>
+<span id="cb23-4"><a href="time-series-data-analysis-regression.html#cb23-4" aria-hidden="true" tabindex="-1"></a><span class="fu">grid</span>()</span>
+<span id="cb23-5"><a href="time-series-data-analysis-regression.html#cb23-5" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, death2, <span class="at">col=</span><span class="fu">grey</span>(<span class="fl">0.7</span>), <span class="at">type=</span><span class="st">&quot;p&quot;</span>, <span class="at">cex=</span><span class="fl">0.5</span>)</span>
+<span id="cb23-6"><a href="time-series-data-analysis-regression.html#cb23-6" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="dv">250</span>, <span class="at">y=</span><span class="dv">70</span>, <span class="st">&#39;PM10&#39;</span>)</span>
+<span id="cb23-7"><a href="time-series-data-analysis-regression.html#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="dv">150</span>, <span class="at">y=</span><span class="dv">65</span>, <span class="st">&#39;pm10. lag&#39;</span>)</span>
+<span id="cb23-8"><a href="time-series-data-analysis-regression.html#cb23-8" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="dv">210</span>, <span class="at">y=</span><span class="dv">110</span>, <span class="st">&#39;Obs_death&#39;</span>)</span>
+<span id="cb23-9"><a href="time-series-data-analysis-regression.html#cb23-9" aria-hidden="true" tabindex="-1"></a><span class="fu">legend</span>(<span class="at">x=</span><span class="dv">10</span>, <span class="at">y=</span><span class="dv">50</span>, <span class="st">&#39;Residual(Obs_Death - Gam(fitting)&#39;</span>)</span>
+<span id="cb23-10"><a href="time-series-data-analysis-regression.html#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, p)</span>
+<span id="cb23-11"><a href="time-series-data-analysis-regression.html#cb23-11" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, (<span class="fu">resid</span>(mgam)<span class="sc">+</span><span class="dv">50</span>), <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb23-12"><a href="time-series-data-analysis-regression.html#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="fu">lines</span>(x, pm.lag<span class="dv">-10</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20summary%20plot%201-1.png" width="672" />
+&gt; 이것을 회귀 분석으로 구해보겠습니다. k 가 높을 수록 모형은 어떠한 가요? 네 즉 위에 lag time 과 k 값을 어떻게 조정하는 지를 고려해야 합니다. 우선 lag time 어떻게 찾을 까요?</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb24-1"><a href="time-series-data-analysis-regression.html#cb24-1" aria-hidden="true" tabindex="-1"></a>mgam<span class="ot">&lt;-</span> <span class="fu">gam</span>(death2 <span class="sc">~</span> <span class="fu">s</span>(x, <span class="at">bs=</span><span class="st">&quot;cc&quot;</span>, <span class="at">k=</span><span class="dv">100</span>)<span class="sc">+</span>event, <span class="at">family=</span>gaussian)</span>
+<span id="cb24-2"><a href="time-series-data-analysis-regression.html#cb24-2" aria-hidden="true" tabindex="-1"></a>p <span class="ot">&lt;-</span> <span class="fu">predict</span>(mgam)</span>
+<span id="cb24-3"><a href="time-series-data-analysis-regression.html#cb24-3" aria-hidden="true" tabindex="-1"></a>risk.pp1 <span class="ot">&lt;-</span><span class="fu">glm</span>(death2 <span class="sc">~</span> p<span class="sc">+</span>pm.lag,<span class="at">family=</span>gaussian)</span>
+<span id="cb24-4"><a href="time-series-data-analysis-regression.html#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(risk.pp1)<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##                Estimate  Std. Error   t value     Pr(&gt;|t|)
+## (Intercept) -58.3872771 1.937186312 -30.14025 2.402418e-92
+## p             1.0000436 0.004566766 218.98286 0.000000e+00
+## pm.lag        0.8642815 0.028266084  30.57663 9.482839e-94</code></pre>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb26-1"><a href="time-series-data-analysis-regression.html#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(risk.pp1)</span></code></pre></div>
+<pre><code>## [1] 885.3135</code></pre>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="time-series-data-analysis-regression.html#cb28-1" aria-hidden="true" tabindex="-1"></a>mgam150<span class="ot">&lt;-</span> <span class="fu">gam</span>(death2 <span class="sc">~</span> <span class="fu">s</span>(x, <span class="at">bs=</span><span class="st">&quot;cc&quot;</span>, <span class="at">k=</span><span class="dv">10</span>)<span class="sc">+</span>event)</span>
+<span id="cb28-2"><a href="time-series-data-analysis-regression.html#cb28-2" aria-hidden="true" tabindex="-1"></a>p150 <span class="ot">&lt;-</span> <span class="fu">predict</span>(mgam150)</span>
+<span id="cb28-3"><a href="time-series-data-analysis-regression.html#cb28-3" aria-hidden="true" tabindex="-1"></a>risk.pp150 <span class="ot">&lt;-</span><span class="fu">glm</span>(death2 <span class="sc">~</span> p150<span class="sc">+</span> pm.lag, <span class="at">family=</span>gaussian)</span>
+<span id="cb28-4"><a href="time-series-data-analysis-regression.html#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(risk.pp150)<span class="sc">$</span>coefficients</span></code></pre></div>
+<pre><code>##                Estimate Std. Error   t value      Pr(&gt;|t|)
+## (Intercept) -72.5953393 6.74682944 -10.75992  5.109224e-23
+## p150          0.9979243 0.01630871  61.18966 2.087420e-170
+## pm.lag        1.0776412 0.09754736  11.04736  5.349868e-24</code></pre>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="time-series-data-analysis-regression.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(risk.pp1, risk.pp150)</span></code></pre></div>
+<pre><code>##            df       AIC
+## risk.pp1    4  885.3135
+## risk.pp150  4 1629.2747</code></pre>
+<blockquote>
+<p>lag 을 찾아 보겠습니다. pm에 대해 lag을 10일까지, 3차 방정식 형태로 구성해 보고, 그리고 이를 통해 회귀 분석을 시행해 본다는 이야기 입니다.</p>
+</blockquote>
+<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="time-series-data-analysis-regression.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dlnm)</span></code></pre></div>
+<pre><code>## This is dlnm 2.4.2. For details: help(dlnm) and vignette(&#39;dlnmOverview&#39;).</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="time-series-data-analysis-regression.html#cb34-1" aria-hidden="true" tabindex="-1"></a>cb1.pm <span class="ot">&lt;-</span><span class="fu">crossbasis</span>(pm, <span class="at">lag=</span><span class="dv">10</span>, <span class="at">argvar=</span><span class="fu">list</span>(<span class="at">fun=</span><span class="st">&quot;lin&quot;</span>),</span>
+<span id="cb34-2"><a href="time-series-data-analysis-regression.html#cb34-2" aria-hidden="true" tabindex="-1"></a>     <span class="at">arglag=</span><span class="fu">list</span>(<span class="at">fun=</span><span class="st">&quot;poly&quot;</span>, <span class="at">degree=</span><span class="dv">3</span>))</span>
+<span id="cb34-3"><a href="time-series-data-analysis-regression.html#cb34-3" aria-hidden="true" tabindex="-1"></a>model1 <span class="ot">&lt;-</span><span class="fu">glm</span>(death2 <span class="sc">~</span> cb1.pm<span class="sc">+</span>x<span class="sc">+</span>event , </span>
+<span id="cb34-4"><a href="time-series-data-analysis-regression.html#cb34-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">family=</span>gaussian )</span>
+<span id="cb34-5"><a href="time-series-data-analysis-regression.html#cb34-5" aria-hidden="true" tabindex="-1"></a>pred1.pm <span class="ot">&lt;-</span><span class="fu">crosspred</span>(cb1.pm, model1, <span class="at">at=</span><span class="dv">0</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">bylag=</span><span class="fl">0.1</span>, <span class="at">cumul=</span><span class="cn">TRUE</span>)</span>
+<span id="cb34-6"><a href="time-series-data-analysis-regression.html#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb34-7"><a href="time-series-data-analysis-regression.html#cb34-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred1.pm, <span class="st">&quot;slices&quot;</span>, <span class="at">var=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">3</span>, <span class="at">ylab=</span><span class="st">&quot;RR&quot;</span>, <span class="at">ci.arg=</span><span class="fu">list</span>(<span class="at">density=</span><span class="dv">15</span>,<span class="at">lwd=</span><span class="dv">2</span>),</span>
+<span id="cb34-8"><a href="time-series-data-analysis-regression.html#cb34-8" aria-hidden="true" tabindex="-1"></a>     <span class="co">#cumul = TRUE,</span></span>
+<span id="cb34-9"><a href="time-series-data-analysis-regression.html#cb34-9" aria-hidden="true" tabindex="-1"></a><span class="at">main=</span><span class="st">&quot;Association with a 1-unit increase in PM10&quot;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/dlnm%20plot%201-1.png" width="672" /></p>
+<blockquote>
+<p>6일을 lag time으로 하면 좋겠네요.</p>
+</blockquote>
+<p>이제 6일을 lag time으로 설정해서 회귀 분석을 수행하면 된다는 것을 알았습니다. 이제 남은 것은 시계열적 요소를 어떻게 찾고, 어떻게 보정할지, 그리고 이 과정을 어떻게 합리적으로 할지 더 논의 하면 됩니다. <br>
+이는 다음 시간에 influenza epidemic 과 suicide의 관계를 관찰해 보면서 논의 하겠습니다. 이 후에는 그럼 얼마의 노출에서 사망이 증가하는지 threshold를 찾는 것 까지 해보면 좋겠습니다.</p>
+</div>
+<div id="case-study-influenza-epidemic-and-suicide" class="section level2" number="6.3">
+<h2><span class="header-section-number">6.3</span> case study: influenza epidemic and suicide</h2>
+<p>이번 시간에는 독감 유행과 자살에 대해 이야기 해보겠습니다. 독감 치료 중 자살하는 것이 수년전에 일본 뉴스에 나왔었는데요, 독감이 주로 유행하는 환절기인 계절적 요소의 문제인지 아니면 정말 독감의 유행이 크면 자살이 일어나는 건지 분석을 통해 알아보고자 합니다.</p>
+<div id="실습-데이터" class="section level3" number="6.3.1">
+<h3><span class="header-section-number">6.3.1</span> 실습 데이터</h3>
+<p>첫번째 실습 데이터는 감염병 포탈의 인플루엔자 자료입니다. 여기서 다운로드 합니다.</p>
+<div class="figure">
+<img src="img/influenza1.png" alt="" />
+<p class="caption">인플루엔자</p>
+</div>
+<p>두번째 실습 자료는 통계청 사망자료 입니다.</p>
+<div class="figure">
+<img src="img/influenza2.png" alt="" />
+<p class="caption">인플루엔자</p>
+</div>
+<p>이 둘을 합해 놓은 자료는 아래에 있습니다.</p>
+<p>이것을 data 폴더에 넣겠습니다.</p>
+<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="time-series-data-analysis-regression.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&#39;gsheet&#39;</span>)) <span class="fu">install.packages</span>(<span class="st">&#39;gsheet&#39;</span>)</span>
+<span id="cb35-2"><a href="time-series-data-analysis-regression.html#cb35-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(gsheet)</span>
+<span id="cb35-3"><a href="time-series-data-analysis-regression.html#cb35-3" aria-hidden="true" tabindex="-1"></a>flusui <span class="ot">&lt;-</span> <span class="fu">gsheet2tbl</span>(<span class="st">&#39;docs.google.com/spreadsheets/d/14w0m545SQcrV5YYaHoPfLR3DPcWPqzwleNt-dpdC8so&#39;</span>)</span></code></pre></div>
+<p>라이브러리를 불러오겠습니다.</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="time-series-data-analysis-regression.html#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;dplyr&#39;</span>)</span>
+<span id="cb36-2"><a href="time-series-data-analysis-regression.html#cb36-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;lubridate&#39;</span>)</span>
+<span id="cb36-3"><a href="time-series-data-analysis-regression.html#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;mgcv&#39;</span>)</span>
+<span id="cb36-4"><a href="time-series-data-analysis-regression.html#cb36-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;dlnm&#39;</span>)</span>
+<span id="cb36-5"><a href="time-series-data-analysis-regression.html#cb36-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;gam&#39;</span>)</span>
+<span id="cb36-6"><a href="time-series-data-analysis-regression.html#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;forecast&#39;</span>)</span>
+<span id="cb36-7"><a href="time-series-data-analysis-regression.html#cb36-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">&#39;Hmisc&#39;</span>)</span></code></pre></div>
+<p>데이터를 살펴보면 ymd 는 숫자 형식의 날짜 (기준 1970년 1월 1일), <code>wsui</code> 는 1주간의 자살 사망자 수, <code>ordweek</code> 는 주중 순위, <code>flu</code> 는 주중 천명당 인플루엔자 환자 수.</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="time-series-data-analysis-regression.html#cb37-1" aria-hidden="true" tabindex="-1"></a>data0 <span class="ot">=</span> flusui</span>
+<span id="cb37-2"><a href="time-series-data-analysis-regression.html#cb37-2" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(data0)</span></code></pre></div>
+<pre><code>## # A tibble: 6 x 7
+##     ymd  wsui ordweek ymd2         nwd    YR   flu
+##   &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;date&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+## 1 12660   238      35 2004-08-30    36  2004   0.6
+## 2 12667   211      36 2004-09-06    37  2004   2  
+## 3 12674   208      37 2004-09-13    38  2004   2.1
+## 4 12681   188      38 2004-09-20    39  2004   2.2
+## 5 12688   213      39 2004-09-27    40  2004   2.5
+## 6 12695   224      40 2004-10-04    41  2004   2.4</code></pre>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="time-series-data-analysis-regression.html#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(data0<span class="sc">$</span>wsui)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p>신종 플루가 2009년부터 유행했고, 이후 자살자가 관련있다는 뉴스가 나오고 있으니, 2009년 전과 후를 나타내는 변수를 만들겠습니다 .</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="time-series-data-analysis-regression.html#cb40-1" aria-hidden="true" tabindex="-1"></a>myd<span class="ot">&lt;-</span>data0 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Change=</span><span class="fu">ifelse</span>(YR<span class="sc">&gt;</span><span class="dv">2008</span>, <span class="st">&quot;from 2009&quot;</span>, <span class="st">&quot;before 2009&quot;</span>))</span></code></pre></div>
+<p>자료가 시계열 자료라는 것을 컴퓨터에게 알려줄 필요가 있습니다. 그리고 싸이클이 있다는 것도요. 우리는 주당 싸이클 (7일 기준)이기 때문에 <code>frequency=365.25/7</code>을 이용하고 시작 날짜를 정해줍니다.</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="time-series-data-analysis-regression.html#cb41-1" aria-hidden="true" tabindex="-1"></a>tsui <span class="ot">&lt;-</span><span class="fu">ts</span>(myd<span class="sc">$</span>wsui, <span class="at">frequency=</span><span class="fl">365.25</span><span class="sc">/</span><span class="dv">7</span>, <span class="at">start =</span> <span class="fu">decimal_date</span>(<span class="fu">ymd</span>(<span class="st">&quot;2004-08-30&quot;</span>)))</span>
+<span id="cb41-2"><a href="time-series-data-analysis-regression.html#cb41-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(myd<span class="sc">$</span>wsui)</span></code></pre></div>
+<pre><code>## [1] 696</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="time-series-data-analysis-regression.html#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span>(tsui)</span></code></pre></div>
+<pre><code>## [1] 696</code></pre>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="time-series-data-analysis-regression.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tsui)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/first%20ts%201-1.png" width="672" /></p>
+<p>여기서 시계열적 요소를 찾아 보겠습니다.</p>
+<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb46-1"><a href="time-series-data-analysis-regression.html#cb46-1" aria-hidden="true" tabindex="-1"></a>d.tsui <span class="ot">&lt;-</span><span class="fu">decompose</span>(tsui)</span>
+<span id="cb46-2"><a href="time-series-data-analysis-regression.html#cb46-2" aria-hidden="true" tabindex="-1"></a><span class="co">#d.tsui</span></span>
+<span id="cb46-3"><a href="time-series-data-analysis-regression.html#cb46-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d.tsui) <span class="do">####### find seasonal and trend</span></span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/decomposition%20ts%201-1.png" width="672" /></p>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb47-1"><a href="time-series-data-analysis-regression.html#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d.tsui<span class="sc">$</span>random)</span></code></pre></div>
+<pre><code>##     Min.  1st Qu.   Median     Mean  3rd Qu.     Max.     NA&#39;s 
+## -78.1819 -18.8440  -0.3562   1.2124  18.5710 175.0412       51</code></pre>
+<p>이번에는 flu에 대한 시계열 분석을 해보겠습니다.</p>
+<div class="sourceCode" id="cb49"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb49-1"><a href="time-series-data-analysis-regression.html#cb49-1" aria-hidden="true" tabindex="-1"></a>r.tsui <span class="ot">&lt;-</span>d.tsui<span class="sc">$</span>random <span class="co"># residuals</span></span>
+<span id="cb49-2"><a href="time-series-data-analysis-regression.html#cb49-2" aria-hidden="true" tabindex="-1"></a>s.tsui <span class="ot">&lt;-</span>d.tsui<span class="sc">$</span>seasonal <span class="co"># seasonal</span></span>
+<span id="cb49-3"><a href="time-series-data-analysis-regression.html#cb49-3" aria-hidden="true" tabindex="-1"></a>tr.tsui <span class="ot">&lt;-</span>d.tsui<span class="sc">$</span>trend <span class="co"># long term trend</span></span>
+<span id="cb49-4"><a href="time-series-data-analysis-regression.html#cb49-4" aria-hidden="true" tabindex="-1"></a><span class="do">######### influenza&#39;</span></span>
+<span id="cb49-5"><a href="time-series-data-analysis-regression.html#cb49-5" aria-hidden="true" tabindex="-1"></a>tflu <span class="ot">&lt;-</span><span class="fu">ts</span>(myd<span class="sc">$</span>flu, <span class="at">frequency=</span><span class="fl">365.25</span><span class="sc">/</span><span class="dv">7</span>, <span class="at">start =</span> <span class="fu">decimal_date</span>(<span class="fu">ymd</span>(<span class="st">&quot;2004-08-30&quot;</span>)))</span>
+<span id="cb49-6"><a href="time-series-data-analysis-regression.html#cb49-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(tflu)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-8-1.png" width="672" />
+이것을 decomposition 하면</p>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb50-1"><a href="time-series-data-analysis-regression.html#cb50-1" aria-hidden="true" tabindex="-1"></a>d.tflu <span class="ot">&lt;-</span><span class="fu">decompose</span>(tflu)</span>
+<span id="cb50-2"><a href="time-series-data-analysis-regression.html#cb50-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d.tflu) <span class="do">####### find seasonal and trend</span></span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
+<div class="sourceCode" id="cb51"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb51-1"><a href="time-series-data-analysis-regression.html#cb51-1" aria-hidden="true" tabindex="-1"></a>r.tflu <span class="ot">&lt;-</span>d.tflu<span class="sc">$</span>random <span class="co"># residuals</span></span>
+<span id="cb51-2"><a href="time-series-data-analysis-regression.html#cb51-2" aria-hidden="true" tabindex="-1"></a>s.tflu <span class="ot">&lt;-</span>d.tflu<span class="sc">$</span>seasonal <span class="co"># seasonal</span></span>
+<span id="cb51-3"><a href="time-series-data-analysis-regression.html#cb51-3" aria-hidden="true" tabindex="-1"></a>tr.tflu <span class="ot">&lt;-</span>d.tflu<span class="sc">$</span>trend <span class="co"># long term trend</span></span></code></pre></div>
+</div>
+<div id="simple-time-related-variable-adjusting-regression" class="section level3" number="6.3.2">
+<h3><span class="header-section-number">6.3.2</span> simple time-related variable adjusting regression</h3>
+<p>결국 resudial flu와 residual sui의 상관관계를 보면 되는 것이라고 생각해 봅시다.</p>
+<div class="sourceCode" id="cb52"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb52-1"><a href="time-series-data-analysis-regression.html#cb52-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Hmisc)</span>
+<span id="cb52-2"><a href="time-series-data-analysis-regression.html#cb52-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r.tflu, r.tsui)</span>
+<span id="cb52-3"><a href="time-series-data-analysis-regression.html#cb52-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> r.tflu))</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/nolagmodel-1.png" width="672" /></p>
+<div class="sourceCode" id="cb53"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb53-1"><a href="time-series-data-analysis-regression.html#cb53-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Lag</span>(r.tflu, <span class="dv">3</span>), r.tsui)</span>
+<span id="cb53-2"><a href="time-series-data-analysis-regression.html#cb53-2" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> <span class="fu">Lag</span>(r.tflu, <span class="dv">3</span>)))</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/nolagmodel-2.png" width="672" /></p>
+<div class="sourceCode" id="cb54"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb54-1"><a href="time-series-data-analysis-regression.html#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb54-2"><a href="time-series-data-analysis-regression.html#cb54-2" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(r.tflu, r.tsui, <span class="at">cex=</span><span class="fl">0.2</span>, <span class="at">main=</span><span class="st">&quot;no lag model&quot;</span>)</span>
+<span id="cb54-3"><a href="time-series-data-analysis-regression.html#cb54-3" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> r.tflu))</span>
+<span id="cb54-4"><a href="time-series-data-analysis-regression.html#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">15</span>, <span class="dv">130</span>, <span class="st">&#39;Beta =&#39;</span>)</span>
+<span id="cb54-5"><a href="time-series-data-analysis-regression.html#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">15</span>, <span class="dv">100</span>, <span class="st">&#39;P value=&#39;</span>)</span>
+<span id="cb54-6"><a href="time-series-data-analysis-regression.html#cb54-6" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">30</span>, <span class="dv">130</span>, <span class="fu">round</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> <span class="fu">Lag</span>(r.tflu, <span class="dv">0</span>)))<span class="sc">$</span>coefficients[<span class="fu">c</span>(<span class="dv">2</span>)], <span class="dv">4</span>))</span>
+<span id="cb54-7"><a href="time-series-data-analysis-regression.html#cb54-7" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="fu">round</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> <span class="fu">Lag</span>(r.tflu, <span class="dv">0</span>)))<span class="sc">$</span>coefficients[<span class="fu">c</span>(<span class="dv">8</span>)], <span class="dv">4</span>))</span>
+<span id="cb54-8"><a href="time-series-data-analysis-regression.html#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="time-series-data-analysis-regression.html#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">Lag</span>(r.tflu, <span class="dv">3</span>), r.tsui, <span class="at">cex=</span><span class="fl">0.2</span>, <span class="at">main=</span><span class="st">&quot;3 weeks lag model&quot;</span>)</span>
+<span id="cb54-10"><a href="time-series-data-analysis-regression.html#cb54-10" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> <span class="fu">Lag</span>(r.tflu, <span class="dv">3</span>)))</span>
+<span id="cb54-11"><a href="time-series-data-analysis-regression.html#cb54-11" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">15</span>, <span class="dv">130</span>, <span class="st">&#39;Beta =&#39;</span>)</span>
+<span id="cb54-12"><a href="time-series-data-analysis-regression.html#cb54-12" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">15</span>, <span class="dv">100</span>, <span class="st">&#39;P value=&#39;</span>)</span>
+<span id="cb54-13"><a href="time-series-data-analysis-regression.html#cb54-13" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">30</span>, <span class="dv">130</span>, <span class="fu">round</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> <span class="fu">Lag</span>(r.tflu, <span class="dv">3</span>)))<span class="sc">$</span>coefficients[<span class="fu">c</span>(<span class="dv">2</span>)], <span class="dv">3</span>))</span>
+<span id="cb54-14"><a href="time-series-data-analysis-regression.html#cb54-14" aria-hidden="true" tabindex="-1"></a><span class="fu">text</span>(<span class="dv">30</span>, <span class="dv">100</span>, <span class="fu">round</span>(<span class="fu">summary</span>(<span class="fu">lm</span>(r.tsui <span class="sc">~</span> <span class="fu">Lag</span>(r.tflu, <span class="dv">3</span>)))<span class="sc">$</span>coefficients[<span class="fu">c</span>(<span class="dv">8</span>)], <span class="dv">3</span>))</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-10-1.png" width="672" />
+### ARIMA</p>
+<p>What we can do in this course
+Date and Time formatting
+Data pre-processing (class <code>ts</code>, cleaning, missing data, outlier)
+Statistical Traits of Times series (Autocorrelation, stationarity, seasonality, trend)</p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">steps</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Date and Time Formatting</td>
+</tr>
+<tr class="even">
+<td align="left">Data Pre Processing</td>
+</tr>
+<tr class="odd">
+<td align="left">Statistical Traits of Time Series</td>
+</tr>
+<tr class="even">
+<td align="left">Standard Models</td>
+</tr>
+<tr class="odd">
+<td align="left">ARIMA Models</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div id="analysis-and-forecasting-regression" class="section level2" number="6.4">
+<h2><span class="header-section-number">6.4</span> analysis and forecasting, regression</h2>
+<p>Time series analysis is analyzing the data to find patterns, forecasting is extrapolating the patterns into the future, regression with time series pattern (time series regression) is regression method using time series analysis.</p>
+</div>
+<div id="arima" class="section level2" number="6.5">
+<h2><span class="header-section-number">6.5</span> ARIMA</h2>
+<p>ARIMA (autoregressive intergrated moving average) 는 문자 그대로 자기상관관계와 이동평균을 이용합니다. univariate time series로 보시면 됩니다. ARIMA 모델에서 여러 파라메터를 자동으로 또는 수동으로 설정하여 구성해 가게 됩니다. <br></p>
+<hr />
+<p><strong><code>ARIMA(p, d, q)</code></strong>를 이해하면서 가 봅겠습니다. <br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="left">parameter</th>
+<th align="left">content</th>
+<th align="left">abbr</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">AR</td>
+<td align="left">Autoregressive part</td>
+<td align="left"><strong>p</strong></td>
+</tr>
+<tr class="even">
+<td align="left">I</td>
+<td align="left">Integrateion, degree of differencing</td>
+<td align="left"><strong>d</strong></td>
+</tr>
+<tr class="odd">
+<td align="left">MA</td>
+<td align="left">Moving average part</td>
+<td align="left"><strong>q</strong></td>
+</tr>
+</tbody>
+</table>
+<p>위 에서 <code>p, d, q</code>를 찾아 가는 방법을 ARIMA 모델이라고 부를 수 있습니다.</p>
+<blockquote>
+<p>lags 과 forecasting errors로 구분할 수 있습니다.</p>
+</blockquote>
+<ul>
+<li>과거의 변수가 현재를 예측, autoregressive part
+<ul>
+<li>AR(1) or ARIMA(1,0,0): first order (lag) of AR</li>
+<li>AR(2) or ARIMA(2,0,0): second order (lag) of AR
+<br></li>
+</ul></li>
+<li>과거의 error 가 현재를 예측 (forecasting error) = moving average part
+<ul>
+<li>MA(1) or ARIMA(0,0,1): first order of MA</li>
+<li>MA(2) or ARIMA(0,0,2): second order of MA</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>자기상관관계 부분</p>
+</blockquote>
+<p><span class="math display">\[ Y_{t} = c + \Phi_1 Y_{t-1} + \varepsilon_{t} \]</span></p>
+<ul>
+<li><span class="math inline">\(t\)</span> 시간에 관찰되는 변수 (<span class="math inline">\(Y_{t}\)</span>)는
+<ul>
+<li>상수 (c) 더하기</li>
+<li>바로 1단위 전 변수 (<span class="math inline">\(Y_{t-1}\)</span>) 에 계수(coefficient) (<span class="math inline">\(\Phi\)</span>) 글 곱한 값을 더하고</li>
+<li>현재의 에러를 <span class="math inline">\(t (e_{t})\)</span>) 더한다</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>이동평균 부분</p>
+</blockquote>
+<p><span class="math display">\[ Y_{t} = c  + \Theta_1 \varepsilon_{t-1} + \varepsilon_t \]</span></p>
+<ul>
+<li><span class="math inline">\(t\)</span> 시간에 관찰되는 변수 (<span class="math inline">\(Y_{t}\)</span>)는
+<ul>
+<li>상수 (c) 더하기</li>
+<li>바로 1단위 전 변수 (<span class="math inline">\(\varepsilon_{t-1}\)</span>) 에 계수(coefficient) (<span class="math inline">\(\Phi\)</span>) 글 곱한 값을 더하고</li>
+<li>현재의 에러를 <span class="math inline">\(t (e_{t})\)</span>) 더한다</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>결국 자기 상과관계와 이동평균을 한꺼번에 사용하면 아래와 같습니다.</p>
+</blockquote>
+<p><span class="math display">\[\begin{align*}
+y_t &amp;= \phi_1y_{t-1} + \varepsilon_t\\
+&amp;= \phi_1(\phi_1y_{t-2} + \varepsilon_{t-1}) + \varepsilon_t\\
+&amp;= \phi_1^2y_{t-2} + \phi_1 \varepsilon_{t-1} + \varepsilon_t\\
+&amp;= \phi_1^3y_{t-3} + \phi_1^2 \varepsilon_{t-2} + \phi_1 \varepsilon_{t-1} + \varepsilon_t\\
+\end{align*}\]</span></p>
+<blockquote>
+<p>d 는 시계열그림에서 ACF, PACF의 형태를 보고 차분의 필요여부
+및 차수를 d를 결정하고 AR차수와 MA차수를 결정</p>
+</blockquote>
+<p>어떻게 <strong>p, d, q</strong> 를 구할수 있을 까요?, 다음 장을 보겠습니다.
+** 다음에 기회가 있을 때 하겠습니다.**</p>
+<div id="arima-감기-자살-aic" class="section level3" number="6.5.1">
+<h3><span class="header-section-number">6.5.1</span> arima 감기 자살 , AIC</h3>
+<p>아래 ARIMA 모델을 보면 AIC 가 6583정도 나온 것을 알 수 있습니다. 우리는 이것을 통해 AIC가 6583 이하 정도 나오는 gam 모델을 사용하겠다 정도의 개념을 얻었습니다.</p>
+<div class="sourceCode" id="cb55"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb55-1"><a href="time-series-data-analysis-regression.html#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb55-2"><a href="time-series-data-analysis-regression.html#cb55-2" aria-hidden="true" tabindex="-1"></a><span class="fu">auto.arima</span>(myd<span class="sc">$</span>wsui)</span></code></pre></div>
+<pre><code>## Series: myd$wsui 
+## ARIMA(0,1,2) 
+## 
+## Coefficients:
+##           ma1      ma2
+##       -0.3227  -0.0993
+## s.e.   0.0379   0.0376
+## 
+## sigma^2 estimated as 756.3:  log likelihood=-3288.64
+## AIC=6583.28   AICc=6583.31   BIC=6596.91</code></pre>
+<div class="sourceCode" id="cb57"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb57-1"><a href="time-series-data-analysis-regression.html#cb57-1" aria-hidden="true" tabindex="-1"></a>myd <span class="ot">&lt;-</span>myd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ma4 =</span><span class="fu">ma</span>(wsui, <span class="at">order=</span><span class="dv">4</span>), <span class="at">ymd2=</span><span class="fu">as.Date</span>(ymd2) ) <span class="do">### 4weeks moving average</span></span>
+<span id="cb57-2"><a href="time-series-data-analysis-regression.html#cb57-2" aria-hidden="true" tabindex="-1"></a>myd <span class="ot">&lt;-</span>myd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">ts.wsui =</span>tsui, <span class="at">ts.ma4=</span><span class="fu">ts</span>(ma4, <span class="at">frequency =</span><span class="fl">365.25</span><span class="sc">/</span><span class="dv">7</span> ))</span>
+<span id="cb57-3"><a href="time-series-data-analysis-regression.html#cb57-3" aria-hidden="true" tabindex="-1"></a>m1<span class="ot">&lt;-</span><span class="fu">arima</span>(myd<span class="sc">$</span>wsui, <span class="at">order=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>,<span class="dv">1</span>), <span class="at">fixed=</span><span class="fu">c</span>(<span class="cn">NA</span>, <span class="cn">NA</span>)) <span class="do">## NA means include, 0 means exclude</span></span>
+<span id="cb57-4"><a href="time-series-data-analysis-regression.html#cb57-4" aria-hidden="true" tabindex="-1"></a>m1</span></code></pre></div>
+<pre><code>## 
+## Call:
+## arima(x = myd$wsui, order = c(1, 1, 1), fixed = c(NA, NA))
+## 
+## Coefficients:
+##          ar1      ma1
+##       0.2294  -0.5589
+## s.e.  0.0941   0.0797
+## 
+## sigma^2 estimated as 755.2:  log likelihood = -3289.13,  aic = 6584.26</code></pre>
+<div class="sourceCode" id="cb59"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb59-1"><a href="time-series-data-analysis-regression.html#cb59-1" aria-hidden="true" tabindex="-1"></a><span class="fu">tsdiag</span>(m1)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+</div>
+<div id="aic-bic-in-generalize-additive-model" class="section level3" number="6.5.2">
+<h3><span class="header-section-number">6.5.2</span> AIC BIC in generalize additive model</h3>
+<div class="sourceCode" id="cb60"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb60-1"><a href="time-series-data-analysis-regression.html#cb60-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span><span class="cf">function</span>(x) {</span>
+<span id="cb60-2"><a href="time-series-data-analysis-regression.html#cb60-2" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> <span class="fu">ns</span>(ymd2, x))</span>
+<span id="cb60-3"><a href="time-series-data-analysis-regression.html#cb60-3" aria-hidden="true" tabindex="-1"></a>  aic <span class="ot">&lt;-</span><span class="fu">AIC</span>(model)</span>
+<span id="cb60-4"><a href="time-series-data-analysis-regression.html#cb60-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(aic)</span>
+<span id="cb60-5"><a href="time-series-data-analysis-regression.html#cb60-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb60-6"><a href="time-series-data-analysis-regression.html#cb60-6" aria-hidden="true" tabindex="-1"></a>gg2 <span class="ot">&lt;-</span><span class="cf">function</span>(x) {</span>
+<span id="cb60-7"><a href="time-series-data-analysis-regression.html#cb60-7" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> <span class="fu">ns</span>(ymd2, x))</span>
+<span id="cb60-8"><a href="time-series-data-analysis-regression.html#cb60-8" aria-hidden="true" tabindex="-1"></a>  bic <span class="ot">&lt;-</span><span class="fu">BIC</span>(model)</span>
+<span id="cb60-9"><a href="time-series-data-analysis-regression.html#cb60-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(bic)</span>
+<span id="cb60-10"><a href="time-series-data-analysis-regression.html#cb60-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb60-11"><a href="time-series-data-analysis-regression.html#cb60-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-12"><a href="time-series-data-analysis-regression.html#cb60-12" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">50</span><span class="sc">:</span><span class="dv">100</span>), gg);test2<span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">x=</span><span class="fu">c</span>(<span class="dv">50</span><span class="sc">:</span><span class="dv">100</span>), gg2)</span>
+<span id="cb60-13"><a href="time-series-data-analysis-regression.html#cb60-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb60-14"><a href="time-series-data-analysis-regression.html#cb60-14" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb60-15"><a href="time-series-data-analysis-regression.html#cb60-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">50</span><span class="sc">:</span><span class="dv">100</span>), test);<span class="fu">plot</span>(<span class="fu">c</span>(<span class="dv">50</span><span class="sc">:</span><span class="dv">100</span>), test2)</span>
+<span id="cb60-16"><a href="time-series-data-analysis-regression.html#cb60-16" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">64</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
+<p>AIC는 수렴하지 않아 어렵고, BIC는 64에서 최소 값을 보이네요. 64를 자유도로 선정하고 수행하겠습니다.</p>
+<div class="sourceCode" id="cb61"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb61-1"><a href="time-series-data-analysis-regression.html#cb61-1" aria-hidden="true" tabindex="-1"></a>mod1<span class="ot">&lt;-</span><span class="fu">glm</span> (wsui <span class="sc">~</span> <span class="fu">ns</span>(ymd2, <span class="dv">64</span>), <span class="at">data=</span>myd)</span>
+<span id="cb61-2"><a href="time-series-data-analysis-regression.html#cb61-2" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(mod1)</span></code></pre></div>
+<pre><code>## [1] 6790.573</code></pre>
+<p>long term trend (월)과 단기 trend 를 나누어 만들어 보면 어떨까요? 위에 64로 한번에 해결하는 게 더 좋은 모형 같습니다.</p>
+<div class="sourceCode" id="cb63"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb63-1"><a href="time-series-data-analysis-regression.html#cb63-1" aria-hidden="true" tabindex="-1"></a>mod1<span class="ot">&lt;-</span><span class="fu">glm</span>( wsui <span class="sc">~</span> <span class="fu">ns</span>(ordweek, <span class="dv">12</span>)<span class="sc">+</span><span class="fu">ns</span>(nwd, <span class="dv">5</span>), <span class="at">data=</span>myd)</span>
+<span id="cb63-2"><a href="time-series-data-analysis-regression.html#cb63-2" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(mod1)</span></code></pre></div>
+<pre><code>## [1] 6907.866</code></pre>
+<p>기존의 sin cosin 방법으로 시계열 분석을 해보는 것은 어떨까요?</p>
+<div class="sourceCode" id="cb65"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb65-1"><a href="time-series-data-analysis-regression.html#cb65-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb65-2"><a href="time-series-data-analysis-regression.html#cb65-2" aria-hidden="true" tabindex="-1"></a>ssp<span class="ot">&lt;-</span><span class="fu">spectrum</span>(myd<span class="sc">$</span>wsui)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
+<div class="sourceCode" id="cb66"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb66-1"><a href="time-series-data-analysis-regression.html#cb66-1" aria-hidden="true" tabindex="-1"></a>per<span class="ot">&lt;-</span><span class="dv">1</span><span class="sc">/</span>ssp<span class="sc">$</span>freq[ssp<span class="sc">$</span>spec<span class="sc">==</span><span class="fu">max</span>(ssp<span class="sc">$</span>spec)]</span>
+<span id="cb66-2"><a href="time-series-data-analysis-regression.html#cb66-2" aria-hidden="true" tabindex="-1"></a>sin.x<span class="ot">&lt;-</span><span class="fu">sin</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>myd<span class="sc">$</span>ordweek<span class="sc">/</span>(<span class="fl">365.25</span><span class="sc">/</span><span class="dv">7</span>))</span>
+<span id="cb66-3"><a href="time-series-data-analysis-regression.html#cb66-3" aria-hidden="true" tabindex="-1"></a>cos.x<span class="ot">&lt;-</span><span class="fu">cos</span>(<span class="dv">2</span><span class="sc">*</span>pi<span class="sc">*</span>myd<span class="sc">$</span>ordweek<span class="sc">/</span>(<span class="fl">365.25</span><span class="sc">/</span><span class="dv">7</span>))</span>
+<span id="cb66-4"><a href="time-series-data-analysis-regression.html#cb66-4" aria-hidden="true" tabindex="-1"></a>modsean <span class="ot">&lt;-</span><span class="fu">glm</span>(wsui <span class="sc">~</span> <span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>), <span class="at">data=</span>myd)</span>
+<span id="cb66-5"><a href="time-series-data-analysis-regression.html#cb66-5" aria-hidden="true" tabindex="-1"></a>modlgam<span class="ot">&lt;-</span><span class="fu">glm</span>(wsui <span class="sc">~</span> <span class="fu">ns</span>(ordweek, <span class="dv">4</span>), <span class="at">data=</span>myd)</span>
+<span id="cb66-6"><a href="time-series-data-analysis-regression.html#cb66-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-7"><a href="time-series-data-analysis-regression.html#cb66-7" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myd<span class="sc">$</span>ymd2, myd<span class="sc">$</span>wsui, <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">450</span>), <span class="at">col=</span><span class="st">&#39;grey&#39;</span>)</span>
+<span id="cb66-8"><a href="time-series-data-analysis-regression.html#cb66-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, modlgam<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb66-9"><a href="time-series-data-analysis-regression.html#cb66-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, modsean<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p>자 이제 2 모델을 검토해 보겠습니다. gam 과 sin cosin 모델 어떤게 더 좋아 보이시나요? 정해진 규칙은 겂습니다.</p>
+<div class="sourceCode" id="cb67"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb67-1"><a href="time-series-data-analysis-regression.html#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myd<span class="sc">$</span>ymd2, myd<span class="sc">$</span>wsui, <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">10</span>, <span class="dv">450</span>), <span class="at">col=</span><span class="st">&#39;grey&#39;</span>)</span>
+<span id="cb67-2"><a href="time-series-data-analysis-regression.html#cb67-2" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, modlgam<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb67-3"><a href="time-series-data-analysis-regression.html#cb67-3" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, modsean<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">col=</span><span class="st">&#39;blue&#39;</span>)</span>
+<span id="cb67-4"><a href="time-series-data-analysis-regression.html#cb67-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-5"><a href="time-series-data-analysis-regression.html#cb67-5" aria-hidden="true" tabindex="-1"></a>mod1 <span class="ot">&lt;-</span><span class="fu">glm</span>(wsui <span class="sc">~</span> flu<span class="sc">+</span><span class="fu">ns</span>(ordweek, <span class="dv">51</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>) , <span class="at">data=</span>myd)</span>
+<span id="cb67-6"><a href="time-series-data-analysis-regression.html#cb67-6" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, mod1<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span>
+<span id="cb67-7"><a href="time-series-data-analysis-regression.html#cb67-7" aria-hidden="true" tabindex="-1"></a>modgam<span class="ot">&lt;-</span><span class="fu">glm</span> (wsui <span class="sc">~</span> <span class="fu">ns</span>(ymd2, <span class="dv">64</span>), <span class="at">data=</span>myd)</span>
+<span id="cb67-8"><a href="time-series-data-analysis-regression.html#cb67-8" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, modgam<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>,  <span class="at">col=</span><span class="st">&#39;black&#39;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/comp1-1.png" width="672" />
+정해진 규칙은 없지만 AIC와 BIC로 비교해 볼수 있을 것 같습니다.</p>
+<div class="sourceCode" id="cb68"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb68-1"><a href="time-series-data-analysis-regression.html#cb68-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(mod1);<span class="fu">AIC</span>(modgam)</span></code></pre></div>
+<pre><code>## [1] 6522.669</code></pre>
+<pre><code>## [1] 6490.58</code></pre>
+<div class="sourceCode" id="cb71"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb71-1"><a href="time-series-data-analysis-regression.html#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(mod1);<span class="fu">BIC</span>(modgam)</span></code></pre></div>
+<pre><code>## [1] 6786.299</code></pre>
+<pre><code>## [1] 6790.573</code></pre>
+<p>이제 sin과 cos 에 어떠한 df를 주는 것이 좋을 까요?</p>
+<div class="sourceCode" id="cb74"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb74-1"><a href="time-series-data-analysis-regression.html#cb74-1" aria-hidden="true" tabindex="-1"></a>myd<span class="sc">$</span>econo <span class="ot">&lt;-</span> <span class="fu">ifelse</span>(myd<span class="sc">$</span>YR <span class="sc">%in%</span> <span class="fu">c</span>(<span class="dv">2009</span>), <span class="dv">1</span>, <span class="dv">0</span>)</span>
+<span id="cb74-2"><a href="time-series-data-analysis-regression.html#cb74-2" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span><span class="cf">function</span>(x) {</span>
+<span id="cb74-3"><a href="time-series-data-analysis-regression.html#cb74-3" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> <span class="fu">Lag</span>(flu, <span class="dv">1</span>)<span class="sc">+</span><span class="fu">ns</span>(ordweek, <span class="dv">4</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, x)<span class="sc">+</span><span class="fu">ns</span>(cos.x, x))</span>
+<span id="cb74-4"><a href="time-series-data-analysis-regression.html#cb74-4" aria-hidden="true" tabindex="-1"></a>  aic <span class="ot">&lt;-</span><span class="fu">AIC</span>(model)</span>
+<span id="cb74-5"><a href="time-series-data-analysis-regression.html#cb74-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(aic)</span>
+<span id="cb74-6"><a href="time-series-data-analysis-regression.html#cb74-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb74-7"><a href="time-series-data-analysis-regression.html#cb74-7" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span><span class="cf">function</span>(x) {</span>
+<span id="cb74-8"><a href="time-series-data-analysis-regression.html#cb74-8" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> <span class="fu">Lag</span>(flu, <span class="dv">1</span>)<span class="sc">+</span><span class="fu">ns</span>(ordweek, <span class="dv">4</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, x)<span class="sc">+</span><span class="fu">ns</span>(cos.x, x))</span>
+<span id="cb74-9"><a href="time-series-data-analysis-regression.html#cb74-9" aria-hidden="true" tabindex="-1"></a>  bic <span class="ot">&lt;-</span><span class="fu">BIC</span>(model)</span>
+<span id="cb74-10"><a href="time-series-data-analysis-regression.html#cb74-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(bic)</span>
+<span id="cb74-11"><a href="time-series-data-analysis-regression.html#cb74-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb74-12"><a href="time-series-data-analysis-regression.html#cb74-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb74-13"><a href="time-series-data-analysis-regression.html#cb74-13" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb74-14"><a href="time-series-data-analysis-regression.html#cb74-14" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">x=</span>p, gg);test2<span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">x=</span>p, gg2)</span>
+<span id="cb74-15"><a href="time-series-data-analysis-regression.html#cb74-15" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, test)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/comp2-1.png" width="672" /></p>
+<div class="sourceCode" id="cb75"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb75-1"><a href="time-series-data-analysis-regression.html#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, test2)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/comp2-2.png" width="672" /></p>
+<p>주중 효과 까지 한번 보겠습니다.</p>
+<div class="sourceCode" id="cb76"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb76-1"><a href="time-series-data-analysis-regression.html#cb76-1" aria-hidden="true" tabindex="-1"></a>gg <span class="ot">&lt;-</span><span class="cf">function</span>(x) {</span>
+<span id="cb76-2"><a href="time-series-data-analysis-regression.html#cb76-2" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> <span class="fu">Lag</span>(flu, <span class="dv">1</span>)<span class="sc">+</span> <span class="fu">ns</span>(ordweek, x)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>))</span>
+<span id="cb76-3"><a href="time-series-data-analysis-regression.html#cb76-3" aria-hidden="true" tabindex="-1"></a>  aic <span class="ot">&lt;-</span><span class="fu">AIC</span>(model)</span>
+<span id="cb76-4"><a href="time-series-data-analysis-regression.html#cb76-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(aic)</span>
+<span id="cb76-5"><a href="time-series-data-analysis-regression.html#cb76-5" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb76-6"><a href="time-series-data-analysis-regression.html#cb76-6" aria-hidden="true" tabindex="-1"></a>gg2 <span class="ot">&lt;-</span><span class="cf">function</span>(x) {</span>
+<span id="cb76-7"><a href="time-series-data-analysis-regression.html#cb76-7" aria-hidden="true" tabindex="-1"></a>  model <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> <span class="fu">Lag</span>(flu, <span class="dv">1</span>)<span class="sc">+</span><span class="fu">ns</span>(ordweek, x)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>))</span>
+<span id="cb76-8"><a href="time-series-data-analysis-regression.html#cb76-8" aria-hidden="true" tabindex="-1"></a>  bic <span class="ot">&lt;-</span><span class="fu">BIC</span>(model)</span>
+<span id="cb76-9"><a href="time-series-data-analysis-regression.html#cb76-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(bic)</span>
+<span id="cb76-10"><a href="time-series-data-analysis-regression.html#cb76-10" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb76-11"><a href="time-series-data-analysis-regression.html#cb76-11" aria-hidden="true" tabindex="-1"></a><span class="fu">gg</span>(<span class="dv">10</span>)</span></code></pre></div>
+<pre><code>## [1] 6855.118</code></pre>
+<div class="sourceCode" id="cb78"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb78-1"><a href="time-series-data-analysis-regression.html#cb78-1" aria-hidden="true" tabindex="-1"></a>test</span></code></pre></div>
+<pre><code>##  [1] 7024.946 6937.616 6938.160 6949.544 6962.157 6964.344 6983.018 6988.755
+##  [9] 6998.796 7012.950</code></pre>
+<div class="sourceCode" id="cb80"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb80-1"><a href="time-series-data-analysis-regression.html#cb80-1" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">10</span><span class="sc">:</span><span class="dv">100</span>)</span>
+<span id="cb80-2"><a href="time-series-data-analysis-regression.html#cb80-2" aria-hidden="true" tabindex="-1"></a>test <span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">x=</span>p, gg);test2<span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">x=</span>p, gg2)</span>
+<span id="cb80-3"><a href="time-series-data-analysis-regression.html#cb80-3" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb80-4"><a href="time-series-data-analysis-regression.html#cb80-4" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, test)</span>
+<span id="cb80-5"><a href="time-series-data-analysis-regression.html#cb80-5" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">39</span>)</span>
+<span id="cb80-6"><a href="time-series-data-analysis-regression.html#cb80-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, test2)</span>
+<span id="cb80-7"><a href="time-series-data-analysis-regression.html#cb80-7" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span><span class="dv">39</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/mod4-1.png" width="672" /></p>
+<p>최종 모델은 아래와 같습니다.</p>
+<div class="sourceCode" id="cb81"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb81-1"><a href="time-series-data-analysis-regression.html#cb81-1" aria-hidden="true" tabindex="-1"></a>mod2 <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> flu<span class="sc">+</span> <span class="fu">ns</span>(ordweek, <span class="dv">39</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>))</span>
+<span id="cb81-2"><a href="time-series-data-analysis-regression.html#cb81-2" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb81-3"><a href="time-series-data-analysis-regression.html#cb81-3" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myd<span class="sc">$</span>ymd2, myd<span class="sc">$</span>wsui, <span class="at">cex=</span><span class="fl">0.5</span>, <span class="at">col=</span><span class="st">&#39;grey&#39;</span>, <span class="at">ylim=</span><span class="fu">c</span>(<span class="sc">-</span><span class="dv">50</span>, <span class="dv">450</span>))</span>
+<span id="cb81-4"><a href="time-series-data-analysis-regression.html#cb81-4" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(myd<span class="sc">$</span>ymd2, mod2<span class="sc">$</span>fitted.values, <span class="at">type=</span><span class="st">&#39;l&#39;</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/mod5-1.png" width="672" /></p>
+<div class="sourceCode" id="cb82"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb82-1"><a href="time-series-data-analysis-regression.html#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">BIC</span>(mod2)</span></code></pre></div>
+<pre><code>## [1] 6785.09</code></pre>
+<div class="sourceCode" id="cb84"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb84-1"><a href="time-series-data-analysis-regression.html#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">AIC</span>(mod2)</span></code></pre></div>
+<pre><code>## [1] 6576.004</code></pre>
+<p>그럼 이제 lag time 을 얼마나 주는 것이 좋을까요? 둘다 2차 방정식이 좋네요</p>
+<div class="sourceCode" id="cb86"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb86-1"><a href="time-series-data-analysis-regression.html#cb86-1" aria-hidden="true" tabindex="-1"></a>gg3<span class="ot">&lt;-</span><span class="cf">function</span>(pp){</span>
+<span id="cb86-2"><a href="time-series-data-analysis-regression.html#cb86-2" aria-hidden="true" tabindex="-1"></a>  cb<span class="ot">&lt;-</span> <span class="fu">crossbasis</span>(myd<span class="sc">$</span>flu<span class="sc">/</span><span class="dv">10</span>, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">argvar=</span><span class="fu">list</span>(<span class="st">&quot;lin&quot;</span>),  <span class="at">arglag =</span> <span class="fu">list</span>(<span class="at">fun=</span><span class="st">&quot;poly&quot;</span>, <span class="at">degree=</span>pp))</span>
+<span id="cb86-3"><a href="time-series-data-analysis-regression.html#cb86-3" aria-hidden="true" tabindex="-1"></a>  model<span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> cb <span class="sc">+</span> <span class="fu">ns</span>(ordweek, <span class="dv">39</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>))</span>
+<span id="cb86-4"><a href="time-series-data-analysis-regression.html#cb86-4" aria-hidden="true" tabindex="-1"></a>  aic<span class="ot">&lt;-</span><span class="fu">AIC</span>(model)</span>
+<span id="cb86-5"><a href="time-series-data-analysis-regression.html#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(aic)</span>
+<span id="cb86-6"><a href="time-series-data-analysis-regression.html#cb86-6" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-7"><a href="time-series-data-analysis-regression.html#cb86-7" aria-hidden="true" tabindex="-1"></a>gg4<span class="ot">&lt;-</span><span class="cf">function</span>(pp){</span>
+<span id="cb86-8"><a href="time-series-data-analysis-regression.html#cb86-8" aria-hidden="true" tabindex="-1"></a>  cb1<span class="ot">&lt;-</span> <span class="fu">crossbasis</span>(myd<span class="sc">$</span>flu<span class="sc">/</span><span class="dv">10</span>, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">argvar=</span><span class="fu">list</span>(<span class="st">&quot;lin&quot;</span>),  <span class="at">arglag =</span> <span class="fu">list</span>(<span class="at">fun=</span><span class="st">&quot;poly&quot;</span>, <span class="at">degree=</span>pp))</span>
+<span id="cb86-9"><a href="time-series-data-analysis-regression.html#cb86-9" aria-hidden="true" tabindex="-1"></a>  model1<span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> cb1 <span class="sc">+</span> <span class="fu">ns</span>(ordweek, <span class="dv">39</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>))</span>
+<span id="cb86-10"><a href="time-series-data-analysis-regression.html#cb86-10" aria-hidden="true" tabindex="-1"></a>  bic<span class="ot">&lt;-</span><span class="fu">BIC</span>(model1)</span>
+<span id="cb86-11"><a href="time-series-data-analysis-regression.html#cb86-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(bic)</span>
+<span id="cb86-12"><a href="time-series-data-analysis-regression.html#cb86-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb86-13"><a href="time-series-data-analysis-regression.html#cb86-13" aria-hidden="true" tabindex="-1"></a>p<span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">2</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb86-14"><a href="time-series-data-analysis-regression.html#cb86-14" aria-hidden="true" tabindex="-1"></a>test3 <span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">pp=</span>p, gg3);test4 <span class="ot">&lt;-</span><span class="fu">mapply</span>(<span class="at">pp=</span>p, gg4)</span>
+<span id="cb86-15"><a href="time-series-data-analysis-regression.html#cb86-15" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>))</span>
+<span id="cb86-16"><a href="time-series-data-analysis-regression.html#cb86-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, test3)</span>
+<span id="cb86-17"><a href="time-series-data-analysis-regression.html#cb86-17" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb86-18"><a href="time-series-data-analysis-regression.html#cb86-18" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(p, test4)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20simul%20lag-1.png" width="672" /></p>
+<p>종합해서 나타내 보겠습니다.</p>
+<div class="sourceCode" id="cb87"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb87-1"><a href="time-series-data-analysis-regression.html#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">par</span>(<span class="at">mfrow=</span><span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">1</span>))</span>
+<span id="cb87-2"><a href="time-series-data-analysis-regression.html#cb87-2" aria-hidden="true" tabindex="-1"></a>cb1<span class="ot">&lt;-</span> <span class="fu">crossbasis</span>(myd<span class="sc">$</span>flu<span class="sc">/</span><span class="dv">10</span>, <span class="at">lag=</span><span class="dv">24</span>, <span class="at">argvar=</span><span class="fu">list</span>(<span class="st">&quot;lin&quot;</span>),  <span class="at">arglag =</span> <span class="fu">list</span>(<span class="at">fun=</span><span class="st">&quot;poly&quot;</span>, <span class="at">degree=</span><span class="dv">2</span>))</span>
+<span id="cb87-3"><a href="time-series-data-analysis-regression.html#cb87-3" aria-hidden="true" tabindex="-1"></a>model1<span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>myd, wsui <span class="sc">~</span> cb1 <span class="sc">+</span> <span class="fu">ns</span>(ordweek, <span class="dv">39</span>)<span class="sc">+</span><span class="fu">ns</span>(sin.x, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cos.x, <span class="dv">2</span>), <span class="at">family=</span><span class="fu">quasipoisson</span>())</span>
+<span id="cb87-4"><a href="time-series-data-analysis-regression.html#cb87-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-5"><a href="time-series-data-analysis-regression.html#cb87-5" aria-hidden="true" tabindex="-1"></a>pred1.cb1 <span class="ot">&lt;-</span><span class="fu">crosspred</span>(cb1, model1, <span class="at">at=</span><span class="dv">1</span><span class="sc">:</span><span class="dv">100</span>, <span class="at">bylag=</span><span class="fl">0.1</span>,  <span class="at">cumul=</span><span class="cn">TRUE</span>)</span>
+<span id="cb87-6"><a href="time-series-data-analysis-regression.html#cb87-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(pred1.cb1, <span class="st">&quot;slices&quot;</span>, <span class="at">var=</span><span class="dv">1</span>, <span class="at">col=</span><span class="dv">3</span>, <span class="at">ylab=</span><span class="st">&quot;Relative risk of suicide&quot;</span>, <span class="co">#ci.arg=list(density=50, lwd=1),#</span></span>
+<span id="cb87-7"><a href="time-series-data-analysis-regression.html#cb87-7" aria-hidden="true" tabindex="-1"></a>     <span class="at">main=</span><span class="st">&quot;Temporal effect by influenza&quot;</span>, </span>
+<span id="cb87-8"><a href="time-series-data-analysis-regression.html#cb87-8" aria-hidden="true" tabindex="-1"></a>     <span class="at">xlab=</span><span class="st">&quot;Lag (weeks)&quot;</span>,  <span class="at">family=</span><span class="st">&quot;A&quot;</span>,<span class="co">#ylim=c(0.980, 1.02),</span></span>
+<span id="cb87-9"><a href="time-series-data-analysis-regression.html#cb87-9" aria-hidden="true" tabindex="-1"></a>     <span class="at">col=</span><span class="st">&#39;black&#39;</span>) ;<span class="fu">grid</span>()</span>
+<span id="cb87-10"><a href="time-series-data-analysis-regression.html#cb87-10" aria-hidden="true" tabindex="-1"></a><span class="fu">title</span>(<span class="at">main=</span><span class="st">&quot;% increment of influenza like illness&quot;</span>, </span>
+<span id="cb87-11"><a href="time-series-data-analysis-regression.html#cb87-11" aria-hidden="true" tabindex="-1"></a>      <span class="at">family=</span><span class="st">&quot;A&quot;</span>, </span>
+<span id="cb87-12"><a href="time-series-data-analysis-regression.html#cb87-12" aria-hidden="true" tabindex="-1"></a>      <span class="at">adj=</span><span class="dv">1</span>, <span class="at">line=</span><span class="dv">0</span>, <span class="at">font.main=</span><span class="dv">3</span>, <span class="at">cex=</span><span class="fl">0.5</span> )</span>
+<span id="cb87-13"><a href="time-series-data-analysis-regression.html#cb87-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb87-14"><a href="time-series-data-analysis-regression.html#cb87-14" aria-hidden="true" tabindex="-1"></a>lin <span class="ot">&lt;-</span><span class="fu">c</span>(<span class="dv">5</span><span class="sc">:</span><span class="dv">10</span>)</span>
+<span id="cb87-15"><a href="time-series-data-analysis-regression.html#cb87-15" aria-hidden="true" tabindex="-1"></a><span class="fu">abline</span>(<span class="at">v=</span>lin, <span class="at">lty=</span><span class="dv">3</span>, <span class="at">col=</span><span class="st">&#39;lightgray&#39;</span>)</span>
+<span id="cb87-16"><a href="time-series-data-analysis-regression.html#cb87-16" aria-hidden="true" tabindex="-1"></a><span class="fu">axis</span>(<span class="at">side=</span><span class="dv">1</span>, <span class="at">at=</span><span class="fu">c</span>(<span class="dv">6</span>, <span class="dv">7</span>, <span class="dv">8</span>, <span class="dv">9</span>))</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20regression%201-1.png" width="672" />
+2009년 이전과 이후를 그려보겠습니다.</p>
+<div class="sourceCode" id="cb88"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb88-1"><a href="time-series-data-analysis-regression.html#cb88-1" aria-hidden="true" tabindex="-1"></a>myd2<span class="ot">&lt;-</span>myd <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">sinx=</span>sin.x, <span class="at">cosx=</span>cos.x) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">flu210=</span>flu<span class="sc">/</span><span class="dv">10</span>)</span>
+<span id="cb88-2"><a href="time-series-data-analysis-regression.html#cb88-2" aria-hidden="true" tabindex="-1"></a>mf1d <span class="ot">&lt;-</span>myd2 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(YR <span class="sc">&lt;=</span><span class="dv">2008</span>)</span>
+<span id="cb88-3"><a href="time-series-data-analysis-regression.html#cb88-3" aria-hidden="true" tabindex="-1"></a>mf2d <span class="ot">&lt;-</span>myd2 <span class="sc">%&gt;%</span> <span class="fu">filter</span> (YR<span class="sc">&gt;=</span><span class="dv">2009</span>)</span>
+<span id="cb88-4"><a href="time-series-data-analysis-regression.html#cb88-4" aria-hidden="true" tabindex="-1"></a>mf1 <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>mf1d, wsui <span class="sc">~</span> flu <span class="sc">+</span> <span class="fu">ns</span>(ordweek, <span class="dv">25</span>)<span class="sc">+</span><span class="fu">ns</span>(sinx, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cosx, <span class="dv">2</span>), <span class="at">family=</span><span class="fu">quasipoisson</span>())</span>
+<span id="cb88-5"><a href="time-series-data-analysis-regression.html#cb88-5" aria-hidden="true" tabindex="-1"></a>mf1s<span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>mf1d , flu210 <span class="sc">~</span> <span class="fu">ns</span>(ordweek, <span class="dv">25</span>)<span class="sc">+</span><span class="fu">ns</span>(sinx, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cosx,<span class="dv">2</span>), <span class="at">family=</span><span class="fu">quasipoisson</span>())</span>
+<span id="cb88-6"><a href="time-series-data-analysis-regression.html#cb88-6" aria-hidden="true" tabindex="-1"></a>b2008<span class="ot">&lt;-</span><span class="fu">summary</span>(mf1)<span class="sc">$</span>coefficient[<span class="dv">2</span>,]</span>
+<span id="cb88-7"><a href="time-series-data-analysis-regression.html#cb88-7" aria-hidden="true" tabindex="-1"></a>mf2 <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>mf2d, wsui <span class="sc">~</span> flu <span class="sc">+</span> <span class="fu">ns</span>(ordweek, <span class="dv">22</span>)<span class="sc">+</span><span class="fu">ns</span>(sinx, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cosx, <span class="dv">2</span>), <span class="at">family=</span><span class="fu">quasipoisson</span>())</span>
+<span id="cb88-8"><a href="time-series-data-analysis-regression.html#cb88-8" aria-hidden="true" tabindex="-1"></a>mf2s <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>mf2d, flu210 <span class="sc">~</span><span class="fu">ns</span>(ordweek, <span class="dv">25</span>)<span class="sc">+</span><span class="fu">ns</span>(sinx, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cosx,<span class="dv">2</span>), <span class="at">family=</span><span class="fu">quasipoisson</span>())</span>
+<span id="cb88-9"><a href="time-series-data-analysis-regression.html#cb88-9" aria-hidden="true" tabindex="-1"></a>f2008<span class="ot">&lt;-</span><span class="fu">summary</span>(mf2)<span class="sc">$</span>coefficient[<span class="dv">2</span>,]</span>
+<span id="cb88-10"><a href="time-series-data-analysis-regression.html#cb88-10" aria-hidden="true" tabindex="-1"></a>mfresid<span class="ot">&lt;-</span><span class="fu">c</span>(mf1<span class="sc">$</span>residuals, mf2<span class="sc">$</span>residuals)</span>
+<span id="cb88-11"><a href="time-series-data-analysis-regression.html#cb88-11" aria-hidden="true" tabindex="-1"></a>Ch <span class="ot">&lt;-</span><span class="fu">c</span>(myd2<span class="sc">$</span>Change_2008)</span></code></pre></div>
+<pre><code>## Warning: Unknown or uninitialised column: `Change_2008`.</code></pre>
+<div class="sourceCode" id="cb90"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb90-1"><a href="time-series-data-analysis-regression.html#cb90-1" aria-hidden="true" tabindex="-1"></a><span class="co">#exp(cbind(&quot;Relative Risk&quot;=coef(mf2), confint.default(mf2, level = 0.95)))</span></span>
+<span id="cb90-2"><a href="time-series-data-analysis-regression.html#cb90-2" aria-hidden="true" tabindex="-1"></a><span class="co">#exp(cbind(&quot;Relative Risk&quot;=coef(mf1), confint.default(mf1, level = 0.95)))</span></span>
+<span id="cb90-3"><a href="time-series-data-analysis-regression.html#cb90-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-4"><a href="time-series-data-analysis-regression.html#cb90-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-5"><a href="time-series-data-analysis-regression.html#cb90-5" aria-hidden="true" tabindex="-1"></a><span class="co"># E(Y) = intercept + B1X1 +gam(others)</span></span>
+<span id="cb90-6"><a href="time-series-data-analysis-regression.html#cb90-6" aria-hidden="true" tabindex="-1"></a><span class="co"># E(Y)- intercept - B1X1 = gam(otehrs)</span></span>
+<span id="cb90-7"><a href="time-series-data-analysis-regression.html#cb90-7" aria-hidden="true" tabindex="-1"></a>gamothers1 <span class="ot">&lt;-</span> mf1<span class="sc">$</span>fitted.values <span class="sc">-</span> <span class="fl">0.943684</span> <span class="sc">-</span>(<span class="sc">-</span><span class="fl">0.013931</span>) <span class="sc">*</span>mf1d<span class="sc">$</span>flu210</span>
+<span id="cb90-8"><a href="time-series-data-analysis-regression.html#cb90-8" aria-hidden="true" tabindex="-1"></a>gamothers2 <span class="ot">&lt;-</span> mf2<span class="sc">$</span>fitted.values <span class="sc">-</span> <span class="fl">0.8892468</span> <span class="sc">-</span>(<span class="fl">0.0023323696</span>) <span class="sc">*</span>mf2d<span class="sc">$</span>flu210</span>
+<span id="cb90-9"><a href="time-series-data-analysis-regression.html#cb90-9" aria-hidden="true" tabindex="-1"></a><span class="co"># E(Y)- intercept - gam(others)= B1X1  </span></span>
+<span id="cb90-10"><a href="time-series-data-analysis-regression.html#cb90-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Hence Y axis = E(Y)- intercept - gam(others)</span></span>
+<span id="cb90-11"><a href="time-series-data-analysis-regression.html#cb90-11" aria-hidden="true" tabindex="-1"></a>Yaxis.mf1d <span class="ot">&lt;-</span> mf1<span class="sc">$</span>fitted.values <span class="sc">-</span>(<span class="fl">0.943684</span>) <span class="sc">-</span> gamothers1</span>
+<span id="cb90-12"><a href="time-series-data-analysis-regression.html#cb90-12" aria-hidden="true" tabindex="-1"></a>Yaxis.mf2d <span class="ot">&lt;-</span> mf2<span class="sc">$</span>fitted.values <span class="sc">-</span>(<span class="fl">0.8892468</span>) <span class="sc">-</span> gamothers2</span>
+<span id="cb90-13"><a href="time-series-data-analysis-regression.html#cb90-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb90-14"><a href="time-series-data-analysis-regression.html#cb90-14" aria-hidden="true" tabindex="-1"></a>mf1d<span class="sc">$</span>Yaxis.mf <span class="ot">&lt;-</span>Yaxis.mf1d</span>
+<span id="cb90-15"><a href="time-series-data-analysis-regression.html#cb90-15" aria-hidden="true" tabindex="-1"></a>mf2d<span class="sc">$</span>Yaxis.mf <span class="ot">&lt;-</span>Yaxis.mf2d</span>
+<span id="cb90-16"><a href="time-series-data-analysis-regression.html#cb90-16" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mf1d<span class="sc">$</span>flu210, Yaxis.mf1d)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20fig%203-1.png" width="672" /></p>
+<div class="sourceCode" id="cb91"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb91-1"><a href="time-series-data-analysis-regression.html#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mf2d<span class="sc">$</span>flu210, Yaxis.mf2d)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20fig%203-2.png" width="672" /></p>
+<div class="sourceCode" id="cb92"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb92-1"><a href="time-series-data-analysis-regression.html#cb92-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(myd2<span class="sc">$</span>flu210<span class="sc">*</span><span class="dv">10</span>, myd2<span class="sc">$</span>wsui)</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20fig%203-3.png" width="672" /></p>
+<div class="sourceCode" id="cb93"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb93-1"><a href="time-series-data-analysis-regression.html#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(glm(Yaxis.mf1d ~ mf1d$flu210))</span></span>
+<span id="cb93-2"><a href="time-series-data-analysis-regression.html#cb93-2" aria-hidden="true" tabindex="-1"></a><span class="co">#summary(glm(Yaxis.mf2d ~ mf2d$flu210))</span></span>
+<span id="cb93-3"><a href="time-series-data-analysis-regression.html#cb93-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb93-4"><a href="time-series-data-analysis-regression.html#cb93-4" aria-hidden="true" tabindex="-1"></a>tt <span class="ot">&lt;-</span><span class="fu">c</span>(mf1d<span class="sc">$</span>Yaxis.mf, mf2d<span class="sc">$</span>Yaxis.mf)</span>
+<span id="cb93-5"><a href="time-series-data-analysis-regression.html#cb93-5" aria-hidden="true" tabindex="-1"></a>tt2<span class="ot">&lt;-</span><span class="fu">c</span>(mf1<span class="sc">$</span>fitted.values, mf2<span class="sc">$</span>fitted.values)</span>
+<span id="cb93-6"><a href="time-series-data-analysis-regression.html#cb93-6" aria-hidden="true" tabindex="-1"></a>myd2 <span class="ot">&lt;-</span>myd2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Yaxis.mf =</span>tt, <span class="at">mfresid =</span>mfresid, <span class="at">mf.fit=</span>tt2)</span></code></pre></div>
+<p>2009년 이후로 좀더 사망하게 되네요.</p>
+<div class="sourceCode" id="cb94"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb94-1"><a href="time-series-data-analysis-regression.html#cb94-1" aria-hidden="true" tabindex="-1"></a>f3<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(flu210, Yaxis.mf, <span class="at">col=</span>Change))<span class="sc">+</span><span class="fu">geom_line</span>(<span class="at">size=</span><span class="dv">1</span>)<span class="sc">+</span></span>
+<span id="cb94-2"><a href="time-series-data-analysis-regression.html#cb94-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(flu210, Yaxis.mf, <span class="at">shape=</span>Change), <span class="at">size=</span><span class="fl">0.0</span>)<span class="sc">+</span></span>
+<span id="cb94-3"><a href="time-series-data-analysis-regression.html#cb94-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_bw</span>(<span class="at">base_size=</span><span class="dv">14</span>,<span class="at">base_family=</span><span class="st">&#39;Times New Roman&#39;</span>)<span class="sc">+</span> </span>
+<span id="cb94-4"><a href="time-series-data-analysis-regression.html#cb94-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb94-5"><a href="time-series-data-analysis-regression.html#cb94-5" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb94-6"><a href="time-series-data-analysis-regression.html#cb94-6" aria-hidden="true" tabindex="-1"></a>        <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>))<span class="sc">+</span></span>
+<span id="cb94-7"><a href="time-series-data-analysis-regression.html#cb94-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Influenza&quot;</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;Increment of Suicide&quot;</span>)</span>
+<span id="cb94-8"><a href="time-series-data-analysis-regression.html#cb94-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-9"><a href="time-series-data-analysis-regression.html#cb94-9" aria-hidden="true" tabindex="-1"></a>fig3 <span class="ot">&lt;-</span>f3 <span class="sc">+</span> <span class="fu">geom_point</span>(<span class="fu">aes</span>(flu210, mfresid, <span class="at">shape=</span>Change), <span class="at">size=</span><span class="dv">3</span> ) <span class="sc">+</span></span>
+<span id="cb94-10"><a href="time-series-data-analysis-regression.html#cb94-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">20</span>))<span class="sc">+</span> <span class="fu">scale_colour_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="st">&#39;red&#39;</span>, <span class="st">&#39;grey45&#39;</span>))<span class="sc">+</span> </span>
+<span id="cb94-11"><a href="time-series-data-analysis-regression.html#cb94-11" aria-hidden="true" tabindex="-1"></a>     <span class="fu">theme</span>(<span class="at">legend.position=</span><span class="st">&quot;right&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb94-12"><a href="time-series-data-analysis-regression.html#cb94-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title=</span><span class="st">&quot;Linear relationship between Influenza and Suicide&quot;</span>,</span>
+<span id="cb94-13"><a href="time-series-data-analysis-regression.html#cb94-13" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle=</span><span class="st">&quot;Beta = -0.066, p = 0.214  before 2009</span><span class="sc">\n</span><span class="st">  *RR =  0.013,  p = 0.018     from 2009&quot;</span>) <span class="sc">+</span></span>
+<span id="cb94-14"><a href="time-series-data-analysis-regression.html#cb94-14" aria-hidden="true" tabindex="-1"></a>      <span class="fu">theme</span>(<span class="at">plot.subtitle=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>, <span class="at">hjust=</span><span class="dv">1</span>, <span class="at">face=</span><span class="st">&quot;italic&quot;</span>, <span class="at">color=</span><span class="st">&quot;black&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb94-15"><a href="time-series-data-analysis-regression.html#cb94-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">trans =</span> <span class="st">&#39;log&#39;</span>)</span>
+<span id="cb94-16"><a href="time-series-data-analysis-regression.html#cb94-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb94-17"><a href="time-series-data-analysis-regression.html#cb94-17" aria-hidden="true" tabindex="-1"></a>fig3</span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20fig1.1-1.png" width="672" /></p>
+<p>지금까지의 내용을 정리해 보겠습니다.</p>
+<div class="sourceCode" id="cb95"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb95-1"><a href="time-series-data-analysis-regression.html#cb95-1" aria-hidden="true" tabindex="-1"></a>mf11 <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>mf1d , wsui <span class="sc">~</span> <span class="fu">ns</span>(ordweek, <span class="dv">25</span>)<span class="sc">+</span><span class="fu">ns</span>(sinx, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cosx,<span class="dv">2</span>))</span>
+<span id="cb95-2"><a href="time-series-data-analysis-regression.html#cb95-2" aria-hidden="true" tabindex="-1"></a>mf12 <span class="ot">&lt;-</span><span class="fu">glm</span>(<span class="at">data=</span>mf2d, wsui <span class="sc">~</span> <span class="fu">ns</span>(ordweek, <span class="dv">22</span>)<span class="sc">+</span><span class="fu">ns</span>(sinx, <span class="dv">2</span>)<span class="sc">+</span><span class="fu">ns</span>(cosx, <span class="dv">2</span>))</span>
+<span id="cb95-3"><a href="time-series-data-analysis-regression.html#cb95-3" aria-hidden="true" tabindex="-1"></a>tt3<span class="ot">&lt;-</span><span class="fu">c</span>(mf11<span class="sc">$</span>residuals, mf12<span class="sc">$</span>residuals)</span>
+<span id="cb95-4"><a href="time-series-data-analysis-regression.html#cb95-4" aria-hidden="true" tabindex="-1"></a>myd2<span class="ot">&lt;-</span>myd2 <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">f3resid=</span>tt3) <span class="sc">%&gt;%</span> <span class="fu">mutate</span>(<span class="at">Period=</span>Change)</span>
+<span id="cb95-5"><a href="time-series-data-analysis-regression.html#cb95-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-6"><a href="time-series-data-analysis-regression.html#cb95-6" aria-hidden="true" tabindex="-1"></a>f1<span class="ot">&lt;-</span><span class="fu">ggplot</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(ymd2, wsui, <span class="at">shape=</span>Change), <span class="at">size=</span><span class="fl">0.3</span>)<span class="sc">+</span> <span class="fu">scale_shape_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">19</span>), <span class="at">name=</span><span class="st">&quot;&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb95-7"><a href="time-series-data-analysis-regression.html#cb95-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(ymd2, wsui, <span class="at">shape=</span>Change))<span class="sc">+</span></span>
+<span id="cb95-8"><a href="time-series-data-analysis-regression.html#cb95-8" aria-hidden="true" tabindex="-1"></a>    <span class="co">#geom_point(aes(x=ymd2, y=f3resid, col=Change)) +</span></span>
+<span id="cb95-9"><a href="time-series-data-analysis-regression.html#cb95-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(ymd2, mod2<span class="sc">$</span>fitted.values, <span class="at">linetype=</span><span class="st">&quot;A&quot;</span>, <span class="at">color=</span><span class="st">&#39;A&#39;</span>))<span class="sc">+</span></span>
+<span id="cb95-10"><a href="time-series-data-analysis-regression.html#cb95-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(ymd2,flu210<span class="sc">*</span><span class="dv">20</span>, <span class="at">linetype=</span><span class="st">&quot;B&quot;</span>, <span class="at">color=</span><span class="st">&#39;B&#39;</span>))<span class="sc">+</span></span>
+<span id="cb95-11"><a href="time-series-data-analysis-regression.html#cb95-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">data=</span>myd2, <span class="fu">aes</span>(ymd2, f3resid, <span class="at">linetype=</span><span class="st">&quot;C&quot;</span>, <span class="at">color=</span><span class="st">&#39;C&#39;</span>))<span class="sc">+</span></span>
+<span id="cb95-12"><a href="time-series-data-analysis-regression.html#cb95-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb95-13"><a href="time-series-data-analysis-regression.html#cb95-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_linetype_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">A=</span><span class="st">&quot;dotted&quot;</span>, <span class="at">B=</span><span class="st">&quot;solid&quot;</span>, <span class="at">C=</span><span class="st">&quot;dashed&quot;</span>), </span>
+<span id="cb95-14"><a href="time-series-data-analysis-regression.html#cb95-14" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Suicide (Crude)&quot;</span>, <span class="st">&quot;Influenza like illness&quot;</span>, <span class="st">&quot;Suicide </span><span class="sc">\n</span><span class="st">(Time series adjusted)&quot;</span>), </span>
+<span id="cb95-15"><a href="time-series-data-analysis-regression.html#cb95-15" aria-hidden="true" tabindex="-1"></a>                        <span class="at">name=</span><span class="st">&quot;Suicide and Influenza&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb95-16"><a href="time-series-data-analysis-regression.html#cb95-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb95-17"><a href="time-series-data-analysis-regression.html#cb95-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_manual</span>(<span class="at">values=</span><span class="fu">c</span>(<span class="at">A=</span><span class="st">&quot;black&quot;</span>, <span class="at">B=</span><span class="st">&quot;blue&quot;</span>, <span class="at">C=</span><span class="st">&quot;red&quot;</span>), </span>
+<span id="cb95-18"><a href="time-series-data-analysis-regression.html#cb95-18" aria-hidden="true" tabindex="-1"></a>                        <span class="at">labels=</span><span class="fu">c</span>(<span class="st">&quot;Suicide (Crude)&quot;</span>, <span class="st">&quot;Influenza like illness&quot;</span>, <span class="st">&quot;Suicide </span><span class="sc">\n</span><span class="st">(Time series adjusted)&quot;</span>), </span>
+<span id="cb95-19"><a href="time-series-data-analysis-regression.html#cb95-19" aria-hidden="true" tabindex="-1"></a>                        <span class="at">name=</span><span class="st">&quot;Suicide and Influenza&quot;</span>)<span class="sc">+</span> </span>
+<span id="cb95-20"><a href="time-series-data-analysis-regression.html#cb95-20" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb95-21"><a href="time-series-data-analysis-regression.html#cb95-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">panel.border =</span> <span class="fu">element_blank</span>(), <span class="at">axis.line =</span> <span class="fu">element_line</span>(<span class="at">colour =</span> <span class="st">&quot;black&quot;</span>),</span>
+<span id="cb95-22"><a href="time-series-data-analysis-regression.html#cb95-22" aria-hidden="true" tabindex="-1"></a>                                                              <span class="at">axis.text.x=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>),</span>
+<span id="cb95-23"><a href="time-series-data-analysis-regression.html#cb95-23" aria-hidden="true" tabindex="-1"></a>                                                              <span class="at">axis.text.y=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb95-24"><a href="time-series-data-analysis-regression.html#cb95-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;Years (unit=weeks)&quot;</span>) <span class="sc">+</span><span class="fu">ylab</span>(<span class="st">&quot;Number of weekly suicide&quot;</span>)</span>
+<span id="cb95-25"><a href="time-series-data-analysis-regression.html#cb95-25" aria-hidden="true" tabindex="-1"></a>   </span>
+<span id="cb95-26"><a href="time-series-data-analysis-regression.html#cb95-26" aria-hidden="true" tabindex="-1"></a>  figure1 <span class="ot">&lt;-</span> f1 <span class="sc">+</span></span>
+<span id="cb95-27"><a href="time-series-data-analysis-regression.html#cb95-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="fu">aes</span>(ymd2, f3resid), <span class="at">method=</span><span class="st">&#39;gam&#39;</span>, <span class="at">formula=</span>y <span class="sc">~</span><span class="fu">ns</span>(x, <span class="dv">60</span>),</span>
+<span id="cb95-28"><a href="time-series-data-analysis-regression.html#cb95-28" aria-hidden="true" tabindex="-1"></a>                <span class="at">se=</span><span class="cn">TRUE</span>, <span class="at">col=</span><span class="st">&#39;red&#39;</span>, <span class="at">linetype=</span><span class="st">&quot;solid&quot;</span>, <span class="at">size=</span><span class="fl">0.3</span>, <span class="at">fill =</span> <span class="st">&#39;red&#39;</span>)<span class="sc">+</span></span>
+<span id="cb95-29"><a href="time-series-data-analysis-regression.html#cb95-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme</span>( <span class="at">legend.position =</span>   <span class="st">&quot;right&quot;</span>) <span class="sc">+</span> </span>
+<span id="cb95-30"><a href="time-series-data-analysis-regression.html#cb95-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">caption =</span><span class="st">&quot;*Beta = weekly suicide number change by % increment of influenza like illness&quot;</span>,</span>
+<span id="cb95-31"><a href="time-series-data-analysis-regression.html#cb95-31" aria-hidden="true" tabindex="-1"></a>      <span class="at">title=</span><span class="st">&quot;&quot;</span><span class="co">#, subtitle=&quot;Beta = -0.014, p = 0.158  before 2009\n  Beta =  0.002,  p = 0.011     from 2009&quot;</span></span>
+<span id="cb95-32"><a href="time-series-data-analysis-regression.html#cb95-32" aria-hidden="true" tabindex="-1"></a>         ) <span class="sc">+</span>   <span class="fu">theme</span>(<span class="at">plot.title=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">16</span>, <span class="at">hjust=</span><span class="fl">0.5</span>)) <span class="sc">+</span> <span class="co">#face=&quot;italic&quot;, color=&quot;black&quot;))+</span></span>
+<span id="cb95-33"><a href="time-series-data-analysis-regression.html#cb95-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.text=</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>)) <span class="sc">+</span></span>
+<span id="cb95-34"><a href="time-series-data-analysis-regression.html#cb95-34" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_y_continuous</span>(<span class="at">sec.axis =</span> <span class="fu">sec_axis</span>((<span class="sc">~</span>.<span class="sc">/</span><span class="dv">20</span>), <span class="at">name=</span><span class="st">&quot;Influenza like illness ( per 100 outpatient )&quot;</span>)) <span class="sc">+</span></span>
+<span id="cb95-35"><a href="time-series-data-analysis-regression.html#cb95-35" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2008-09-01&#39;</span>), <span class="at">y =</span> <span class="dv">450</span>, <span class="at">label =</span> <span class="st">&#39;bold(&quot;Before 2009 (  )&quot;)&#39;</span>, <span class="at">parse=</span><span class="cn">TRUE</span>, <span class="at">family=</span><span class="st">&#39;A&#39;</span>, <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb95-36"><a href="time-series-data-analysis-regression.html#cb95-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2008-09-01&#39;</span>), <span class="at">y =</span> <span class="dv">430</span>, <span class="at">label =</span> <span class="st">&#39;italic(&quot;*Beta = -0.066&quot;)&#39;</span>, <span class="at">parse=</span><span class="cn">TRUE</span>, <span class="at">family=</span><span class="st">&#39;A&#39;</span>, <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb95-37"><a href="time-series-data-analysis-regression.html#cb95-37" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2008-09-01&#39;</span>), <span class="at">y =</span> <span class="dv">410</span>, <span class="at">label =</span> <span class="st">&#39;italic(&quot; p = 0.214&quot;)&#39;</span>, <span class="at">parse=</span><span class="cn">TRUE</span>, <span class="at">family=</span><span class="st">&#39;A&#39;</span>, <span class="at">hjust =</span> <span class="dv">1</span>) <span class="sc">+</span> </span>
+<span id="cb95-38"><a href="time-series-data-analysis-regression.html#cb95-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">guides</span>(<span class="at">shape=</span><span class="cn">FALSE</span>)<span class="sc">+</span></span>
+<span id="cb95-39"><a href="time-series-data-analysis-regression.html#cb95-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2012-01-01&#39;</span>), <span class="at">y =</span> <span class="dv">450</span>, <span class="at">label =</span> <span class="st">&#39;bold(&quot;From  2009 (  )&quot;)&#39;</span>, <span class="at">parse=</span><span class="cn">TRUE</span>, <span class="at">family=</span><span class="st">&#39;A&#39;</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb95-40"><a href="time-series-data-analysis-regression.html#cb95-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2012-01-01&#39;</span>), <span class="at">y =</span> <span class="dv">430</span>, <span class="at">label =</span> <span class="st">&#39;italic(&quot;*Beta = 0.013&quot;)&#39;</span>, <span class="at">parse=</span><span class="cn">TRUE</span>, <span class="at">family=</span><span class="st">&#39;A&#39;</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span> </span>
+<span id="cb95-41"><a href="time-series-data-analysis-regression.html#cb95-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">annotate</span>(<span class="st">&quot;text&quot;</span>, <span class="at">x =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2012-01-01&#39;</span>), <span class="at">y =</span> <span class="dv">410</span>, <span class="at">label =</span> <span class="st">&#39;italic(&quot; p = 0.019&quot;)&#39;</span>, <span class="at">parse=</span><span class="cn">TRUE</span>, <span class="at">family=</span><span class="st">&#39;A&#39;</span>, <span class="at">hjust =</span> <span class="dv">0</span>) <span class="sc">+</span></span>
+<span id="cb95-42"><a href="time-series-data-analysis-regression.html#cb95-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">&#39;2008-06-25&#39;</span>), <span class="at">y=</span><span class="dv">449</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">shape=</span><span class="dv">1</span>) <span class="sc">+</span></span>
+<span id="cb95-43"><a href="time-series-data-analysis-regression.html#cb95-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">x=</span><span class="fu">as.Date</span>(<span class="st">&#39;2013-11-01&#39;</span>), <span class="at">y=</span><span class="dv">449</span>, <span class="at">size=</span><span class="dv">3</span>, <span class="at">shape=</span><span class="dv">19</span>) <span class="sc">+</span></span>
+<span id="cb95-44"><a href="time-series-data-analysis-regression.html#cb95-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_vline</span>(<span class="at">xintercept =</span> <span class="fu">as.Date</span>(<span class="st">&#39;2009-01-01&#39;</span>), <span class="at">linetype=</span><span class="st">&quot;dotted&quot;</span>, </span>
+<span id="cb95-45"><a href="time-series-data-analysis-regression.html#cb95-45" aria-hidden="true" tabindex="-1"></a>                    <span class="at">color =</span> <span class="st">&quot;grey50&quot;</span>) <span class="co">#+</span></span>
+<span id="cb95-46"><a href="time-series-data-analysis-regression.html#cb95-46" aria-hidden="true" tabindex="-1"></a>    <span class="co">#annotate(&quot;rect&quot;, xmin = as.Date(&#39;2004-06-01&#39;), xmax = as.Date(&#39;2009-01-01&#39;),  ymin = -50, ymax = 470,</span></span>
+<span id="cb95-47"><a href="time-series-data-analysis-regression.html#cb95-47" aria-hidden="true" tabindex="-1"></a>     <span class="co">#       alpha = .1)</span></span>
+<span id="cb95-48"><a href="time-series-data-analysis-regression.html#cb95-48" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb95-49"><a href="time-series-data-analysis-regression.html#cb95-49" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb95-50"><a href="time-series-data-analysis-regression.html#cb95-50" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb95-51"><a href="time-series-data-analysis-regression.html#cb95-51" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb95-52"><a href="time-series-data-analysis-regression.html#cb95-52" aria-hidden="true" tabindex="-1"></a>  figure1 </span></code></pre></div>
+<p><img src="dspub_project_files/figure-html/ts%20fig12-1.png" width="1152" /></p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="blogdown-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="google-maps-platform.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["dspub_project.pdf", "dspub_project.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+  (function () {
+    var script = document.createElement("script");
+    script.type = "text/javascript";
+    var src = "true";
+    if (src === "" || src === "true") src = "https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML";
+    if (location.protocol !== "file:")
+      if (/^https?:/.test(src))
+        src = src.replace(/^https?:/, '');
+    script.src = src;
+    document.getElementsByTagName("head")[0].appendChild(script);
+  })();
+</script>
+</body>
+
+</html>

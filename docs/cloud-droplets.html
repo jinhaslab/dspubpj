@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 3 Cloud Droplets | DSpub-project</title>
+  <meta name="description" content="Dspub 다음 수업입니다. DSpub-project" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 3 Cloud Droplets | DSpub-project" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 3 Cloud Droplets | DSpub-project" />
+  
+  <meta name="twitter:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+<meta name="author" content="Jinha Yoon" />
+
+
+<meta name="date" content="2021-03-04" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="intro.html"/>
+<link rel="next" href="blogdown-hugotheme-github-and-netlify.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 사전 과정</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="cloud-droplets.html"><a href="cloud-droplets.html"><i class="fa fa-check"></i><b>3</b> Cloud Droplets</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp"><i class="fa fa-check"></i><b>3.1</b> GCP</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp-에-vm-만들기"><i class="fa fa-check"></i><b>3.1.1</b> GCP 에 VM 만들기</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean"><i class="fa fa-check"></i><b>3.2</b> Digital ocean</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean-cmd-terminal-winscp-putty"><i class="fa fa-check"></i><b>3.2.1</b> digital ocean cmd terminal, winScp, putty</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cloud-droplets.html"><a href="cloud-droplets.html#rstudio-server-shiny-server-만들기"><i class="fa fa-check"></i><b>3.3</b> rstudio-server, shiny-server 만들기</a></li>
+<li class="chapter" data-level="3.4" data-path="cloud-droplets.html"><a href="cloud-droplets.html#r-and-rstudio-install"><i class="fa fa-check"></i><b>3.4</b> R and Rstudio install</a></li>
+<li class="chapter" data-level="3.5" data-path="cloud-droplets.html"><a href="cloud-droplets.html#shiny-server-install"><i class="fa fa-check"></i><b>3.5</b> shiny server install</a></li>
+<li class="chapter" data-level="3.6" data-path="cloud-droplets.html"><a href="cloud-droplets.html#도메인-연결"><i class="fa fa-check"></i><b>3.6</b> 도메인 연결</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html"><i class="fa fa-check"></i><b>4</b> blogdown, hugotheme, Github and Netlify</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#git-hub"><i class="fa fa-check"></i><b>4.1</b> git hub</a></li>
+<li class="chapter" data-level="4.2" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#blogdown"><i class="fa fa-check"></i><b>4.2</b> blogdown</a></li>
+<li class="chapter" data-level="4.3" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#github-and-git"><i class="fa fa-check"></i><b>4.3</b> github and git</a></li>
+<li class="chapter" data-level="4.4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#netlify"><i class="fa fa-check"></i><b>4.4</b> Netlify</a></li>
+<li class="chapter" data-level="4.5" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#도메인-연결-선택"><i class="fa fa-check"></i><b>4.5</b> 도메인 연결 (선택)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="blogdown-1.html"><a href="blogdown-1.html"><i class="fa fa-check"></i><b>5</b> blogdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="blogdown-1.html"><a href="blogdown-1.html#github"><i class="fa fa-check"></i><b>5.1</b> github</a></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html"><i class="fa fa-check"></i><b>6</b> Time series data analysis, regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#미세먼지와-심혈관사망"><i class="fa fa-check"></i><b>6.2</b> 미세먼지와 심혈관사망</a></li>
+<li class="chapter" data-level="6.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#case-study-influenza-epidemic-and-suicide"><i class="fa fa-check"></i><b>6.3</b> case study: influenza epidemic and suicide</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#실습-데이터"><i class="fa fa-check"></i><b>6.3.1</b> 실습 데이터</a></li>
+<li class="chapter" data-level="6.3.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#simple-time-related-variable-adjusting-regression"><i class="fa fa-check"></i><b>6.3.2</b> simple time-related variable adjusting regression</a></li>
+<li class="chapter" data-level="6.3.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima"><i class="fa fa-check"></i><b>6.3.3</b> ARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#analysis-and-forecasting-regression"><i class="fa fa-check"></i><b>6.4</b> analysis and forecasting, regression</a></li>
+<li class="chapter" data-level="6.5" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-1"><i class="fa fa-check"></i><b>6.5</b> ARIMA</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-감기-자살-aic"><i class="fa fa-check"></i><b>6.5.1</b> arima 감기 자살 , AIC</a></li>
+<li class="chapter" data-level="6.5.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#aic-bic-in-generalize-additive-model"><i class="fa fa-check"></i><b>6.5.2</b> AIC BIC in generalize additive model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="google-maps-platform.html"><a href="google-maps-platform.html"><i class="fa fa-check"></i><b>7</b> Google Maps Platform</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-tackeout"><i class="fa fa-check"></i><b>7.1</b> Google Tackeout</a></li>
+<li class="chapter" data-level="7.2" data-path="google-maps-platform.html"><a href="google-maps-platform.html#data-visualization"><i class="fa fa-check"></i><b>7.2</b> Data visualization</a></li>
+<li class="chapter" data-level="7.3" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-api"><i class="fa fa-check"></i><b>7.3</b> google API</a></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="other-maps.html"><a href="other-maps.html"><i class="fa fa-check"></i><b>8</b> other maps</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="other-maps.html"><a href="other-maps.html#leaflet"><i class="fa fa-check"></i><b>8.1</b> leaflet</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSpub-project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="cloud-droplets" class="section level1" number="3">
+<h1><span class="header-section-number">Chapter 3</span> Cloud Droplets</h1>
+<p>여러 클라우드 중에, google cloud, digital ocean 을 이용해서 shiny server를 운용해 보는 시간을 갖도록 하겠습니다.</p>
+<div id="gcp" class="section level2" number="3.1">
+<h2><span class="header-section-number">3.1</span> GCP</h2>
+<p>GCP(google Cloud Platform) 은 1년 30만원 상당의 금액이 무료입니다. 따라서 본 실습에서 추천되는 클라우드 입니다.
+구글에 gcp 치고 들어가서 가입하세요. 이후 과정은 아래와 같습니다.</p>
+<div id="gcp-에-vm-만들기" class="section level3" number="3.1.1">
+<h3><span class="header-section-number">3.1.1</span> GCP 에 VM 만들기</h3>
+<ul>
+<li>google cloud platfomr</li>
+<li>login %rarr; compute engine</li>
+<li>vm instance, create</li>
+<li>option 선택, asia-seoul, 2 cpu, 4GB memory, ubuntus 20 with 10GB</li>
+<li>allow http, https traffic</li>
+<li>create</li>
+</ul>
+<p><strong>gcp 에서 compute engine 을 선택 </strong>
+<img src="img/gcp2.png" alt="gcp compute engine" /></p>
+<p><strong>compute engine 에서 Create 클릭 </strong>
+<img src="img/gcp1.png" alt="gpc vm" /></p>
+<p><strong>이후 과정은 option 선택, asia-seoul, 2 cpu, 4GB memory, ubuntus 20 with 10GB </strong> allow http, https traffic</p>
+<p><strong>방화벽규칙 만들기</strong> 이후 8787이라는 포트로 접근해서 rstudio를 사용할 것입니다.</p>
+<p><img src="img/gcp3.png" alt="gcp firewall" />
+이후 아래와 같이 기본적인 것을 넣어 주세요</p>
+<div class="figure">
+<img src="img/gcp4.png" alt="" />
+<p class="caption">방화벽 설정 1</p>
+</div>
+<p>화면 아래 쪽에 <strong>소스ip범위</strong>에 <code>0.0.0.0/0</code>을 <strong>tcp</strong>에 <code>8787</code>을 입력해 주세요. 8787을 rstudio 기본으로 사용할 것입니다. 이후 만들기.</p>
+<div class="figure">
+<img src="img/gcp5.png" alt="" />
+<p class="caption">방화벽 포트</p>
+</div>
+</div>
+</div>
+<div id="digital-ocean" class="section level2" number="3.2">
+<h2><span class="header-section-number">3.2</span> Digital ocean</h2>
+<blockquote>
+<p>Digital ocean 에 들어가기</p>
+</blockquote>
+<div class="figure">
+<img src="img/digitalocean1.png" alt="" />
+<p class="caption">digital ocean 1</p>
+</div>
+<ul>
+<li>Digital ocean Droplets 만들기
+<ul>
+<li>login</li>
+<li>Create → Droplets</li>
+<li>Choose an image (Ubuntu)</li>
+<li>Choose a plan (Basic)</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="img/digitalocean2.png" alt="" />
+<p class="caption">Digital ocean 2</p>
+</div>
+<div id="digital-ocean-cmd-terminal-winscp-putty" class="section level3" number="3.2.1">
+<h3><span class="header-section-number">3.2.1</span> digital ocean cmd terminal, winScp, putty</h3>
+<blockquote>
+<p>cmd 사용</p>
+</blockquote>
+<ul>
+<li>ssh <a href="mailto:username@ip" class="email">username@ip</a>
+사용.</li>
+</ul>
+<blockquote>
+<p>Winscp 설치</p>
+</blockquote>
+<ul>
+<li>WinSCP 설치 후 연결
+<ul>
+<li>WinScp 설치</li>
+<li>새로운세션 클릭</li>
+<li>호스트 이름에 (주소:숫자.숫자.숫자.숫자)</li>
+<li>사용자 이름에 root</li>
+<li>생성한 비밀번호 넣기</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="img/winscp1.png" alt="" />
+<p class="caption">WinScp</p>
+</div>
+<blockquote>
+<p>Putty 접속</p>
+</blockquote>
+<ul>
+<li>Putty 접속
+<ul>
+<li>Putty 아이콘 클릭</li>
+<li>root 비밀번호 입력 (비밀번호 써질때 않보임)</li>
+<li>검은 consol 창 열림</li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="img/winscp3.png" alt="" />
+<p class="caption">Putty</p>
+</div>
+</div>
+</div>
+<div id="rstudio-server-shiny-server-만들기" class="section level2" number="3.3">
+<h2><span class="header-section-number">3.3</span> rstudio-server, shiny-server 만들기</h2>
+<p>GCP 의 경우 첫번째 기본 화면으로 돌아옵니다. 그리고 SSH를 클릭합니다.</p>
+<div class="figure">
+<img src="img/gcp6.png" alt="" />
+<p class="caption">gcp ssh 1</p>
+</div>
+<p>그러면 아래와 같이 검은 터미널이 열릴 것입니다.</p>
+<div class="figure">
+<img src="img/gcp7.png" alt="" />
+<p class="caption">gcp terminal 1</p>
+</div>
+<p>Digital Ocean은 위와 같이 putty 접속 후 터미널 나오면 됩니다.</p>
+<ul>
+<li>user 만들기</li>
+</ul>
+<pre><code>adduser myname
+ ** 비밀번호 물어볼 것이고 그것 기억하세요
+ 
+usermod -aG sudo myname</code></pre>
+</div>
+<div id="r-and-rstudio-install" class="section level2" number="3.4">
+<h2><span class="header-section-number">3.4</span> R and Rstudio install</h2>
+<p>Putty를 통해 접속했으면 이제 R과 R studio 를 설치하겠습니다. R이 실행되는지 확인하고, q()로 빠져 나옵니다.</p>
+<blockquote>
+<p>R install</p>
+</blockquote>
+<pre><code>$ sudo apt-get update
+$ sudo apt-get install r-base r-base-dev
+$ sudo -i R
+  &gt; q()</code></pre>
+<div class="figure">
+<img src="img/rinstall1.png" alt="" />
+<p class="caption">r start</p>
+</div>
+<blockquote>
+<p>Rstudio install</p>
+</blockquote>
+<p>한줄씩 하세요</p>
+<pre><code>$ cd ..           [상위 폴더 이동]
+$ cd home/myname  [저 같은 경우 jinhalab으로 이동]
+$ mkdir download  [download 폴더 생상]
+$ cd download     [download 폴더 이동]
+
+$ sudo apt-get install gdebi-core
+$ wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb
+$ sudo gdebi rstudio-server-1.4.1103-amd64.deb</code></pre>
+<p>아래 처럼 <code>active</code> 가 뜨면 성공</p>
+<div class="figure">
+<img src="img/rstudio1.png" alt="" />
+<p class="caption">rstudio install</p>
+</div>
+<blockquote>
+<p>Rstudio server setting</p>
+</blockquote>
+<pre><code>$ vi /etc/rstudio/rserver.conf </code></pre>
+<ul>
+<li>rstudio setting</li>
+<li>rserver.conf 들어가기</li>
+<li>자판에서 <code>a</code> 누루기 (수정 시작 알림)</li>
+<li>www-address=0.0.0.0 입력</li>
+<li><code>ctrl + c</code> 누루기</li>
+<li><code>:wq!</code> 입력 (w: write, q: quit)</li>
+<li>밖으로 나옴</li>
+</ul>
+<div class="figure">
+<img src="img/rstudio2.png" alt="" />
+<p class="caption">rstudio setting</p>
+</div>
+<blockquote>
+<p>Rstudio server 접속</p>
+</blockquote>
+<ul>
+<li>Rstudio server</li>
+<li>local comp 에서 chrome</li>
+<li>주소 창에 내 주소 + rstudio : 예 10.20.01.0:8787</li>
+<li>username + password</li>
+</ul>
+<p><img src="img/rstudio3.png" alt="rstudio server start" />
+<img src="img/rstudio4.png" alt="rstudio server start 2" /></p>
+</div>
+<div id="shiny-server-install" class="section level2" number="3.5">
+<h2><span class="header-section-number">3.5</span> shiny server install</h2>
+<blockquote>
+<p>R packages 로 shiny library 설치</p>
+</blockquote>
+<pre><code>$ sudo su - \
+&gt; -c &quot;R -e \&quot;install.packages(&#39;shiny&#39;, repos=&#39;https://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
+<pre><code>$ sudo apt-get install gdebi-core
+$ wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb
+$ sudo gdebi shiny-server-1.5.16.958-amd64.deb</code></pre>
+<p>아래처럼 <code>active</code>가 뜨면 정상</p>
+<p><img src="img/shinyserver1.png" alt="shiny server active" />
+&gt; shiny-server 접속해 보기</p>
+<ul>
+<li>shiny-server 접속</li>
+<li>chrome open</li>
+<li>주소창에 주소:3838 예) 192.169.2.3:3838</li>
+<li>error message 확인</li>
+<li>rmarkdown install 확인</li>
+</ul>
+<div class="figure">
+<img src="img/shinyserver2.png" alt="" />
+<p class="caption">shiny server 2</p>
+</div>
+<blockquote>
+<p>rmarkdonw error 있으면 아래 실행후 shiny-server 재 접속</p>
+</blockquote>
+<pre><code>$ sudo su - \
+&gt; -c &quot;R -e \&quot;install.packages(&#39;rmarkdown&#39;, repos=&#39;https://cran.rstudio.com/&#39;)\&quot;&quot;</code></pre>
+<blockquote>
+<p>방화벽 설정</p>
+</blockquote>
+<pre><code>$ sudo ufw allow 3838</code></pre>
+</div>
+<div id="도메인-연결" class="section level2" number="3.6">
+<h2><span class="header-section-number">3.6</span> 도메인 연결</h2>
+<p>여기 부터는 선택사항입니다.</p>
+<blockquote>
+<p>Nginx 파일 수정</p>
+</blockquote>
+<p>Nginx 설치 → Nginx 접속 확인</p>
+<pre><code>$ sudo apt-get update &amp;&amp; sudo apt-get install nginx
+$ sudo service nginx stop
+$ sudo service nginx start
+$ sudo service nginx restart</code></pre>
+<blockquote>
+<p>example.domain 으로 접속</p>
+</blockquote>
+<p>만약 jinhalab.org 라는 도메인을 연결했다면 아래처럼 확인됨.</p>
+<div class="figure">
+<img src="img/ngix.png" alt="" />
+<p class="caption">nginx 1</p>
+</div>
+<blockquote>
+<p>nginx and shiny server</p>
+</blockquote>
+<p>자세한 것은 <a href="https://www.digitalocean.com/community/tutorials/how-to-set-up-shiny-server-on-ubuntu-16-04" class="uri">https://www.digitalocean.com/community/tutorials/how-to-set-up-shiny-server-on-ubuntu-16-04</a> 을 참고하세요</p>
+<blockquote>
+<blockquote>
+<p>nginx config 설정</p>
+</blockquote>
+</blockquote>
+<p>참고: <a href="https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04" class="uri">https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04</a></p>
+<pre><code>http {
+ map $http_upgrade $connection_upgrade {
+    default upgrade;
+    &#39;&#39;      close;
+  }
+
+    ...
+    server_names_hash_bucket_size 64;
+    ...
+}
+</code></pre>
+<blockquote>
+<blockquote>
+<p>nginx key 생성</p>
+</blockquote>
+</blockquote>
+<pre><code>cd /etc/nginx/ssl
+openssl req -new -newkey rsa:2048 -nodes -keyout jinhalab.key -out jinhalab.csr
+openssl x509 -req -days 365 -in jinhalab.csr -signkey jinhalab.key -out jinhalab.crt</code></pre>
+<blockquote>
+<blockquote>
+<p>모든 서버 shut down</p>
+</blockquote>
+</blockquote>
+<pre><code>sudo systemctl stop nginx
+sudo systemctl stop rstudio-server
+sudo systemctl stop shiny-server</code></pre>
+<blockquote>
+<blockquote>
+<p>example domain config 편집</p>
+</blockquote>
+</blockquote>
+<pre><code>$ sudo nano /etc/nginx/sites-available/example.com
+&gt; example.com 편집화면
+server {
+   listen 80 default_server;
+   listen [::]:80 default_server ipv6only=on;
+   server_name example.com www.example.com;
+   return 301 https://$server_name$request_uri;
+}
+server {
+   listen 443 ssl;
+   server_name example.com www.example.com;
+   ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+   ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+   ssl_prefer_server_ciphers on;
+   ssl_ciphers AES256+EECDH:AES256+EDH:!aNULL;
+
+   location /shiny/ {
+       proxy_pass http://your_server_ip:3838;
+       proxy_redirect http://your_server_ip:3838/ https://$host/;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection $connection_upgrade;
+       proxy_read_timeout 20d;
+   }
+}
+</code></pre>
+<p>수정된 example.com config 를 enabled 폴더로 옮기기.</p>
+<pre><code>$ sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.com
+</code></pre>
+<pre><code>sudo systemctl start rstudio-server
+sudo systemctl start shiny-server
+sudo systemctl start nginx
+service nginx restart</code></pre>
+<p>이후에 크롬에 다시 접속 <code>ip/shiny/</code>, 저 같은 경우 jinhalab.org/shiny/ 로 접속하면</p>
+<div class="figure">
+<img src="img/ngix2.png" alt="" />
+<p class="caption">nginx and shiny</p>
+</div>
+<p>저는 shiny 라는 단어도 없애고 싶어서 <code>location /shiny/ {</code> → <code>location / {</code> 로 변경했습니다.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="blogdown-hugotheme-github-and-netlify.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["dspub_project.pdf", "dspub_project.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
