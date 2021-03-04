@@ -1,0 +1,83 @@
+# blogdown, hugotheme, Github and Netlify 
+
+## git hub
+
+ github 에서 repository 를 만들고
+ 
+![github1](img/github1.png) 
+ github에서 https clone copy
+ 
+![github2](img/github2.png)
+
+
+## blogdown
+
+> create projects
+
+* project
+ + version contro
+ + git
+ + copy clone
+ + create project
+ 
+![blogdown1](img/blogdown1.png)
+> Hugo Theme 설치
+
+```
+#install.packages(blogdown)
+library(blogdown)
+install_hugo()
+# remember hugo version
+new_site(theme = "wowchemy/starter-academic")
+serve_site()
+```
+![blogdown2](img/blogdown2.png)
+
+## github and git
+
+> git
+
+등록 않되어 있담ㄴ
+```
+git config --global user.email "user@gmail.com"
+git config --global user.name "user"
+```
+
+
+* terminal 
+  + cd myblog
+  + git init
+  + git status
+  + git add config.yaml
+  + git add .
+  + git status
+  + git commit -am "first commit"
+  + git log
+  + git push origin main
+
+> github에 upload 확인
+
+
+## Netlify
+
+> deploy using github
+
+> option control
+
+![option control](img/netlify.png)
+
+
+## 도메인 연결 (선택)
+
+
+> set-up custom domain
+
+>> DNS configuration
+
+>> name server setting
+   (네임서버 설정에 붙여 넣기)
+
+
+ 
+ 
+ 

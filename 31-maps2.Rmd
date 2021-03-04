@@ -1,0 +1,75 @@
+# other maps
+ 데이터는 저번시간에 사용한 자료를 이용하겠습니다. 
+
+ json 파일로 되어 있으므로 이를 받아서 읽고 visualizaton을 해보도록 하겠습니다. 필요한 package를 다운로드 받아 보겠습니다. 
+
+```{r, message=FALSE, warning=FALSE}
+if(!require(jsonlite)) install.packages('jsonlite')
+if(!require(ggmap))    install.packages('ggmap')
+if(!require(ggplot2))  install.packages('ggplot2')
+library(jsonlite)
+library(ggmap)
+library(ggplot2)
+library(tidyverse)
+```
+
+ 다운로드 경로가 아래와 같이 되었네요. 여기서 `location`을 가져와서 위도와 경도를 설정하고 그 위치에 맞게 점을 표시하려고 합니다. 
+```{r, echo= FALSE}
+map_data = readRDS('data/map_data.RDS')
+```
+
+```{r, eval = FALSE}
+map_data = fromJSON("data/Takeout/Location History/Location History.json")
+```
+ 위도와 경도를 생성해 주는 data step을 진행하고, 50000건의 정보만 남기겠습니다.
+```{r}
+#map_data$locations
+
+locations = map_data$locations
+loc_dat1 =  locations %>%
+  mutate(lat = latitudeE7/1e7, 
+         lng = longitudeE7/1e7) %>%
+  mutate(year = str_sub(timestampMs, 1, 2), 
+         month= str_sub(timestampMs, 3, 4))
+
+loc_dat_sample = loc_dat1 %>%
+  slice(1:50000)
+```
+
+## leaflet
+ leaflet 지도 자료를 사용하겠습니다. 무료이고 시각화를 위해서는 충분한 자료입니다. 한국 데이터에 위에서 만들었던 위도와 경도를 사용하겠습니다. 
+```{r, message=FALSE}
+library(leaflet)
+popu = c("korea")
+lng  = loc_dat_sample$lng
+lat  = loc_dat_sample$lat
+```
+> 한국 지도 불러오기
+
+ 연구실 근처를 불러오겠습니다. 
+```{r leaflet step1}
+leaflet() %>%
+  setView(lng = 126.91, 
+          lat = 37.56, 
+          zoom = 13) %>%
+  addTiles()
+
+```
+ 돌아 다녔던 위도와 경도를 그려보겠습니다.  
+```{r}
+leaflet(loc_dat_sample) %>%
+  setView(lng = 126.91, 
+          lat = 37.56, 
+          zoom = 13) %>%
+  addTiles() %>%
+  #addMarkers(lng = lng, lat = lat)
+  addCircleMarkers(lng = lng, lat = lat, 
+                   radius = 2, 
+                   color  = "red", 
+                   stroke = FALSE, 
+                   fillOpacity = 0.5)
+
+```
+
+
+

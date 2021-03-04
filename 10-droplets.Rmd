@@ -1,0 +1,308 @@
+# Cloud Droplets
+ 여러 클라우드 중에, google cloud, digital ocean  을 이용해서 shiny server를 운용해 보는 시간을 갖도록 하겠습니다. 
+ 
+## GCP
+ GCP(google Cloud Platform) 은 1년 30만원 상당의 금액이 무료입니다. 따라서 본 실습에서 추천되는 클라우드 입니다.
+ 구글에  gcp 치고 들어가서 가입하세요. 이후 과정은 아래와 같습니다. 
+ 
+### GCP 에 VM 만들기
+
+* google cloud platfomr
+ + login %rarr; compute engine
+ + vm instance, create
+ + option 선택, asia-seoul, 2 cpu, 4GB memory, ubuntus 20 with 10GB
+ + allow http, https traffic
+ + create
+
+**gcp 에서 compute engine 을 선택 **
+![gcp compute engine](img/gcp2.png) 
+
+
+**compute engine 에서 Create 클릭 **
+![gpc vm](img/gcp1.png)
+
+**이후 과정은  option 선택, asia-seoul, 2 cpu, 4GB memory, ubuntus 20 with 10GB ** allow http, https traffic
+
+**방화벽규칙 만들기** 이후 8787이라는 포트로 접근해서 rstudio를 사용할 것입니다. 
+
+![gcp firewall](img/gcp3.png)
+이후 아래와 같이 기본적인 것을 넣어 주세요
+
+![방화벽 설정 1](img/gcp4.png)
+
+화면 아래 쪽에 **소스ip범위**에 `0.0.0.0/0`을 **tcp**에 `8787`을 입력해 주세요. 8787을 rstudio 기본으로 사용할 것입니다. 이후 만들기.
+
+![방화벽 포트](img/gcp5.png)
+
+
+
+ 
+## Digital ocean
+> Digital ocean 에 들어가기
+
+![digital ocean 1](img/digitalocean1.png)
+ 
+ * Digital ocean Droplets 만들기
+   + login
+   + Create &rarr; Droplets
+   + Choose an image (Ubuntu)
+   + Choose a plan (Basic)
+
+![Digital ocean 2](img/digitalocean2.png)
+
+### digital ocean cmd terminal, winScp, putty
+
+> cmd 사용
+
+* ssh username@ip
+사용. 
+
+> Winscp 설치
+
+* WinSCP 설치 후 연결
+  + WinScp 설치
+  + 새로운세션 클릭
+  + 호스트 이름에 (주소:숫자.숫자.숫자.숫자)
+  + 사용자 이름에 root
+  + 생성한 비밀번호 넣기
+  
+![WinScp](img/winscp1.png)
+
+> Putty 접속
+
+* Putty 접속
+  + Putty 아이콘 클릭
+  + root 비밀번호 입력 (비밀번호 써질때 않보임)
+  + 검은 consol 창 열림
+
+![Putty](img/winscp3.png)
+
+
+## rstudio-server, shiny-server 만들기
+
+GCP 의 경우 첫번째 기본 화면으로 돌아옵니다. 그리고 SSH를 클릭합니다. 
+
+![gcp ssh 1 ](img/gcp6.png)
+
+그러면 아래와 같이 검은 터미널이 열릴 것입니다. 
+
+![gcp terminal 1](img/gcp7.png)
+ 
+Digital Ocean은 위와 같이 putty 접속 후 터미널 나오면 됩니다.  
+
+
+
+* user 만들기
+```
+adduser myname
+ ** 비밀번호 물어볼 것이고 그것 기억하세요
+ 
+usermod -aG sudo myname
+```
+
+## R and Rstudio install
+ Putty를 통해 접속했으면 이제 R과 R studio 를 설치하겠습니다. R이 실행되는지 확인하고, q()로 빠져 나옵니다. 
+ 
+> R install 
+
+```
+$ sudo apt-get update
+$ sudo apt-get install r-base r-base-dev
+$ sudo -i R
+  > q()
+```
+ 
+![r start](img/rinstall1.png)
+
+> Rstudio install
+  
+  한줄씩 하세요
+```
+$ cd ..           [상위 폴더 이동]
+$ cd home/myname  [저 같은 경우 jinhalab으로 이동]
+$ mkdir download  [download 폴더 생상]
+$ cd download     [download 폴더 이동]
+
+$ sudo apt-get install gdebi-core
+$ wget https://download2.rstudio.org/server/bionic/amd64/rstudio-server-1.4.1103-amd64.deb
+$ sudo gdebi rstudio-server-1.4.1103-amd64.deb
+```
+아래 처럼 `active` 가 뜨면 성공
+
+![rstudio install](img/rstudio1.png)
+
+ 
+>  Rstudio server setting
+
+```
+$ vi /etc/rstudio/rserver.conf 
+```
+
+* rstudio setting
+ + rserver.conf 들어가기
+ + 자판에서 `a` 누루기 (수정 시작 알림)
+ + www-address=0.0.0.0 입력
+ + `ctrl + c` 누루기
+ + `:wq!` 입력 (w: write, q: quit)
+ + 밖으로 나옴
+ 
+![rstudio setting](img/rstudio2.png) 
+
+> Rstudio server 접속
+
+* Rstudio server
+ + local comp 에서 chrome 
+ + 주소 창에 내 주소 + rstudio : 예 10.20.01.0:8787
+ + username + password
+ 
+![rstudio server start](img/rstudio3.png)
+![rstudio server start 2](img/rstudio4.png)
+
+## shiny server install
+
+>R packages 로 shiny library 설치
+
+```
+$ sudo su - \
+> -c "R -e \"install.packages('shiny', repos='https://cran.rstudio.com/')\""
+```
+
+```
+$ sudo apt-get install gdebi-core
+$ wget https://download3.rstudio.org/ubuntu-14.04/x86_64/shiny-server-1.5.16.958-amd64.deb
+$ sudo gdebi shiny-server-1.5.16.958-amd64.deb
+```
+
+아래처럼  `active`가 뜨면 정상
+
+![shiny server active](img/shinyserver1.png)
+> shiny-server 접속해 보기
+
+* shiny-server 접속
+ + chrome open
+ + 주소창에 주소:3838 예) 192.169.2.3:3838
+ + error message 확인
+ + rmarkdown install 확인
+ 
+![shiny server 2](img/shinyserver2.png)
+
+> rmarkdonw error 있으면 아래 실행후 shiny-server 재 접속
+
+```
+$ sudo su - \
+> -c "R -e \"install.packages('rmarkdown', repos='https://cran.rstudio.com/')\""
+```
+
+> 방화벽 설정
+
+```
+$ sudo ufw allow 3838
+```
+
+## 도메인 연결
+ 여기 부터는 선택사항입니다. 
+
+> Nginx 파일 수정
+
+Nginx 설치 &rarr; Nginx 접속 확인
+```
+$ sudo apt-get update && sudo apt-get install nginx
+$ sudo service nginx stop
+$ sudo service nginx start
+$ sudo service nginx restart
+```
+
+> example.domain 으로 접속
+
+ 만약 jinhalab.org 라는 도메인을 연결했다면 아래처럼 확인됨.
+ 
+![nginx 1](img/ngix.png)
+
+
+> nginx and shiny server
+
+자세한 것은 https://www.digitalocean.com/community/tutorials/how-to-set-up-shiny-server-on-ubuntu-16-04 을 참고하세요
+
+>> nginx config 설정
+
+참고: https://www.digitalocean.com/community/tutorials/how-to-install-nginx-on-ubuntu-18-04
+```
+http {
+ map $http_upgrade $connection_upgrade {
+    default upgrade;
+    ''      close;
+  }
+
+    ...
+    server_names_hash_bucket_size 64;
+    ...
+}
+
+```
+
+>> nginx key 생성
+
+```
+cd /etc/nginx/ssl
+openssl req -new -newkey rsa:2048 -nodes -keyout jinhalab.key -out jinhalab.csr
+openssl x509 -req -days 365 -in jinhalab.csr -signkey jinhalab.key -out jinhalab.crt
+```
+>> 모든 서버 shut down
+
+```
+sudo systemctl stop nginx
+sudo systemctl stop rstudio-server
+sudo systemctl stop shiny-server
+```
+
+
+>>  example domain config 편집
+
+```
+$ sudo nano /etc/nginx/sites-available/example.com
+> example.com 편집화면
+server {
+   listen 80 default_server;
+   listen [::]:80 default_server ipv6only=on;
+   server_name example.com www.example.com;
+   return 301 https://$server_name$request_uri;
+}
+server {
+   listen 443 ssl;
+   server_name example.com www.example.com;
+   ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;
+   ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;
+   ssl_protocols TLSv1 TLSv1.1 TLSv1.2;
+   ssl_prefer_server_ciphers on;
+   ssl_ciphers AES256+EECDH:AES256+EDH:!aNULL;
+
+   location /shiny/ {
+       proxy_pass http://your_server_ip:3838;
+       proxy_redirect http://your_server_ip:3838/ https://$host/;
+       proxy_http_version 1.1;
+       proxy_set_header Upgrade $http_upgrade;
+       proxy_set_header Connection $connection_upgrade;
+       proxy_read_timeout 20d;
+   }
+}
+
+```
+
+수정된 example.com config 를 enabled 폴더로 옮기기.
+
+```
+$ sudo ln -s /etc/nginx/sites-available/example.com /etc/nginx/sites-enabled/example.com
+
+```
+```
+sudo systemctl start rstudio-server
+sudo systemctl start shiny-server
+sudo systemctl start nginx
+service nginx restart
+```
+이후에 크롬에 다시 접속 `ip/shiny/`, 저 같은 경우 jinhalab.org/shiny/ 로 접속하면
+
+![nginx and shiny](img/ngix2.png)
+
+ 저는 shiny 라는 단어도 없애고 싶어서 ` location /shiny/ {` &rarr; ` location / {` 로 변경했습니다. 
+

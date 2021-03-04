@@ -1,0 +1,22 @@
+# Introduction {#intro}
+
+ DSpub 수업 이후의 과정입니다. 수업을 통해 산출물을 만드는 것이 목표입니다. 
+ 
+ 주차|	내용|	강사
+ :--|:--|:--
+1주차|	강의 내용 및 진행 방법 소개	|윤진하
+2주차|	R, Rstudio, python , 실습용 cloud 설치	|윤진하
+3주차|	rmarkdown 	|윤진하
+4주차|	R and DB	|유승찬
+5주차|	shinyapp 1 (ui, server, global)	|윤진하
+6주차|	shinyapp 2 (deploy to local)	|윤진하
+7주차|	shinyapp 3 (DB to cloud and local)	|윤진하
+8주차|	중간고사 (app 계획서 제출)|	
+9주차|	bookdown	|윤진하
+10주차|	blogdown,  mobile app	|윤진하
+11주차|	google data download and visual	|윤진하
+12주차|	Python basic with R	|윤진하
+13주차|	Geographic Visualization	|윤진하
+14주차|	Online survey and reporting	|윤진하
+15주차|	발표 수업	|윤진하
+16주차|	기말리포트	|윤진하

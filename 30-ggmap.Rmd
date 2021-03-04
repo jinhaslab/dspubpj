@@ -1,0 +1,192 @@
+# Google Maps Platform
+
+## Google Tackeout
+ 구글에서 기록되어 있는 지도 데이터를 다운로드 받아 봅시다. 
+
+> Google Takeout
+
+* following steps
+  + https://takeout.google.com
+  + deselect All
+  + select `Location History`
+  + export
+  + go to gmail and check activity, and back to takeout.google.com
+  + click `download` with option `google-drive`
+  + check Takeout folder in google-drive
+
+<br>
+<br>
+
+<div style="border:1px solid black"> 
+![takeout googlecom](img/googletakeout1.png)
+</div>
+
+<br>
+
+<h3> google location history </h3>
+<div style ="border:2px solid black">
+![google location history](img/googletakeout2.png) 
+</div>
+
+<br>
+<div style ="border:2px solid black">
+![google location history export](img/googletakeout3.png) 
+</div>
+
+<br>
+<div style ="border:2px solid black"> 
+![google takeout 4](img/googletakeout4.png)
+</div>
+
+<br>
+<div style ="border:2px solid black">
+![google takeout 5](img/googletakeout5.png)
+</div>
+ 
+<br>
+<div style ="border:2px solid black">
+![google takeout 5](img/googletakeout6.png)
+</div>
+
+ 
+<br><br>
+ 
+> google drive download
+
+* download takeout file from google drive
+  + takeout export option: google drive download
+  + check update data (every two month)
+  + goto google drive
+  + library(googledrive)
+  + download data
+
+<br>
+
+ 자 이제 package 를 설치하고  library 를 불러와 보겠습니다.  
+```{r, eval = FALSE}
+## install packages
+if(!require('googledrive')) install.packages('googledrive')
+## load library
+library(googledrive)
+```
+
+구글 드라이브에서 몇가지 파일을 찾아 보겠습니다. google drive에서 계정 확인 및 권한을 물어볼 텐데 yes  하시면 됩니다. 
+```{r, eval = FALSE}
+## link to google drive author...
+drive_find(n_max = 10)
+## serach
+drive_find(type ="file", pattern ="Takeout/takeout-*.zip", n_max = 100)
+ls <- drive_ls(path = '/Takeout/', 
+               pattern = "*.*")
+ls$name
+ls$id
+```
+
+ 여기에 `name`은 파일 이름이고 `id`가 있을 것입니다. `id`는 구글 파일을 다운로드 할 때 쓸 주소 같은 것으로 생각하시면됩니다. 압출 파일로 되어 있으니 다운로드 받아 보도록 하겠습니다. 저는 여러 이름 중에 2번째 파일을 다운로드 받겠습니다. 여러 분들오 몇번째 파일을 다운로드 받을 지 생각해보시고 해보세요.
+ 
+```{r, eval = FALSE}
+temp  <- tempfile(fileext = ".zip")
+data1 <- drive_download(as_id(ls$id[2]), 
+                        path = temp, 
+                        overwrite = TRUE)
+
+out <- unzip(temp, exdir = paste0(getwd(), "/data"))
+out
+```
+ 
+ 자 이제 준비가 거의 다 되었습니다. 
+ 
+## Data visualization
+
+ json 파일로 되어 있으므로 이를 받아서 읽고 visualizaton을 해보도록 하겠습니다. 필요한 package를 다운로드 받아 보겠습니다. 
+
+```{r, message=FALSE, warning=FALSE}
+if(!require(jsonlite)) install.packages('jsonlite')
+if(!require(ggmap))    install.packages('ggmap')
+if(!require(ggplot2))  install.packages('ggplot2')
+library(jsonlite)
+library(ggmap)
+library(ggplot2)
+library(tidyverse)
+```
+
+ 다운로드 경로가 아래와 같이 되었네요. 여기서 `location`을 가져와서 위도와 경도를 설정하고 그 위치에 맞게 점을 표시하려고 합니다. 
+```{r, echo= FALSE}
+map_data = readRDS('data/map_data.RDS')
+```
+
+```{r, eval = FALSE}
+map_data = fromJSON("data/Takeout/Location History/Location History.json")
+```
+ 위도와 경도를 생성해 주는 data step을 진행하고, 50000건의 정보만 남기겠습니다.
+```{r}
+#map_data$locations
+
+locations = map_data$locations
+loc_dat1 =  locations %>%
+  mutate(lat = latitudeE7/1e7, 
+         lng = longitudeE7/1e7) %>%
+  mutate(year = str_sub(timestampMs, 1, 2), 
+         month= str_sub(timestampMs, 3, 4))
+
+loc_dat_sample = loc_dat1 %>%
+  slice(1:50000)
+```
+
+ 구글 지도를 불러오겠습니다. 구글 지도를 사용할 때는 API key가 필요합니다. API key를 얻는 것은 다음 챕터에 설명이 되어 있으니 참고하세요. 
+ 
+```{r}
+key<-read.csv('security/gapi.csv')
+register_google(key = key[1,2])
+map = get_map(c(127.024612, 37.532600), 
+              zoom = 10, 
+              source = 'stamen', 
+              maptype = "toner")
+```
+
+이제 지도를 다운 받았으니, 여기에 제 위치를 살펴 보도록 하겠습니다. 월 별로 색을 다르게 하여 표시해 보겠습니다. 7월에는 원주 건강보험공단 빅데이터 분석한다고 다녔던게 남아 있네요. 나머지 달에는 여러 공장에 돌아다닌 것이 나타나네요. 
+ 
+```{r googlemap1 myworkplace, message=FALSE}
+ggmap(map) + 
+  geom_point(data = loc_dat_sample, 
+             aes(x = lng, y = lat, color = month), alpha = 0.5) +
+  theme(legend.position = 'right') +
+  labs(
+    x = 'longitute', 
+    y = 'latitude', 
+    title = "Location history of me"
+  )
+
+```
+ 
+ 
+## google API
+
+ 구글 map을 사용하기 위해서는 Geocoding API 를 이용해야 합니다.  
+ 
+> 구글 map API
+ 
+* https://cloud.google.com/maps-platform/
+ + click `get start`
+ + `API library` and View all of Maps
+ + `Maps Static API` &rarr; `Enable`
+ + `Credentials` &rarr; `API key`
+ + copy and paste Key
+ 
+
+<div style ="border:2px solid black">
+![google map api 1](img/googlemap1.png)
+</div>
+
+<br>
+ 
+<br>
+<div style ="border:2px solid black">
+![google map api 2](img/googlemapapi1.png)
+</div>
+
+<br>
+<div style ="border:2px solid black">
+![google map api 2](img/googlemapapi2.png)
+</div>
+
