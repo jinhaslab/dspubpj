@@ -2,6 +2,8 @@
 .Rhistory
 .RData
 .Ruserdata
+data/
+python/
 /data/*.*
 data/Takeout/Tasks/*.*
 data/Takeout/Location History/*.*

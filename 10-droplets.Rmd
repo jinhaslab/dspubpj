@@ -5,14 +5,20 @@
  GCP(google Cloud Platform) 은 1년 30만원 상당의 금액이 무료입니다. 따라서 본 실습에서 추천되는 클라우드 입니다.
  구글에  gcp 치고 들어가서 가입하세요. 이후 과정은 아래와 같습니다. 
  
+ 
+ 
 ### GCP 에 VM 만들기
 
 * google cloud platfomr
- + login %rarr; compute engine
+ + login &rarr; compute engine
  + vm instance, create
  + option 선택, asia-seoul, 2 cpu, 4GB memory, ubuntus 20 with 10GB
  + allow http, https traffic
  + create
+
+**참고 동영상**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/dg6URREi9as" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 **gcp 에서 compute engine 을 선택 **
 ![gcp compute engine](img/gcp2.png) 
@@ -25,17 +31,21 @@
 
 **방화벽규칙 만들기** 이후 8787이라는 포트로 접근해서 rstudio를 사용할 것입니다. 
 
+우측 아래 방화벽 규칙 만들기 클릭, 
 ![gcp firewall](img/gcp3.png)
-이후 아래와 같이 기본적인 것을 넣어 주세요
+이후  TitleBar 부분에 방화벽 만들기 (Create) 눌러서 아래의 화면에 들어갑니다. 아래와 같이 기본적인 것을 넣어 주세요
 
 ![방화벽 설정 1](img/gcp4.png)
 
 화면 아래 쪽에 **소스ip범위**에 `0.0.0.0/0`을 **tcp**에 `8787`을 입력해 주세요. 8787을 rstudio 기본으로 사용할 것입니다. 이후 만들기.
 
-![방화벽 포트](img/gcp5.png)
+![방화벽 포트](img/gcpfirewall2.png)
 
+같은 방법으로 3838 포트도 열어 줍니다. (3838은 shinyserver의 기본 포트가 될 것 입니다.)
 
-
+![firewall outcome](img/gcp_fw.png)
+ 위에 처럼 그림이 8787과 3838이 열리면 완성된 것입니다. 
+ 
  
 ## Digital ocean
 > Digital ocean 에 들어가기
@@ -78,7 +88,11 @@
 ![Putty](img/winscp3.png)
 
 
-## rstudio-server, shiny-server 만들기
+## 기본 user 만들기
+
+**참고 동영상**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/U2QqhCd5tRg" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
 
 GCP 의 경우 첫번째 기본 화면으로 돌아옵니다. 그리고 SSH를 클릭합니다. 
 
@@ -90,6 +104,11 @@ GCP 의 경우 첫번째 기본 화면으로 돌아옵니다. 그리고 SSH를 �
  
 Digital Ocean은 위와 같이 putty 접속 후 터미널 나오면 됩니다.  
 
+ 아래 부터는 관리자 권한으로 실행합니다. 
+```
+sudo -s
+> 비밀번호 입력하기
+```
 
 
 * user 만들기
@@ -101,6 +120,12 @@ usermod -aG sudo myname
 ```
 
 ## R and Rstudio install
+
+**참고 동영상**
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/0hBQ-x7aPXE" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
  Putty를 통해 접속했으면 이제 R과 R studio 를 설치하겠습니다. R이 실행되는지 확인하고, q()로 빠져 나옵니다. 
  
 > R install 
@@ -193,11 +218,39 @@ $ sudo su - \
 > -c "R -e \"install.packages('rmarkdown', repos='https://cran.rstudio.com/')\""
 ```
 
+> 추가 packages (linux) 설치
+
+```
+sudo apt-get install build-essential libcurl4-gnutls-dev libxml2-dev libssl-dev libssl-dev
+
+```
+
+
 > 방화벽 설정
 
 ```
 $ sudo ufw allow 3838
 ```
+
+
+> shiny server index.html 수정
+
+**참고 동영상**
+<iframe width="560" height="315" src="https://www.youtube.com/embed/J5K05KPumeQ" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+```
+cd /srv/shiny-server
+vi index.html
+
+```
+이후 `a` 치고, editor 수정 나올때는 `esc`누루고 `:wq!`. 그냥 저장하지 않고 나오고 싶으면 `:qa!` 로 나오기.
+
+shiny-server 로가서 새로 고침. 
+
+![shiny-server index](img/shiny_index1.png)
+
+
+
 
 ## 도메인 연결
  여기 부터는 선택사항입니다. 
