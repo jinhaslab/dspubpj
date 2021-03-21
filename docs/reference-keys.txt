@@ -5,7 +5,7 @@ gcp
 gcp-에-vm-만들기
 digital-ocean
 digital-ocean-cmd-terminal-winscp-putty
-rstudio-server-shiny-server-만들기
+기본-user-만들기
 r-and-rstudio-install
 shiny-server-install
 도메인-연결
@@ -13,7 +13,10 @@ blogdown-hugotheme-github-and-netlify
 git-hub
 blogdown
 github-and-git
+ubuntus-에-git-설치하기
 netlify
+프로젝트-과제-제출-수정하기
+웹페이지에-프로젝트-수정하기
 도메인-연결-선택
 blogdown-1
 github
@@ -28,14 +31,10 @@ analysis-and-forecasting-regression
 arima-1
 arima-감기-자살-aic
 aic-bic-in-generalize-additive-model
+r-and-db
 google-maps-platform
 google-tackeout
 data-visualization
 google-api
 other-maps
 leaflet
-r-and-db
-기본-user-만들기
-ubuntus-에-git-설치하기
-프로젝트-과제-제출-수정하기
-웹페이지에-프로젝트-수정하기

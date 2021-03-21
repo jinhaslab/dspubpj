@@ -19,7 +19,7 @@ map_data = readRDS('data/map_data.RDS')
 ```
 
 ```{r, eval = FALSE}
-map_data = fromJSON("data/Takeout/Location History/Location History.json")
+#map_data = fromJSON("data/Takeout/Location History/Location History.json")
 ```
  위도와 경도를 생성해 주는 data step을 진행하고, 50000건의 정보만 남기겠습니다.
 ```{r}
