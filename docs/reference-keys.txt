@@ -38,3 +38,17 @@ data-visualization
 google-api
 other-maps
 leaflet
+rmarkdown
+dspub-기본-강의록-참고
+설치
+components
+simple-tutor
+chunck-option
+table-만들기
+필독
+동영상
+rmarkdown-dspub-project
+other-language
+shiny-app-html-and-others
+other-language-and-inline
+inline-code

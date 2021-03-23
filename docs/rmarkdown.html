@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 5 Rmarkdown | DSpub-project</title>
+  <meta name="description" content="Dspub 다음 수업입니다. DSpub-project" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 5 Rmarkdown | DSpub-project" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 5 Rmarkdown | DSpub-project" />
+  
+  <meta name="twitter:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+<meta name="author" content="Jinha Yoon" />
+
+
+<meta name="date" content="2021-03-24" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="blogdown-hugotheme-github-and-netlify.html"/>
+<link rel="next" href="time-series-data-analysis-regression.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/leaflet-1.3.1/leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-1.3.1/leaflet.js"></script>
+<link href="libs/leafletfix-1.0.0/leafletfix.css" rel="stylesheet" />
+<script src="libs/Proj4Leaflet-1.0.1/proj4-compressed.js"></script>
+<script src="libs/Proj4Leaflet-1.0.1/proj4leaflet.js"></script>
+<link href="libs/rstudio_leaflet-1.3.1/rstudio_leaflet.css" rel="stylesheet" />
+<script src="libs/leaflet-binding-2.0.3/leaflet.js"></script>
+<script src="libs/leaflet-providers-1.9.0/leaflet-providers_1.9.0.js"></script>
+<script src="libs/leaflet-providers-plugin-2.0.3/leaflet-providers-plugin.js"></script>
+<link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+<script src="libs/datatables-binding-0.16/datatables.js"></script>
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+<link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+<script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+<link href="libs/crosstalk-1.1.0.1/css/crosstalk.css" rel="stylesheet" />
+<script src="libs/crosstalk-1.1.0.1/js/crosstalk.min.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 사전 과정</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="cloud-droplets.html"><a href="cloud-droplets.html"><i class="fa fa-check"></i><b>3</b> Cloud Droplets</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp"><i class="fa fa-check"></i><b>3.1</b> GCP</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp-에-vm-만들기"><i class="fa fa-check"></i><b>3.1.1</b> GCP 에 VM 만들기</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean"><i class="fa fa-check"></i><b>3.2</b> Digital ocean</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean-cmd-terminal-winscp-putty"><i class="fa fa-check"></i><b>3.2.1</b> digital ocean cmd terminal, winScp, putty</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cloud-droplets.html"><a href="cloud-droplets.html#기본-user-만들기"><i class="fa fa-check"></i><b>3.3</b> 기본 user 만들기</a></li>
+<li class="chapter" data-level="3.4" data-path="cloud-droplets.html"><a href="cloud-droplets.html#r-and-rstudio-install"><i class="fa fa-check"></i><b>3.4</b> R and Rstudio install</a></li>
+<li class="chapter" data-level="3.5" data-path="cloud-droplets.html"><a href="cloud-droplets.html#shiny-server-install"><i class="fa fa-check"></i><b>3.5</b> shiny server install</a></li>
+<li class="chapter" data-level="3.6" data-path="cloud-droplets.html"><a href="cloud-droplets.html#도메인-연결"><i class="fa fa-check"></i><b>3.6</b> 도메인 연결</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html"><i class="fa fa-check"></i><b>4</b> blogdown, hugotheme, Github and Netlify</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#git-hub"><i class="fa fa-check"></i><b>4.1</b> git hub</a></li>
+<li class="chapter" data-level="4.2" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#blogdown"><i class="fa fa-check"></i><b>4.2</b> blogdown</a></li>
+<li class="chapter" data-level="4.3" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#github-and-git"><i class="fa fa-check"></i><b>4.3</b> github and git</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#ubuntus-에-git-설치하기"><i class="fa fa-check"></i><b>4.3.1</b> ubuntus 에 git 설치하기</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#netlify"><i class="fa fa-check"></i><b>4.4</b> Netlify</a></li>
+<li class="chapter" data-level="4.5" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#프로젝트-과제-제출-수정하기"><i class="fa fa-check"></i><b>4.5</b> 프로젝트 과제 제출 수정하기</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#웹페이지에-프로젝트-수정하기"><i class="fa fa-check"></i><b>4.5.1</b> 웹페이지에 프로젝트 수정하기</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#도메인-연결-선택"><i class="fa fa-check"></i><b>4.6</b> 도메인 연결 (선택)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>5</b> Rmarkdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rmarkdown.html"><a href="rmarkdown.html#dspub-기본-강의록-참고"><i class="fa fa-check"></i><b>5.1</b> DsPub 기본 강의록 참고</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="rmarkdown.html"><a href="rmarkdown.html#설치"><i class="fa fa-check"></i><b>5.1.1</b> 설치</a></li>
+<li class="chapter" data-level="5.1.2" data-path="rmarkdown.html"><a href="rmarkdown.html#components"><i class="fa fa-check"></i><b>5.1.2</b> 3 components</a></li>
+<li class="chapter" data-level="5.1.3" data-path="rmarkdown.html"><a href="rmarkdown.html#simple-tutor"><i class="fa fa-check"></i><b>5.1.3</b> simple tutor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="rmarkdown.html"><a href="rmarkdown.html#chunck-option"><i class="fa fa-check"></i><b>5.1.4</b> chunck option</a></li>
+<li class="chapter" data-level="5.1.5" data-path="rmarkdown.html"><a href="rmarkdown.html#table-만들기"><i class="fa fa-check"></i><b>5.1.5</b> Table 만들기</a></li>
+<li class="chapter" data-level="5.1.6" data-path="rmarkdown.html"><a href="rmarkdown.html#필독"><i class="fa fa-check"></i><b>5.1.6</b> 필독!</a></li>
+<li class="chapter" data-level="5.1.7" data-path="rmarkdown.html"><a href="rmarkdown.html#동영상"><i class="fa fa-check"></i><b>5.1.7</b> 동영상</a></li>
+<li class="chapter" data-level="5.1.8" data-path="rmarkdown.html"><a href="rmarkdown.html#other-language-and-inline"><i class="fa fa-check"></i><b>5.1.8</b> other language and inline</a></li>
+<li class="chapter" data-level="5.1.9" data-path="rmarkdown.html"><a href="rmarkdown.html#inline-code"><i class="fa fa-check"></i><b>5.1.9</b> inline code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html"><i class="fa fa-check"></i><b>6</b> Time series data analysis, regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#미세먼지와-심혈관사망"><i class="fa fa-check"></i><b>6.2</b> 미세먼지와 심혈관사망</a></li>
+<li class="chapter" data-level="6.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#case-study-influenza-epidemic-and-suicide"><i class="fa fa-check"></i><b>6.3</b> case study: influenza epidemic and suicide</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#실습-데이터"><i class="fa fa-check"></i><b>6.3.1</b> 실습 데이터</a></li>
+<li class="chapter" data-level="6.3.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#simple-time-related-variable-adjusting-regression"><i class="fa fa-check"></i><b>6.3.2</b> simple time-related variable adjusting regression</a></li>
+<li class="chapter" data-level="6.3.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima"><i class="fa fa-check"></i><b>6.3.3</b> ARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#analysis-and-forecasting-regression"><i class="fa fa-check"></i><b>6.4</b> analysis and forecasting, regression</a></li>
+<li class="chapter" data-level="6.5" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-1"><i class="fa fa-check"></i><b>6.5</b> ARIMA</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-감기-자살-aic"><i class="fa fa-check"></i><b>6.5.1</b> arima 감기 자살 , AIC</a></li>
+<li class="chapter" data-level="6.5.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#aic-bic-in-generalize-additive-model"><i class="fa fa-check"></i><b>6.5.2</b> AIC BIC in generalize additive model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="r-and-db.html"><a href="r-and-db.html"><i class="fa fa-check"></i><b>7</b> R and DB</a></li>
+<li class="chapter" data-level="8" data-path="google-maps-platform.html"><a href="google-maps-platform.html"><i class="fa fa-check"></i><b>8</b> Google Maps Platform</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-tackeout"><i class="fa fa-check"></i><b>8.1</b> Google Tackeout</a></li>
+<li class="chapter" data-level="8.2" data-path="google-maps-platform.html"><a href="google-maps-platform.html#data-visualization"><i class="fa fa-check"></i><b>8.2</b> Data visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-api"><i class="fa fa-check"></i><b>8.3</b> google API</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-maps.html"><a href="other-maps.html"><i class="fa fa-check"></i><b>9</b> other maps</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-maps.html"><a href="other-maps.html#leaflet"><i class="fa fa-check"></i><b>9.1</b> leaflet</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSpub-project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="rmarkdown" class="section level1" number="5">
+<h1><span class="header-section-number">Chapter 5</span> Rmarkdown</h1>
+<p>Rmarkdown 문서 작성법과 임베딩에 대해 이야기 하겠습니다. Rmarkdwon 문서가 처음이 신 분은 아래의 DsPub 기본 강의록 참고 (하단) 또는 <a href="https://bookdown.org/jinhaslab/testing/" class="uri">https://bookdown.org/jinhaslab/testing/</a> 의 쳅터 16을 보시기 바랍니다.</p>
+<div id="dspub-기본-강의록-참고" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> DsPub 기본 강의록 참고</h2>
+<p>R마크다운은 마크다운을 R에서 사용하기 쉽게 한 프로그램입니다. 마크다운은 자주 사용되는 문서 형태로, 기존의 문서 보다는 웹, 상호작용, 표, 그림 등에서 더 유용합니다. 데이터과학에서 상화 협업을 위해서 마크다운은 자주 사용되는 문서 형태입니다.</p>
+<p>마크다운은 <a href="https://rmarkdown.rstudio.com" class="uri">https://rmarkdown.rstudio.com</a> 에서 tutorial 을 30분 정도 해보시는 것을 추천합니다. 본 쳅터에서는 가장 기본 적인 것을 위주로 설명하겠습니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>마크다운 안내</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rstudio.com</td>
+<td><a href="https://rmarkdown.rstudio.com" class="uri">https://rmarkdown.rstudio.com</a></td>
+</tr>
+<tr class="even">
+<td>lecture 1</td>
+<td><iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></td>
+</tr>
+</tbody>
+</table>
+<p>
+<a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.
+</p>
+<div class="line-block"></div>
+<div id="설치" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> 설치</h3>
+<p>설치는 다른 페키지 설치와 같습니다. 아래의 <code>install.packages()</code>명령을 통해 설치해 봅니다 .</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="rmarkdown.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">&quot;rmarkdown&quot;</span>)</span></code></pre></div>
+<p>그리고 Cheatsheet을 이용하여 공부하면 됩니다. 다시 말하지만, 외우기 보다는 필요한 내용만 그때 그때 사용하시는 것을 권장합니다.</p>
+<p><a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf?_ga=2.1705393.1683083806.1605512097-601360971.1605512097" target="_top"> * R Markdown Cheat Sheet </a></p>
+<p><a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.1705393.1683083806.1605512097-601360971.1605512097" target="_top"> * R Markdown Reference Guide </a></p>
+</div>
+<div id="components" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> 3 components</h3>
+<p>R마크다운은 3가지 요소로 구성됩니다. 하나는 YAML, Text, 그리고 Code 입니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>구성</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>YAML</td>
+<td>모양, 기본 구조, 출력 폼 등</td>
+</tr>
+<tr class="even">
+<td>Text</td>
+<td>기본 문장, 워드 등과 동일</td>
+</tr>
+<tr class="odd">
+<td>Code</td>
+<td>R code, Python code 등</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="simple-tutor" class="section level3" number="5.1.3">
+<h3><span class="header-section-number">5.1.3</span> simple tutor</h3>
+<p>기본 세팅을 하게 됩니다. 제목과 html_document 방식 출력을 해보겠습니다. 문장, 그리고 plot을 해보겠습니다.</p>
+<div id="htmlwidget-f6fd6e5a2ce74cccda36" style="width:672px;height:480px;" class="leaflet html-widget"></div>
+<script type="application/json" data-for="htmlwidget-f6fd6e5a2ce74cccda36">{"x":{"options":{"crs":{"crsClass":"L.CRS.EPSG3857","code":null,"proj4def":null,"projectedBounds":null,"options":{}}},"calls":[{"method":"addProviderTiles","args":["NASAGIBS.ViirsEarthAtNight2012",null,null,{"errorTileUrl":"","noWrap":false,"detectRetina":false}]},{"method":"addMarkers","args":[[37.581,32.562,37.14268],[124.3636,125.1057,131.52104],null,null,null,{"interactive":true,"draggable":false,"keyboard":true,"title":"","alt":"","zIndexOffset":0,"opacity":1,"riseOnHover":false,"riseOffset":250},null,null,null,null,null,{"interactive":false,"permanent":false,"direction":"auto","opacity":1,"offset":[0,0],"textsize":"10px","textOnly":false,"className":"","sticky":true},null]}],"limits":{"lat":[32.562,37.581],"lng":[124.3636,131.52104]}},"evals":[],"jsHooks":[]}</script>
+<p>아래와 같은 코딩으로 상기 화면이 출력됩니다.</p>
+<div class="figure">
+<img src="images/korea_night.png" alt="" />
+<p class="caption">markdown tutor 1</p>
+</div>
+<p>즉 글을 쓰고, chunck를 만들고 그 안에 R code를 적으면 됩니다. chunck 는 <code>crtrl + alt + i</code>를 사용하면 생성됩니다.</p>
+</div>
+<div id="chunck-option" class="section level3" number="5.1.4">
+<h3><span class="header-section-number">5.1.4</span> chunck option</h3>
+<p>chunck 에 몇가지 옵션을 설정할 수 있습니다. 이는 r{ } 의 괄호 안에 넣으면 됩니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>chunck option</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>include = FALSE</td>
+<td>마크다운 파일에 넣지 않기</td>
+</tr>
+<tr class="even">
+<td>echo = FALSE</td>
+<td>코드는 보여 주지 않고 결과만 보이기</td>
+</tr>
+<tr class="odd">
+<td>message = FALSE</td>
+<td>메세지 보이지 않기</td>
+</tr>
+<tr class="even">
+<td>warning = FALSE</td>
+<td>경고 메세지 보이지 않기</td>
+</tr>
+<tr class="odd">
+<td>fig.cap = " xx "</td>
+<td>xx 라고 figure caption 넣기</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="table-만들기" class="section level3" number="5.1.5">
+<h3><span class="header-section-number">5.1.5</span> Table 만들기</h3>
+<p>표를 만들기 위해서는 code를 이용하는 방법과 Text를 이용하는 방법이 있습니다. code는 data.fram을 출력하는 방식입니다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="rmarkdown.html#cb2-1" aria-hidden="true" tabindex="-1"></a>fruit<span class="ot">&lt;-</span><span class="fu">data.frame</span>(<span class="st">&quot;fruit&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;apple&quot;</span>, <span class="st">&quot;orange&quot;</span>, <span class="st">&quot;mango&quot;</span>), </span>
+<span id="cb2-2"><a href="rmarkdown.html#cb2-2" aria-hidden="true" tabindex="-1"></a>                  <span class="st">&quot;taste&quot;</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;delicious&quot;</span>, <span class="st">&quot;lovely&quot;</span>, <span class="st">&quot;Wow!&quot;</span>))</span>
+<span id="cb2-3"><a href="rmarkdown.html#cb2-3" aria-hidden="true" tabindex="-1"></a>DT<span class="sc">::</span><span class="fu">datatable</span>(fruit)</span></code></pre></div>
+<div id="htmlwidget-ff6847253f9e340ce12d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-ff6847253f9e340ce12d">{"x":{"filter":"none","data":[["1","2","3"],["apple","orange","mango"],["delicious","lovely","Wow!"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>fruit<\/th>\n      <th>taste<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<p>Text방식은 <code>|</code>를 이용하는 것입니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>fruit</th>
+<th>taste</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>apple</td>
+<td>delicious</td>
+</tr>
+<tr class="even">
+<td>orange</td>
+<td>lovely</td>
+</tr>
+<tr class="odd">
+<td>mango</td>
+<td>Wow!</td>
+</tr>
+</tbody>
+</table>
+<div class="figure">
+<img src="images/table_mrdown.png" alt="" />
+<p class="caption">table rmarkdown</p>
+</div>
+</div>
+<div id="필독" class="section level3" number="5.1.6">
+<h3><span class="header-section-number">5.1.6</span> 필독!</h3>
+<p>마크다운은 설명하기가 쉽지 않네요! 반드시 아래 홈페이지를 들어가서 보시기 바랍니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>마크다운 안내</th>
+<th>내용</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>rstudio.com</td>
+<td><a href="https://rmarkdown.rstudio.com" class="uri">https://rmarkdown.rstudio.com</a></td>
+</tr>
+<tr class="even">
+<td>lecture 1</td>
+<td><iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe></td>
+</tr>
+</tbody>
+</table>
+<p>
+<a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.
+</p>
+<div class="line-block"></div>
+</div>
+<div id="동영상" class="section level3" number="5.1.7">
+<h3><span class="header-section-number">5.1.7</span> 동영상</h3>
+<p>글로 설명하기 어렵네요, 아래의 동영상을 보고 해보세요!</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wzb0sOobTkk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+</div>
+<div id="other-language-and-inline" class="section level3" number="5.1.8">
+<h3><span class="header-section-number">5.1.8</span> other language and inline</h3>
+<p>rmd 를 쓰는 이유중 하나는 여러 언어를 같은 곳에서 사용할 수 있기 편리하다는 것입니다. 예를 들어 파이썬 을 사용하는 것을 보겠습니다.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="rmarkdown.html#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span> (<span class="sc">!</span><span class="fu">require</span>(reticulate)) <span class="fu">install.packages</span>(<span class="st">&#39;reticulate&#39;</span>)</span></code></pre></div>
+<pre><code>## Loading required package: reticulate</code></pre>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="rmarkdown.html#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reticulate)</span></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode python"><code class="sourceCode python"><span id="cb6-1"><a href="rmarkdown.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># if that ask install of miniconda, click yes to install</span></span>
+<span id="cb6-2"><a href="rmarkdown.html#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co"># installed path in user dir</span></span>
+<span id="cb6-3"><a href="rmarkdown.html#cb6-3" aria-hidden="true" tabindex="-1"></a>x<span class="op">=</span> <span class="st">&#39;hello, dspub is open&#39;</span></span>
+<span id="cb6-4"><a href="rmarkdown.html#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(x.split())</span></code></pre></div>
+<pre><code>## [&#39;hello,&#39;, &#39;dspub&#39;, &#39;is&#39;, &#39;open&#39;]</code></pre>
+</div>
+<div id="inline-code" class="section level3" number="5.1.9">
+<h3><span class="header-section-number">5.1.9</span> inline code</h3>
+<p>문장을 쓰는 중에도 사용할 수있습니다.</p>
+<div class="figure">
+<img src="img/rmd1.png" alt="" />
+<p class="caption">rmarkdown</p>
+</div>
+<p>안녕하세요! R markdow 을 이용하여 자동 보고서를 만들어 보겠습니다.</p>
+<p>iris 데이터는 총 150 줄이며, 항목은 Sepal.Length, Sepal.Width, Petal.Length, Petal.Width, Species 입니다.</p>
+<pre><code>## # A tibble: 3 x 2
+##   Species      avg
+## * &lt;fct&gt;      &lt;dbl&gt;
+## 1 setosa      5.01
+## 2 versicolor  5.94
+## 3 virginica   6.59</code></pre>
+<p>보시다시피, setosa, versicolor, virginica 의 평균은 각각 5.006, 5.936, 6.588 입니다.</p>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="blogdown-hugotheme-github-and-netlify.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="time-series-data-analysis-regression.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["dspub_project.pdf", "dspub_project.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

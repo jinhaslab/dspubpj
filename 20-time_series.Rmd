@@ -121,6 +121,7 @@ lines(x, (pm.lag-60), col='red', type="l", cex=0.5)
 > 지금 까지 고려한 것은 `sin()`으로 계절적 요소, `lag`으로 지연 효과를 고려해서 시계열적 요소를 없앤다음 (residual), pm과 심혈관사망의 관계를 분석하는 방식으로 해보았습니다. 좀더 쉽게 이것을 해보겠습니다. 
 
 ```{r, ts summary plot 1}
+#install.packages('mgcv')
 library(mgcv)
 #library(gam)
 mgam<- gam(death2 ~ s(x, bs="cc", k=100)+event, family=gaussian)

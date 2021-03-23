@@ -1,0 +1,153 @@
+# Rmarkdown
+ Rmarkdown 문서 작성법과 임베딩에 대해 이야기 하겠습니다. Rmarkdwon 문서가 처음이 신 분은 아래의 DsPub 기본 강의록 참고 (하단) 또는 https://bookdown.org/jinhaslab/testing/ 의 쳅터 16을 보시기 바랍니다. 
+ 
+## DsPub 기본 강의록 참고
+
+ R마크다운은 마크다운을 R에서 사용하기 쉽게 한 프로그램입니다. 마크다운은 자주 사용되는 문서 형태로, 기존의 문서 보다는 웹, 상호작용, 표, 그림 등에서 더 유용합니다. 데이터과학에서 상화 협업을 위해서 마크다운은 자주 사용되는 문서 형태입니다. 
+ 
+ 마크다운은 https://rmarkdown.rstudio.com 에서 tutorial 을 30분 정도 해보시는 것을 추천합니다. 본 쳅터에서는 가장 기본 적인 것을 위주로 설명하겠습니다. 
+ 
+ |마크다운 안내|내용|
+ |---|---|
+ |rstudio.com|https://rmarkdown.rstudio.com|
+ |lecture 1 | <iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.</p>|
+
+
+### 설치
+ 설치는 다른 페키지 설치와 같습니다. 아래의 `install.packages()`명령을 통해 설치해 봅니다 .
+ 
+```{r, eval = FALSE}
+install.packages("rmarkdown")
+```
+
+ 그리고 Cheatsheet을 이용하여 공부하면 됩니다. 다시 말하지만, 외우기 보다는 필요한 내용만 그때 그때 사용하시는 것을 권장합니다. 
+ 
+<a href="https://rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf?_ga=2.1705393.1683083806.1605512097-601360971.1605512097" target="_top"> * R Markdown Cheat Sheet </a>
+
+<a href="https://rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf?_ga=2.1705393.1683083806.1605512097-601360971.1605512097" target="_top"> * R Markdown Reference Guide </a>
+
+### 3 components
+
+ R마크다운은 3가지 요소로 구성됩니다. 하나는 YAML, Text, 그리고 Code 입니다. 
+ 
+| 구성 | 내용 |
+|---|---|
+|YAML| 모양, 기본 구조, 출력 폼 등|
+|Text| 기본 문장, 워드 등과 동일 |
+|Code| R code, Python code 등 |
+
+
+### simple tutor
+ 
+ 기본 세팅을 하게 됩니다. 제목과 html_document 방식 출력을 해보겠습니다. 문장, 그리고 plot을 해보겠습니다. 
+
+```{r markdwon simple, echo = FALSE }
+library(leaflet)
+popup = c("Korea")
+leaflet() %>%
+  addProviderTiles("NASAGIBS.ViirsEarthAtNight2012") %>%
+  addMarkers(lng = c(124.3636,125.1057, 131.52104),
+             lat = c(37.5810, 32.5620,37.14268))
+
+```
+
+ 아래와 같은 코딩으로 상기 화면이 출력됩니다. 
+ 
+![markdown tutor 1](images/korea_night.png)
+
+ 즉 글을 쓰고, chunck를 만들고 그 안에 R code를 적으면 됩니다. chunck 는 `crtrl + alt + i`를 사용하면 생성됩니다. 
+
+### chunck option
+
+chunck 에 몇가지 옵션을 설정할 수 있습니다. 이는 r{ } 의 괄호 안에 넣으면 됩니다. 
+
+|chunck option|내용|
+|---|---|
+|include = FALSE| 마크다운 파일에 넣지 않기|
+|echo = FALSE| 코드는 보여 주지 않고 결과만 보이기|
+|message = FALSE| 메세지 보이지 않기|
+|warning = FALSE| 경고 메세지 보이지 않기|
+|fig.cap = " xx " | xx 라고 figure caption 넣기|
+
+### Table 만들기
+
+ 표를 만들기 위해서는 code를 이용하는 방법과 Text를 이용하는 방법이 있습니다. code는 data.fram을 출력하는 방식입니다. 
+ 
+```{r}
+fruit<-data.frame("fruit" = c("apple", "orange", "mango"), 
+                  "taste" = c("delicious", "lovely", "Wow!"))
+DT::datatable(fruit)
+```
+ 
+ Text방식은 `|`를 이용하는 것입니다. 
+ 
+fruit|taste
+---|---
+apple|delicious
+orange|lovely
+mango|Wow!
+
+
+![table rmarkdown](images/table_mrdown.png)
+
+
+
+### 필독!
+
+ 마크다운은 설명하기가 쉽지 않네요! 반드시 아래 홈페이지를 들어가서 보시기 바랍니다. 
+ 
+ |마크다운 안내|내용|
+ |---|---|
+ |rstudio.com|https://rmarkdown.rstudio.com|
+ |lecture 1 | <iframe src="https://player.vimeo.com/video/178485416?color=428bca" width="640" height="400" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+<p><a href="https://vimeo.com/178485416">What is R Markdown?</a> from <a href="https://vimeo.com/rstudioinc">RStudio, Inc.</a> on <a href="https://vimeo.com">Vimeo</a>.</p>|
+ 
+### 동영상
+
+ 글로 설명하기 어렵네요, 아래의 동영상을 보고 해보세요!
+ 
+<iframe width="560" height="315" src="https://www.youtube.com/embed/wzb0sOobTkk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+
+
+### other language and inline
+rmd 를 쓰는 이유중 하나는 여러 언어를 같은 곳에서 사용할 수 있기 편리하다는 것입니다. 예를 들어 파이썬 을 사용하는 것을 보겠습니다. 
+
+```{r}
+if (!require(reticulate)) install.packages('reticulate')
+library(reticulate)
+```
+
+```{python}
+# if that ask install of miniconda, click yes to install
+# installed path in user dir
+x= 'hello, dspub is open'
+print(x.split())
+```
+
+### inline code
+문장을 쓰는 중에도 사용할 수있습니다. 
+ 
+
+![rmarkdown](img/rmd1.png) 
+ 
+  안녕하세요! R markdow 을 이용하여 자동 보고서를 만들어 보겠습니다. 
+ 
+```{r, echo= FALSE}
+library(datasets)
+data("iris")
+```
+ 
+ 
+ iris 데이터는 총 `r nrow(iris)` 줄이며, 항목은 `r colnames(iris)` 입니다. 
+```{r, echo = FALSE, message = FALSE}
+library(tidyverse)
+dd<-iris %>%
+  group_by(Species) %>%
+  summarise(avg = mean(Sepal.Length))
+dd
+```
+  보시다시피, `r dd$Species` 의 평균은 각각 `r dd$avg` 입니다. 
+
+
