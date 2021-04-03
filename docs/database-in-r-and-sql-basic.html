@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 7 DataBase in R and SQL basic | DSpub-project</title>
+  <meta name="description" content="Dspub 다음 수업입니다. DSpub-project" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 7 DataBase in R and SQL basic | DSpub-project" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 7 DataBase in R and SQL basic | DSpub-project" />
+  
+  <meta name="twitter:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+<meta name="author" content="Jinha Yoon" />
+
+
+<meta name="date" content="2021-04-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="time-series-data-analysis-regression.html"/>
+<link rel="next" href="google-maps-platform.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+<script src="libs/htmlwidgets-1.5.1/htmlwidgets.js"></script>
+<link href="libs/vis-4.20.1/vis.css" rel="stylesheet" />
+<script src="libs/vis-4.20.1/vis.min.js"></script>
+<script src="libs/visNetwork-binding-2.0.9/visNetwork.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 사전 과정</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="cloud-droplets.html"><a href="cloud-droplets.html"><i class="fa fa-check"></i><b>3</b> Cloud Droplets</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp"><i class="fa fa-check"></i><b>3.1</b> GCP</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp-에-vm-만들기"><i class="fa fa-check"></i><b>3.1.1</b> GCP 에 VM 만들기</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean"><i class="fa fa-check"></i><b>3.2</b> Digital ocean</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean-cmd-terminal-winscp-putty"><i class="fa fa-check"></i><b>3.2.1</b> digital ocean cmd terminal, winScp, putty</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cloud-droplets.html"><a href="cloud-droplets.html#기본-user-만들기"><i class="fa fa-check"></i><b>3.3</b> 기본 user 만들기</a></li>
+<li class="chapter" data-level="3.4" data-path="cloud-droplets.html"><a href="cloud-droplets.html#r-and-rstudio-install"><i class="fa fa-check"></i><b>3.4</b> R and Rstudio install</a></li>
+<li class="chapter" data-level="3.5" data-path="cloud-droplets.html"><a href="cloud-droplets.html#shiny-server-install"><i class="fa fa-check"></i><b>3.5</b> shiny server install</a></li>
+<li class="chapter" data-level="3.6" data-path="cloud-droplets.html"><a href="cloud-droplets.html#도메인-연결"><i class="fa fa-check"></i><b>3.6</b> 도메인 연결</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html"><i class="fa fa-check"></i><b>4</b> blogdown, hugotheme, Github and Netlify</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#git-hub"><i class="fa fa-check"></i><b>4.1</b> git hub</a></li>
+<li class="chapter" data-level="4.2" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#blogdown"><i class="fa fa-check"></i><b>4.2</b> blogdown</a></li>
+<li class="chapter" data-level="4.3" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#github-and-git"><i class="fa fa-check"></i><b>4.3</b> github and git</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#ubuntus-에-git-설치하기"><i class="fa fa-check"></i><b>4.3.1</b> ubuntus 에 git 설치하기</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#netlify"><i class="fa fa-check"></i><b>4.4</b> Netlify</a></li>
+<li class="chapter" data-level="4.5" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#프로젝트-과제-제출-수정하기"><i class="fa fa-check"></i><b>4.5</b> 프로젝트 과제 제출 수정하기</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#웹페이지에-프로젝트-수정하기"><i class="fa fa-check"></i><b>4.5.1</b> 웹페이지에 프로젝트 수정하기</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#도메인-연결-선택"><i class="fa fa-check"></i><b>4.6</b> 도메인 연결 (선택)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>5</b> Rmarkdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rmarkdown.html"><a href="rmarkdown.html#dspub-기본-강의록-참고"><i class="fa fa-check"></i><b>5.1</b> DsPub 기본 강의록 참고</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="rmarkdown.html"><a href="rmarkdown.html#설치"><i class="fa fa-check"></i><b>5.1.1</b> 설치</a></li>
+<li class="chapter" data-level="5.1.2" data-path="rmarkdown.html"><a href="rmarkdown.html#components"><i class="fa fa-check"></i><b>5.1.2</b> 3 components</a></li>
+<li class="chapter" data-level="5.1.3" data-path="rmarkdown.html"><a href="rmarkdown.html#simple-tutor"><i class="fa fa-check"></i><b>5.1.3</b> simple tutor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="rmarkdown.html"><a href="rmarkdown.html#chunck-option"><i class="fa fa-check"></i><b>5.1.4</b> chunck option</a></li>
+<li class="chapter" data-level="5.1.5" data-path="rmarkdown.html"><a href="rmarkdown.html#table-만들기"><i class="fa fa-check"></i><b>5.1.5</b> Table 만들기</a></li>
+<li class="chapter" data-level="5.1.6" data-path="rmarkdown.html"><a href="rmarkdown.html#필독"><i class="fa fa-check"></i><b>5.1.6</b> 필독!</a></li>
+<li class="chapter" data-level="5.1.7" data-path="rmarkdown.html"><a href="rmarkdown.html#동영상"><i class="fa fa-check"></i><b>5.1.7</b> 동영상</a></li>
+<li class="chapter" data-level="5.1.8" data-path="rmarkdown.html"><a href="rmarkdown.html#other-language-and-inline"><i class="fa fa-check"></i><b>5.1.8</b> other language and inline</a></li>
+<li class="chapter" data-level="5.1.9" data-path="rmarkdown.html"><a href="rmarkdown.html#inline-code"><i class="fa fa-check"></i><b>5.1.9</b> inline code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html"><i class="fa fa-check"></i><b>6</b> Time series data analysis, regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#미세먼지와-심혈관사망"><i class="fa fa-check"></i><b>6.2</b> 미세먼지와 심혈관사망</a></li>
+<li class="chapter" data-level="6.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#case-study-influenza-epidemic-and-suicide"><i class="fa fa-check"></i><b>6.3</b> case study: influenza epidemic and suicide</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#실습-데이터"><i class="fa fa-check"></i><b>6.3.1</b> 실습 데이터</a></li>
+<li class="chapter" data-level="6.3.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#simple-time-related-variable-adjusting-regression"><i class="fa fa-check"></i><b>6.3.2</b> simple time-related variable adjusting regression</a></li>
+<li class="chapter" data-level="6.3.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima"><i class="fa fa-check"></i><b>6.3.3</b> ARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#analysis-and-forecasting-regression"><i class="fa fa-check"></i><b>6.4</b> analysis and forecasting, regression</a></li>
+<li class="chapter" data-level="6.5" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-1"><i class="fa fa-check"></i><b>6.5</b> ARIMA</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-감기-자살-aic"><i class="fa fa-check"></i><b>6.5.1</b> arima 감기 자살 , AIC</a></li>
+<li class="chapter" data-level="6.5.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#aic-bic-in-generalize-additive-model"><i class="fa fa-check"></i><b>6.5.2</b> AIC BIC in generalize additive model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html"><i class="fa fa-check"></i><b>7</b> DataBase in R and SQL basic</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#데이터-베이스와-데이터-베이스-시스템"><i class="fa fa-check"></i><b>7.1</b> 데이터 베이스와 데이터 베이스 시스템</a></li>
+<li class="chapter" data-level="7.2" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#관계형-데이터베이스"><i class="fa fa-check"></i><b>7.2</b> 관계형 데이터베이스</a></li>
+<li class="chapter" data-level="7.3" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#sql-structured-query-language"><i class="fa fa-check"></i><b>7.3</b> SQL (Structured Query Language)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#r-and-dbi"><i class="fa fa-check"></i><b>7.3.1</b> R and DBI</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#r-postgresql-실습"><i class="fa fa-check"></i><b>7.4</b> R PostgreSQL 실습</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#postgresql-설치"><i class="fa fa-check"></i><b>7.4.1</b> PostgreSQL 설치</a></li>
+<li class="chapter" data-level="7.4.2" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#r-로-db-확인"><i class="fa fa-check"></i><b>7.4.2</b> R 로 DB 확인</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="google-maps-platform.html"><a href="google-maps-platform.html"><i class="fa fa-check"></i><b>8</b> Google Maps Platform</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-tackeout"><i class="fa fa-check"></i><b>8.1</b> Google Tackeout</a></li>
+<li class="chapter" data-level="8.2" data-path="google-maps-platform.html"><a href="google-maps-platform.html#data-visualization"><i class="fa fa-check"></i><b>8.2</b> Data visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-api"><i class="fa fa-check"></i><b>8.3</b> google API</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-maps.html"><a href="other-maps.html"><i class="fa fa-check"></i><b>9</b> other maps</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-maps.html"><a href="other-maps.html#leaflet"><i class="fa fa-check"></i><b>9.1</b> leaflet</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSpub-project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="database-in-r-and-sql-basic" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> DataBase in R and SQL basic</h1>
+<blockquote>
+<p>유승찬 (2021-03-31) and 윤진하 (2021-04-05)</p>
+</blockquote>
+<div id="데이터-베이스와-데이터-베이스-시스템" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> 데이터 베이스와 데이터 베이스 시스템</h2>
+<blockquote>
+<p>author: 유승찬
+데이터베이스 (DataBase)</p>
+</blockquote>
+<p><strong>데이터 저장 구조</strong> 는 아래처럼 구분해 볼 수 있습니다. 우리가 이번시간에 다루는 것은 논리적 구조에 관한 것입니다.</p>
+<table>
+<thead>
+<tr class="header">
+<th>논리적 구조</th>
+<th>물리적 구조</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>사용자 관점에서 데이터베이스의 논리적 구조</td>
+<td>전자기적 저장장치(Disc)에 물리적으로 저장되는 데이터 구조</td>
+</tr>
+<tr class="even">
+<td>동일한 의미를 가진 데이터 집합관 표현된 데이터 구조</td>
+<td>전자기적 저장장치에 기록, 저장되는 데이터 구조로 물리적 배치를 표현</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>데이터베이스
+<ul>
+<li>체계화된 데이터 모임</li>
+<li>작성된 목록으로써 여러 응용 시스템들의 통합된 정보들을 저장하여 운영할 수 있는 공용 데이터 묶음</li>
+</ul></li>
+<li>데이터베이스의 특징
+<ul>
+<li>실시간 접근성</li>
+<li>지속적인 변화</li>
+<li>동시 공유</li>
+<li>내용에 의한 참조</li>
+</ul></li>
+<li>데이터베이스의 개념
+<ul>
+<li>통합된 데이터(intergrated data)
+<ul>
+<li>다중 유저, 통합관리, 중복 최소화</li>
+</ul></li>
+<li>저장</li>
+<li>운용</li>
+<li>시스템</li>
+</ul></li>
+<li>데이터베이스관리 시스템
+<ul>
+<li>DBMS(DB management system)</li>
+<li>DBMS 기능</li>
+<li>정의: 데이터에 대한 형식, 구조, 제약조건들을 명세</li>
+<li>구축:DBMS가 관리하는 기억 장체 데이터를 저장</li>
+<li>조작:질의, 갱신, 보고서</li>
+<li>공유: 여러사람</li>
+<li>보호</li>
+<li>유지 보수</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>데이터베이스의 특성</p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>특성</th>
+<th>파일시스템</th>
+<th>데이터베이스 시스템</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>데이터에 대한 접근</td>
+<td>물리적 접근</td>
+<td>물리적&amp;논리적 접근</td>
+</tr>
+<tr class="even">
+<td>동시 사용</td>
+<td>동일한 파일을 두개 이상의 프로그램이 동시에 접근할 수 없음</td>
+<td>동일한 데이터를 다수 사용자가 동시에 접근 가능</td>
+</tr>
+<tr class="odd">
+<td>구조화 및 중복성</td>
+<td>비구조적, 중복성과 유지보수 비용 높음</td>
+<td>구조화 되어 있음. 중복성과 유지보수 비용 낮음</td>
+</tr>
+<tr class="even">
+<td>데이터 공유</td>
+<td>특정 프로그램만 접근</td>
+<td>접근 권이이 있는 모든 프로그램이 공유</td>
+</tr>
+<tr class="odd">
+<td>데이터 접근</td>
+<td>미리 작성된 프로그램을 통해서만</td>
+<td>다양한 질의어를 이용하요 융통성 있는 접근</td>
+</tr>
+<tr class="even">
+<td>통합성</td>
+<td>각 응용프로그램마다 파일에 따로 존재</td>
+<td>데이터가 중복을 배제하면서 통합되어 있음</td>
+</tr>
+</tbody>
+</table>
+<blockquote>
+<p>파일 시스템과 데이터 베이스 시스템 차이</p>
+</blockquote>
+<p>하번 생각해보세요</p>
+<table>
+<thead>
+<tr class="header">
+<th>데이터베이스 장점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>중복과 불일치 감소</td>
+</tr>
+<tr class="even">
+<td>시스템 융통성</td>
+</tr>
+<tr class="odd">
+<td>시스템 개발 및 유지 비용 감소</td>
+</tr>
+<tr class="even">
+<td>표준화 시행이 용이</td>
+</tr>
+<tr class="odd">
+<td>보안이 향상됨</td>
+</tr>
+<tr class="even">
+<td>데이터 무결성이 향상됨</td>
+</tr>
+<tr class="odd">
+<td>조직체의 요구 사항을 파악하여 조정 가능</td>
+</tr>
+<tr class="even">
+<td>시스템의 고장으로 데이터 베이스 복구 가능</td>
+</tr>
+<tr class="odd">
+<td>DB 공유와 업그레이드 쉬음</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="관계형-데이터베이스" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> 관계형 데이터베이스</h2>
+본 수업에서 주로 관계형 데이터 다룸
+;
+<p>
+</p>
+<p><a href="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Relational_database_terms.svg/350px-Relational_database_terms.svg.png">Wiki Img</a>
+<img src="https://upload.wikimedia.org/wikipedia/commons/thumb/7/7c/Relational_database_terms.svg/350px-Relational_database_terms.svg.png" alt="from wikipedia" /></p>
+<p>
+</p>
+<blockquote>
+<p>관계형 데이터의 구조</p>
+</blockquote>
+<table>
+<colgroup>
+<col width="18%" />
+<col width="27%" />
+<col width="54%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th align="left">SQL term</th>
+<th align="left">Relational database term</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Row</td>
+<td align="left">Tuple or record</td>
+<td>A data set representing a single item</td>
+</tr>
+<tr class="even">
+<td align="left">Column</td>
+<td align="left">Attribute or field</td>
+<td>A labeled element of a tuple, e.g. “Address” or “Date of birth”</td>
+</tr>
+<tr class="odd">
+<td align="left">Table</td>
+<td align="left">Relation or Base relvar</td>
+<td>A set of tuples sharing the same attributes; a set of columns and rows</td>
+</tr>
+<tr class="even">
+<td align="left">View or result set</td>
+<td align="left">Derived relvar</td>
+<td>Any set of tuples; a data report from the RDBMS in response to a query</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>스키마
+<ul>
+<li>릴레이션의 기본적 구조, 테이블을 디자인하기 위한 청사진</li>
+</ul></li>
+<li>튜플
+<ul>
+<li>각각의 행</li>
+<li>속성의 모임</li>
+</ul></li>
+<li>속성
+<ul>
+<li>가장 작은 논리적 단위</li>
+</ul></li>
+<li>도메인
+<ul>
+<li>속성이 가질수 있는 값의 집합</li>
+</ul></li>
+</ul>
+<p>
+</p>
+<p>대부분 key를 갖고 있다. <code>rownumber()</code>는 항상 변하니 <strong>key</strong>가 중요.
+&gt;유일하면서 null 이 없어야 primay key
+&gt;외래키: 다른 릴레이션의 기본 키를 참조하는 애트리뷰트</p>
+<p>아래 관계형 데이터가 있습니다. key 는 무엇일 까요?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="database-in-r-and-sql-basic.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(ReDaMoR)) <span class="fu">install.packages</span>(<span class="st">&#39;ReDaMoR&#39;</span>)</span>
+<span id="cb1-2"><a href="database-in-r-and-sql-basic.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ReDaMoR)</span>
+<span id="cb1-3"><a href="database-in-r-and-sql-basic.html#cb1-3" aria-hidden="true" tabindex="-1"></a>hpo_model <span class="ot">&lt;-</span> <span class="fu">read_json_data_model</span>(</span>
+<span id="cb1-4"><a href="database-in-r-and-sql-basic.html#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">system.file</span>(<span class="st">&quot;examples/HPO-model.json&quot;</span>, <span class="at">package=</span><span class="st">&quot;ReDaMoR&quot;</span>)</span>
+<span id="cb1-5"><a href="database-in-r-and-sql-basic.html#cb1-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-6"><a href="database-in-r-and-sql-basic.html#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(hpo_model)</span></code></pre></div>
+<div id="htmlwidget-043be428e6420d6ee180" style="width:672px;height:480px;" class="visNetwork html-widget"></div>
+<script type="application/json" data-for="htmlwidget-043be428e6420d6ee180">{"x":{"nodes":{"tableName":["HPO_hp","HPO_altId","HPO_sourceFiles","HPO_diseases","HPO_diseaseHP","HPO_diseaseSynonyms","HPO_parents","HPO_descendants","HPO_synonyms"],"label":["<b>HPO_hp<\/b>\n    - <b>*id<\/b> {character - uidx.1}\n    - name {character}\n    - (description {character})\n    - level {integer}","<b>HPO_altId<\/b>\n    - id {character - idx.1}\n    - alt {character}","<b>HPO_sourceFiles<\/b>\n    - <b>*url<\/b> {character - uidx.1}\n    - current {Date}","<b>HPO_diseases<\/b>\n    - <b>db<\/b> {character - uidx.1}\n    - <b>id<\/b> {character - uidx.1}\n    - label {character}","<b>HPO_diseaseHP<\/b>\n    - db {character - idx.2}\n    - id {character - idx.2}\n    - hp {character - idx.1}","<b>HPO_diseaseSynonyms<\/b>\n    - db {character - idx.1}\n    - id {character - idx.1}\n    - synonym {character}\n    - preferred {logical}","<b>HPO_parents<\/b>\n    - id {character - idx.1}\n    - parent {character - idx.2}","<b>HPO_descendants<\/b>\n    - id {character - idx.1}\n    - descendant {character - idx.2}","<b>HPO_synonyms<\/b>\n    - id {character}\n    - synonym {character}\n    - type {character}"],"title":["<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_hp<\/strong> (Human phenotypes (HP))<\/p> <ul> <li><strong>id<\/strong>: HP identifier<\/li> <li><strong>name<\/strong>: HP name<\/li> <li><strong>description<\/strong>: HP description<\/li> <li><strong>level<\/strong><\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_altId<\/strong> (Alternative HP identifiers)<\/p> <ul> <li><strong>id<\/strong>: HP identifier<\/li> <li><strong>alt<\/strong>: Alternative identifier<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_sourceFiles<\/strong> (Files from which data were extracted)<\/p> <ul> <li><strong>url<\/strong>: Source file URL<\/li> <li><strong>current<\/strong>: The date of the current source file<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_diseases<\/strong> (Diseases)<\/p> <ul> <li><strong>db<\/strong>: Disease database<\/li> <li><strong>id<\/strong>: Disease ID<\/li> <li><strong>label<\/strong>: Disease lable (preferred synonym)<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_diseaseHP<\/strong> (HP presented by diseases)<\/p> <ul> <li><strong>db<\/strong>: Disease database<\/li> <li><strong>id<\/strong>: Disease ID<\/li> <li><strong>hp<\/strong>: HP identifier<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_diseaseSynonyms<\/strong> (Disease synonyms)<\/p> <ul> <li><strong>db<\/strong>: Disease database<\/li> <li><strong>id<\/strong>: Disease ID<\/li> <li><strong>synonym<\/strong>: Disease synonym<\/li> <li><strong>preferred<\/strong>: Is synonym preferred<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_parents<\/strong> (Direct parents of human phenotypes)<\/p> <ul> <li><strong>id<\/strong>: HP identifier<\/li> <li><strong>parent<\/strong>: Parent identifier<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_descendants<\/strong> (Indirect descendants of human phenotypes)<\/p> <ul> <li><strong>id<\/strong>: HP identifier<\/li> <li><strong>descendant<\/strong>: Descendant (child or child of child...) HP ID<\/li> <\/ul><\/div>","<div style=\"max-width:400px; max-height:300px;overflow:scroll;\"><p><strong style=\"text-decoration:underline;\">HPO_synonyms<\/strong> (Synonyms of human phenotypes)<\/p> <ul> <li><strong>id<\/strong>: HP identifier<\/li> <li><strong>synonym<\/strong>: HP synonym<\/li> <li><strong>type<\/strong>: Synonym type<\/li> <\/ul><\/div>"],"shape":["box","box","box","box","box","box","box","box","box"],"font.multi":[true,true,true,true,true,true,true,true,true],"font.align":["left","left","left","left","left","left","left","left","left"],"x":[-167,-154,262,320,75,321,-328,-101,-360],"y":[-177,-38,-336,-170,-172,-24,-331,-360,-36],"color.background":["#9BC8FE","#9BC8FE","#D9D9D9","#DFFB86","#D9D9D9","#DFFB86","#F67FC4","#F67FC4","#9BC8FE"],"color.border":["black","black","black","black","black","black","black","black","black"],"color.highlight.border":["orange","orange","orange","orange","orange","orange","orange","orange","orange"],"color.highlight.background":["#9BC8FE","#9BC8FE","#D9D9D9","#DFFB86","#D9D9D9","#DFFB86","#F67FC4","#F67FC4","#9BC8FE"],"id":["HPO_hp","HPO_altId","HPO_sourceFiles","HPO_diseases","HPO_diseaseHP","HPO_diseaseSynonyms","HPO_parents","HPO_descendants","HPO_synonyms"]},"edges":{"id":["HPO_altId->HPO_hp: id->id","HPO_diseaseHP->HPO_hp: hp->id","HPO_diseaseHP->HPO_diseases: db->db && id->id","HPO_diseaseSynonyms->HPO_diseases: db->db && id->id","HPO_parents->HPO_hp: id->id","HPO_parents->HPO_hp: parent->id","HPO_descendants->HPO_hp: id->id","HPO_descendants->HPO_hp: descendant->id","HPO_synonyms->HPO_hp: id->id"],"to":["HPO_hp","HPO_hp","HPO_diseases","HPO_diseases","HPO_hp","HPO_hp","HPO_hp","HPO_hp","HPO_hp"],"title":["<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_altId<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">id<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_diseaseHP<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">hp<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_diseaseHP<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_diseases<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">db<\/td><td style=\"border: 1px solid black; padding:1px;\">db<\/td><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">id<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_diseaseSynonyms<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_diseases<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">db<\/td><td style=\"border: 1px solid black; padding:1px;\">db<\/td><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">id<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_parents<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">id<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_parents<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">parent<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_descendants<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">id<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_descendants<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">descendant<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>","<table style=\"border: 1px solid black; padding:1px;\"><tr style=\"border: 1px solid black; padding:1px;\"><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_synonyms<br>(0..n)<\/th><th style=\"border: 1px solid black; padding:1px;text-align:center;\">HPO_hp<br>(1..1)<\/th><\/tr><tr style=\"border: 1px solid black; padding:1px;\"><td style=\"border: 1px solid black; padding:1px;\">id<\/td><td style=\"border: 1px solid black; padding:1px;\">id<\/td><\/tr><\/table>"],"ff":["id","hp",["db","id"],["db","id"],"id","parent","id","descendant","id"],"tf":["id","id",["db","id"],["db","id"],"id","id","id","id","id"],"from":["HPO_altId","HPO_diseaseHP","HPO_diseaseHP","HPO_diseaseSynonyms","HPO_parents","HPO_parents","HPO_descendants","HPO_descendants","HPO_synonyms"],"arrows":["to","to","to","to","to","to","to","to","to"],"font.align":["bottom","bottom","bottom","bottom","bottom","bottom","bottom","bottom","bottom"],"smooth.type":["curvedCCW","curvedCCW","curvedCCW","curvedCCW","curvedCCW","curvedCCW","curvedCCW","curvedCCW","curvedCCW"],"smooth.roundness":[-0,-0,-0,0,0.2,-0.2,-0.2,0.2,0],"selfReferenceSize":[30,30,30,30,30,50,30,50,30],"uef":["HPO_altId","HPO_diseaseHP","HPO_diseaseHP","HPO_diseases","HPO_hp","HPO_hp","HPO_descendants","HPO_descendants","HPO_hp"],"uet":["HPO_hp","HPO_hp","HPO_diseases","HPO_diseaseSynonyms","HPO_parents","HPO_parents","HPO_hp","HPO_hp","HPO_synonyms"],"ue":["HPO_altId<->HPO_hp","HPO_diseaseHP<->HPO_hp","HPO_diseaseHP<->HPO_diseases","HPO_diseases<->HPO_diseaseSynonyms","HPO_hp<->HPO_parents","HPO_hp<->HPO_parents","HPO_descendants<->HPO_hp","HPO_descendants<->HPO_hp","HPO_hp<->HPO_synonyms"],"color.color":["black","black","black","black","black","black","black","black","black"],"color.highlight":["orange","orange","orange","orange","orange","orange","orange","orange","orange"]},"nodesToDataframe":true,"edgesToDataframe":true,"options":{"width":"100%","height":"100%","nodes":{"shape":"dot","borderWidth":2,"labelHighlightBold":false},"manipulation":{"enabled":false},"edges":{"width":2,"selectionWidth":2},"interaction":{"multiselect":true},"layout":{"randomSeed":2},"physics":{"enabled":false}},"groups":null,"width":null,"height":null,"idselection":{"enabled":false},"byselection":{"enabled":false},"main":null,"submain":null,"footer":null,"background":"rgba(0, 0, 0, 0)","tooltipStay":300,"tooltipStyle":"position: fixed;visibility:hidden;padding: 5px;white-space: nowrap;font-family: verdana;font-size:14px;font-color:#000000;background-color: #f5f4ed;-moz-border-radius: 3px;-webkit-border-radius: 3px;border-radius: 3px;border: 1px solid #808074;box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2);"},"evals":[],"jsHooks":[]}</script>
+</div>
+<div id="sql-structured-query-language" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> SQL (Structured Query Language)</h2>
+<p>IBM에서 개발 1972년부터 사용 세계 3대 coding language (1위 python, 2위 R, 3위 sql in kaggle)
+DataScience 할때 주로 상기 3개 언어를 사용한다고 함.</p>
+<ul>
+<li>3 function
+<ul>
+<li>데이터 정의어
+<ul>
+<li>데이터 저장 구종, 데이터 접근 방법, 데이터 형식 등 데이터베이스를 구추갛거나 수정</li>
+<li>SCHEMA, DOMAIN, TABLE, VIEW, INDEX</li>
+</ul></li>
+<li>데이터 조작어
+<ul>
+<li>SELECT, INSERT, UPDATE ,DELETE</li>
+</ul></li>
+<li>데이터 제어어
+<ul>
+<li>commit, rollback, grant, revoke</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="img/sql1.png" alt="" />
+<p class="caption">sql example</p>
+</div>
+<blockquote>
+<p>sql cheat sheet 참조</p>
+</blockquote>
+<p><a href="https://www.sqltutorial.org/sql-cheat-sheet/">SQL 참조 site</a>
+<embed src="img/sqlcheet.pdf" width="800px" height="800px" type="application/pdf" /></p>
+<div id="r-and-dbi" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> R and DBI</h3>
+<p>R에서 DB를 사용하기 위해서, <code>DBI</code> 를 설치하고 이후 <code>Rposgres</code> 등 DBMS 페키지를 사용함.</p>
+<div class="figure">
+<img src="img/rdb1.png" alt="" />
+<p class="caption">R and DB 1</p>
+</div>
+<p><strong>실습 자료는</strong> OMOP-CDM 자료를 사용</p>
+<p><a href="https://github.com/OHDSI/CommonDataModel/wiki">OMOP CDM 참조 site</a></p>
+<p><img src="img/omopcdm1.png" alt="omop-cdm 1" />
+<strong>download R script from github</strong>
+in terminal</p>
+<pre><code>$ https://github.com/dr-you-group/OmopCdmExercise.git</code></pre>
+</div>
+</div>
+<div id="r-postgresql-실습" class="section level2" number="7.4">
+<h2><span class="header-section-number">7.4</span> R PostgreSQL 실습</h2>
+<p><strong>참고 동영상</strong></p>
+<iframe width="800" height="440" src="https://www.youtube.com/embed/ac5d8ab8tjU" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+</iframe>
+<p>오픈 소스이면서 호환성이 높음. 1위) Oracle, 2위) MySQL 3위) Microsoft SQL, 4위) PostgreSQL 임.</p>
+<p><a href="https://db-engines.com/en/ranking">DB engine ranking</a>
+<img src="img/DBeng1.png" alt="DB engine ranking" /></p>
+<p>
+</p>
+<p>이번 시간에는 PostgreSQL 설치 방법, DB 파일 생성과 활용에 대해서 실습해 보겠습니다.
+최종 적으로는 간단한 DB 파일을 읽어 오는 것을 목표로 하겠습니다.</p>
+<div id="postgresql-설치" class="section level3" number="7.4.1">
+<h3><span class="header-section-number">7.4.1</span> PostgreSQL 설치</h3>
+<p>터미널에서 실행하게 됩니다. 한줄씩 실행해 주십시오. <code>sudo apt-get install unixodbc-dev</code> 에서만 오류가 나지 않으면 됩니다. 아래의 파일은 JAVA 설치 및 경로 지정, 그리고 <code>ODBC</code> 설치 과정입니다. <code>ODBC</code>를 설치하여 어떠한 프로그램이든지 쉽게 DB에 접근하고 명령문(커리)을 작성하여 DB를 가져오기 쉽게표준 번역 같은 기능을 제공한다고 생각할 수 있습니다. 이후 PostgreSQL을 사용하기 위해 설치 준비중이라고 볼 수 있습니다. JAVA는 향후 JDBC 사용이 필요한 경우를 위해 미리 설치하는 것입니다. 만약 오류가 난다면 이번 실습을 위해서는 넘어가도 되겠습니다.</p>
+<pre><code>java -version
+sudo -s
+sudo apt-get update
+sudo apt-get upgrade
+sudo apt-get install -y default-jre
+sudo apt-get install -y default-jdk
+sudo R CMD javareconf
+sudo apt-get install unixodbc-dev
+sudo reboot</code></pre>
+<p>컴퓨터가 꺼졌다 다시 켜질 것 입니다. <code>reboot</code>. 시간이 좀 지나면 다시 Terminal에 명령어가 켜질 것입니다.
+이후 Terminal 에서
+<code>postgreSQL</code>과 관련있는 페키지를 설치합니다. 또한 ODBC와 PostgreSQL을 같이 사용하기 위한 페키지를 설치합니다.</p>
+<pre><code>sudo apt-get -y install postgresql postgresql-contrib
+sudo apt-get install odbc-postgresql
+systemctl status postgresql</code></pre>
+<p>아래와 같은 화면이 출력되면 정상입니다.
+<img src="img/pgsql1.png" alt="PgSql 1" /></p>
+<p>현재 postgres 라는 계정이 자동 생성되어 있고 이것이, 관리자 계정입니다. 로그인 해보자!</p>
+<pre><code>sudo -i -u postgres
+psql
+
+postgres=# \password postgres
+postgres=# dspub2021
+postgres=# \q
+
+usermod -aG sudo postgres
+passwd postgres
+systemctl status postgresql</code></pre>
+<p>이제 몇가지 설정을 진행하도록 하겠습니다. 외부에서도 접속할 수 있도록 <code>listen_addresses = '*'</code> 와 <code>host all all 0.0.0.0/0 md5</code>를 해보도록 하겠습니다. 이후 <code>restart</code> 하겠습니다.</p>
+<pre><code>cd /etc/postgresql/12/main
+vi postgresql.conf
+&gt;&gt;&gt;&gt;  여기 고쳐 주세요 listen_addresses = &#39;*&#39;
+&gt;&gt;&gt;&gt; :wq! 로 나오기
+vi pg_hba.conf
+&gt;&gt;&gt;&gt;&gt; 여기 고쳐 주세요 host all all 0.0.0.0/0 md5
+&gt;&gt;&gt;&gt; :wq! 로 나오기
+systemctl restart postgresql
+sudo apt install firewalld
+sudo firewall-cmd --zone=public --permanent --add-port=5432/tcp
+sudo firewall-cmd --reload</code></pre>
+<p>만약 방화벽 설정이 않된다면, GCP 처음 설치 강좌에서 수동으로 방화벽 설정했던 곳에 prt 5432를 추가해줍니다.</p>
+<div class="figure">
+<img src="img/pgsql2.png" alt="" />
+<p class="caption">방화벽 5432</p>
+</div>
+<p>이제 ocdm DB를 생성해 보겠습니다. open_cdm 이라는 유저에 ocdm이라는 DB를 설정한다는 것입니다.</p>
+<pre><code>sudo -i -u postgres psql
+&gt; create user open_cdm;
+&gt; alter user open_cdm with password &#39;j2data2020&#39;;
+&gt; create database ocdm with owner open_cdm encoding &#39;UTF8&#39; template template0;
+&gt;/q</code></pre>
+<p>접속해 보겠습니다.</p>
+<pre><code>ifconfig
+psql -h localhost -U open_cdm -d ocdm</code></pre>
+<p>처음부터 모든 DB를 만드는 것은 시간이 오래 걸리므로 이번 시간에는 만들어진 DB를 가져와보겠습니다. DsPub 기본 수업에서 사용했던 온도 자료와 사망자료를 DB로 만든 DB: ocdm 를 사용하겠습니다.
+pg_dump [IP of dspub.org] open_cdm ocdm &gt; all.sql 에서 [IP of dspub.org] 는 192.168.0.2 처럼 IP 주소를 의미합니다.</p>
+<pre><code>su dspub
+sudo -s 
+cd /home/dspub/download
+pg_dump -C -h 34.64.152.186 -U open_cdm ocdm &gt; all.sql</code></pre>
+<p>꽤 시간이 지나면 dspub.org 에 있는 DB가 <code>all.sql</code>형식으로 다운로드 된 것을 볼 수 있습니다.</p>
+<pre><code>ls
+su postgres
+psql -f all.sql ocdm</code></pre>
+</div>
+<div id="r-로-db-확인" class="section level3" number="7.4.2">
+<h3><span class="header-section-number">7.4.2</span> R 로 DB 확인</h3>
+<p>아래 명령문을 이용하여 R 에서 DB를 확인해 보겠습니다.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb11-1"><a href="database-in-r-and-sql-basic.html#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">#if(!require(rJava)) install.packages(&#39;rJava&#39;);library(rJava)</span></span>
+<span id="cb11-2"><a href="database-in-r-and-sql-basic.html#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(DBI)) <span class="fu">install.packages</span>(<span class="st">&#39;DBI&#39;</span>); <span class="fu">library</span>(DBI)</span>
+<span id="cb11-3"><a href="database-in-r-and-sql-basic.html#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(odbc)) <span class="fu">install.packages</span>(<span class="st">&#39;odbc&#39;</span>); <span class="fu">library</span>(odbc)</span>
+<span id="cb11-4"><a href="database-in-r-and-sql-basic.html#cb11-4" aria-hidden="true" tabindex="-1"></a>odbc<span class="sc">::</span><span class="fu">odbcListDrivers</span>()</span>
+<span id="cb11-5"><a href="database-in-r-and-sql-basic.html#cb11-5" aria-hidden="true" tabindex="-1"></a>con <span class="ot">&lt;-</span> DBI<span class="sc">::</span><span class="fu">dbConnect</span>(odbc<span class="sc">::</span><span class="fu">odbc</span>(),</span>
+<span id="cb11-6"><a href="database-in-r-and-sql-basic.html#cb11-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Driver   =</span> <span class="st">&quot;PostgreSQL&quot;</span>,</span>
+<span id="cb11-7"><a href="database-in-r-and-sql-basic.html#cb11-7" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Server   =</span> <span class="st">&quot;localhost&quot;</span>,</span>
+<span id="cb11-8"><a href="database-in-r-and-sql-basic.html#cb11-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Database =</span> <span class="st">&quot;ocdm&quot;</span>,</span>
+<span id="cb11-9"><a href="database-in-r-and-sql-basic.html#cb11-9" aria-hidden="true" tabindex="-1"></a>                      <span class="at">UID =</span> <span class="st">&quot;open_cdm&quot;</span>, </span>
+<span id="cb11-10"><a href="database-in-r-and-sql-basic.html#cb11-10" aria-hidden="true" tabindex="-1"></a>                      <span class="at">PWD =</span> <span class="st">&quot;j2data2020&quot;</span>,</span>
+<span id="cb11-11"><a href="database-in-r-and-sql-basic.html#cb11-11" aria-hidden="true" tabindex="-1"></a>                      <span class="co">#UID      = rstudioapi::askForPassword(&quot;Database user&quot;),</span></span>
+<span id="cb11-12"><a href="database-in-r-and-sql-basic.html#cb11-12" aria-hidden="true" tabindex="-1"></a>                      <span class="co">#PWD      = rstudioapi::askForPassword(&quot;Database password&quot;),</span></span>
+<span id="cb11-13"><a href="database-in-r-and-sql-basic.html#cb11-13" aria-hidden="true" tabindex="-1"></a>                      <span class="at">Port     =</span> <span class="dv">5432</span>)</span></code></pre></div>
+<pre><code>## Connecting using PostgreSQL driver</code></pre>
+
+</div>
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="time-series-data-analysis-regression.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="google-maps-platform.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["dspub_project.pdf", "dspub_project.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

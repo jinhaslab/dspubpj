@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+<head>
+
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <title>Chapter 8 Google Maps Platform | DSpub-project</title>
+  <meta name="description" content="Dspub 다음 수업입니다. DSpub-project" />
+  <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
+
+  <meta property="og:title" content="Chapter 8 Google Maps Platform | DSpub-project" />
+  <meta property="og:type" content="book" />
+  
+  
+  <meta property="og:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Chapter 8 Google Maps Platform | DSpub-project" />
+  
+  <meta name="twitter:description" content="Dspub 다음 수업입니다. DSpub-project" />
+  
+
+<meta name="author" content="Jinha Yoon" />
+
+
+<meta name="date" content="2021-04-03" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+  
+  
+<link rel="prev" href="database-in-r-and-sql-basic.html"/>
+<link rel="next" href="other-maps.html"/>
+<script src="libs/header-attrs-2.5/header-attrs.js"></script>
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-clipboard.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<link href="libs/anchor-sections-1.0/anchor-sections.css" rel="stylesheet" />
+<script src="libs/anchor-sections-1.0/anchor-sections.js"></script>
+
+
+<style type="text/css">
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Minimal Book Example</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> 사전 과정</a></li>
+<li class="chapter" data-level="2" data-path="intro.html"><a href="intro.html"><i class="fa fa-check"></i><b>2</b> Introduction</a></li>
+<li class="chapter" data-level="3" data-path="cloud-droplets.html"><a href="cloud-droplets.html"><i class="fa fa-check"></i><b>3</b> Cloud Droplets</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp"><i class="fa fa-check"></i><b>3.1</b> GCP</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#gcp-에-vm-만들기"><i class="fa fa-check"></i><b>3.1.1</b> GCP 에 VM 만들기</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean"><i class="fa fa-check"></i><b>3.2</b> Digital ocean</a>
+<ul>
+<li class="chapter" data-level="3.2.1" data-path="cloud-droplets.html"><a href="cloud-droplets.html#digital-ocean-cmd-terminal-winscp-putty"><i class="fa fa-check"></i><b>3.2.1</b> digital ocean cmd terminal, winScp, putty</a></li>
+</ul></li>
+<li class="chapter" data-level="3.3" data-path="cloud-droplets.html"><a href="cloud-droplets.html#기본-user-만들기"><i class="fa fa-check"></i><b>3.3</b> 기본 user 만들기</a></li>
+<li class="chapter" data-level="3.4" data-path="cloud-droplets.html"><a href="cloud-droplets.html#r-and-rstudio-install"><i class="fa fa-check"></i><b>3.4</b> R and Rstudio install</a></li>
+<li class="chapter" data-level="3.5" data-path="cloud-droplets.html"><a href="cloud-droplets.html#shiny-server-install"><i class="fa fa-check"></i><b>3.5</b> shiny server install</a></li>
+<li class="chapter" data-level="3.6" data-path="cloud-droplets.html"><a href="cloud-droplets.html#도메인-연결"><i class="fa fa-check"></i><b>3.6</b> 도메인 연결</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html"><i class="fa fa-check"></i><b>4</b> blogdown, hugotheme, Github and Netlify</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#git-hub"><i class="fa fa-check"></i><b>4.1</b> git hub</a></li>
+<li class="chapter" data-level="4.2" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#blogdown"><i class="fa fa-check"></i><b>4.2</b> blogdown</a></li>
+<li class="chapter" data-level="4.3" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#github-and-git"><i class="fa fa-check"></i><b>4.3</b> github and git</a>
+<ul>
+<li class="chapter" data-level="4.3.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#ubuntus-에-git-설치하기"><i class="fa fa-check"></i><b>4.3.1</b> ubuntus 에 git 설치하기</a></li>
+</ul></li>
+<li class="chapter" data-level="4.4" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#netlify"><i class="fa fa-check"></i><b>4.4</b> Netlify</a></li>
+<li class="chapter" data-level="4.5" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#프로젝트-과제-제출-수정하기"><i class="fa fa-check"></i><b>4.5</b> 프로젝트 과제 제출 수정하기</a>
+<ul>
+<li class="chapter" data-level="4.5.1" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#웹페이지에-프로젝트-수정하기"><i class="fa fa-check"></i><b>4.5.1</b> 웹페이지에 프로젝트 수정하기</a></li>
+</ul></li>
+<li class="chapter" data-level="4.6" data-path="blogdown-hugotheme-github-and-netlify.html"><a href="blogdown-hugotheme-github-and-netlify.html#도메인-연결-선택"><i class="fa fa-check"></i><b>4.6</b> 도메인 연결 (선택)</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="rmarkdown.html"><a href="rmarkdown.html"><i class="fa fa-check"></i><b>5</b> Rmarkdown</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="rmarkdown.html"><a href="rmarkdown.html#dspub-기본-강의록-참고"><i class="fa fa-check"></i><b>5.1</b> DsPub 기본 강의록 참고</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="rmarkdown.html"><a href="rmarkdown.html#설치"><i class="fa fa-check"></i><b>5.1.1</b> 설치</a></li>
+<li class="chapter" data-level="5.1.2" data-path="rmarkdown.html"><a href="rmarkdown.html#components"><i class="fa fa-check"></i><b>5.1.2</b> 3 components</a></li>
+<li class="chapter" data-level="5.1.3" data-path="rmarkdown.html"><a href="rmarkdown.html#simple-tutor"><i class="fa fa-check"></i><b>5.1.3</b> simple tutor</a></li>
+<li class="chapter" data-level="5.1.4" data-path="rmarkdown.html"><a href="rmarkdown.html#chunck-option"><i class="fa fa-check"></i><b>5.1.4</b> chunck option</a></li>
+<li class="chapter" data-level="5.1.5" data-path="rmarkdown.html"><a href="rmarkdown.html#table-만들기"><i class="fa fa-check"></i><b>5.1.5</b> Table 만들기</a></li>
+<li class="chapter" data-level="5.1.6" data-path="rmarkdown.html"><a href="rmarkdown.html#필독"><i class="fa fa-check"></i><b>5.1.6</b> 필독!</a></li>
+<li class="chapter" data-level="5.1.7" data-path="rmarkdown.html"><a href="rmarkdown.html#동영상"><i class="fa fa-check"></i><b>5.1.7</b> 동영상</a></li>
+<li class="chapter" data-level="5.1.8" data-path="rmarkdown.html"><a href="rmarkdown.html#other-language-and-inline"><i class="fa fa-check"></i><b>5.1.8</b> other language and inline</a></li>
+<li class="chapter" data-level="5.1.9" data-path="rmarkdown.html"><a href="rmarkdown.html#inline-code"><i class="fa fa-check"></i><b>5.1.9</b> inline code</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="6" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html"><i class="fa fa-check"></i><b>6</b> Time series data analysis, regression</a>
+<ul>
+<li class="chapter" data-level="6.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#introduction"><i class="fa fa-check"></i><b>6.1</b> introduction</a></li>
+<li class="chapter" data-level="6.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#미세먼지와-심혈관사망"><i class="fa fa-check"></i><b>6.2</b> 미세먼지와 심혈관사망</a></li>
+<li class="chapter" data-level="6.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#case-study-influenza-epidemic-and-suicide"><i class="fa fa-check"></i><b>6.3</b> case study: influenza epidemic and suicide</a>
+<ul>
+<li class="chapter" data-level="6.3.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#실습-데이터"><i class="fa fa-check"></i><b>6.3.1</b> 실습 데이터</a></li>
+<li class="chapter" data-level="6.3.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#simple-time-related-variable-adjusting-regression"><i class="fa fa-check"></i><b>6.3.2</b> simple time-related variable adjusting regression</a></li>
+<li class="chapter" data-level="6.3.3" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima"><i class="fa fa-check"></i><b>6.3.3</b> ARIMA</a></li>
+</ul></li>
+<li class="chapter" data-level="6.4" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#analysis-and-forecasting-regression"><i class="fa fa-check"></i><b>6.4</b> analysis and forecasting, regression</a></li>
+<li class="chapter" data-level="6.5" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-1"><i class="fa fa-check"></i><b>6.5</b> ARIMA</a>
+<ul>
+<li class="chapter" data-level="6.5.1" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#arima-감기-자살-aic"><i class="fa fa-check"></i><b>6.5.1</b> arima 감기 자살 , AIC</a></li>
+<li class="chapter" data-level="6.5.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#aic-bic-in-generalize-additive-model"><i class="fa fa-check"></i><b>6.5.2</b> AIC BIC in generalize additive model</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="7" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html"><i class="fa fa-check"></i><b>7</b> DataBase in R and SQL basic</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#데이터-베이스와-데이터-베이스-시스템"><i class="fa fa-check"></i><b>7.1</b> 데이터 베이스와 데이터 베이스 시스템</a></li>
+<li class="chapter" data-level="7.2" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#관계형-데이터베이스"><i class="fa fa-check"></i><b>7.2</b> 관계형 데이터베이스</a></li>
+<li class="chapter" data-level="7.3" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#sql-structured-query-language"><i class="fa fa-check"></i><b>7.3</b> SQL (Structured Query Language)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#r-and-dbi"><i class="fa fa-check"></i><b>7.3.1</b> R and DBI</a></li>
+</ul></li>
+<li class="chapter" data-level="7.4" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#r-postgresql-실습"><i class="fa fa-check"></i><b>7.4</b> R PostgreSQL 실습</a>
+<ul>
+<li class="chapter" data-level="7.4.1" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#postgresql-설치"><i class="fa fa-check"></i><b>7.4.1</b> PostgreSQL 설치</a></li>
+<li class="chapter" data-level="7.4.2" data-path="database-in-r-and-sql-basic.html"><a href="database-in-r-and-sql-basic.html#r-로-db-확인"><i class="fa fa-check"></i><b>7.4.2</b> R 로 DB 확인</a></li>
+</ul></li>
+</ul></li>
+<li class="chapter" data-level="8" data-path="google-maps-platform.html"><a href="google-maps-platform.html"><i class="fa fa-check"></i><b>8</b> Google Maps Platform</a>
+<ul>
+<li class="chapter" data-level="8.1" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-tackeout"><i class="fa fa-check"></i><b>8.1</b> Google Tackeout</a></li>
+<li class="chapter" data-level="8.2" data-path="google-maps-platform.html"><a href="google-maps-platform.html#data-visualization"><i class="fa fa-check"></i><b>8.2</b> Data visualization</a></li>
+<li class="chapter" data-level="8.3" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-api"><i class="fa fa-check"></i><b>8.3</b> google API</a></li>
+</ul></li>
+<li class="chapter" data-level="9" data-path="other-maps.html"><a href="other-maps.html"><i class="fa fa-check"></i><b>9</b> other maps</a>
+<ul>
+<li class="chapter" data-level="9.1" data-path="other-maps.html"><a href="other-maps.html#leaflet"><i class="fa fa-check"></i><b>9.1</b> leaflet</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">DSpub-project</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="google-maps-platform" class="section level1" number="8">
+<h1><span class="header-section-number">Chapter 8</span> Google Maps Platform</h1>
+<div id="google-tackeout" class="section level2" number="8.1">
+<h2><span class="header-section-number">8.1</span> Google Tackeout</h2>
+<p>구글에서 기록되어 있는 지도 데이터를 다운로드 받아 봅시다.</p>
+<blockquote>
+<p>Google Takeout</p>
+</blockquote>
+<ul>
+<li>following steps
+<ul>
+<li><a href="https://takeout.google.com" class="uri">https://takeout.google.com</a></li>
+<li>deselect All</li>
+<li>select <code>Location History</code></li>
+<li>export</li>
+<li>go to gmail and check activity, and back to takeout.google.com</li>
+<li>click <code>download</code> with option <code>google-drive</code></li>
+<li>check Takeout folder in google-drive</li>
+</ul></li>
+</ul>
+<p><br>
+<br></p>
+<div style="border:1px solid black">
+<div class="figure">
+<img src="img/googletakeout1.png" alt="" />
+<p class="caption">takeout googlecom</p>
+</div>
+</div>
+<p><br></p>
+<h3>
+google location history
+</h3>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googletakeout2.png" alt="" />
+<p class="caption">google location history</p>
+</div>
+</div>
+<br>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googletakeout3.png" alt="" />
+<p class="caption">google location history export</p>
+</div>
+</div>
+<br>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googletakeout4.png" alt="" />
+<p class="caption">google takeout 4</p>
+</div>
+</div>
+<br>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googletakeout5.png" alt="" />
+<p class="caption">google takeout 5</p>
+</div>
+</div>
+<br>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googletakeout6.png" alt="" />
+<p class="caption">google takeout 5</p>
+</div>
+</div>
+<p><br><br></p>
+<blockquote>
+<p>google drive download</p>
+</blockquote>
+<ul>
+<li>download takeout file from google drive
+<ul>
+<li>takeout export option: google drive download</li>
+<li>check update data (every two month)</li>
+<li>goto google drive</li>
+<li>library(googledrive)</li>
+<li>download data</li>
+</ul></li>
+</ul>
+<p><br></p>
+<p>자 이제 package 를 설치하고 library 를 불러와 보겠습니다.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb1-1"><a href="google-maps-platform.html#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="do">## install packages</span></span>
+<span id="cb1-2"><a href="google-maps-platform.html#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(<span class="st">&#39;googledrive&#39;</span>)) <span class="fu">install.packages</span>(<span class="st">&#39;googledrive&#39;</span>)</span>
+<span id="cb1-3"><a href="google-maps-platform.html#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">## load library</span></span>
+<span id="cb1-4"><a href="google-maps-platform.html#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(googledrive)</span></code></pre></div>
+<p>구글 드라이브에서 몇가지 파일을 찾아 보겠습니다. google drive에서 계정 확인 및 권한을 물어볼 텐데 yes 하시면 됩니다.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="google-maps-platform.html#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">## link to google drive author...</span></span>
+<span id="cb2-2"><a href="google-maps-platform.html#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_find</span>(<span class="at">n_max =</span> <span class="dv">10</span>)</span>
+<span id="cb2-3"><a href="google-maps-platform.html#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="do">## serach</span></span>
+<span id="cb2-4"><a href="google-maps-platform.html#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">drive_find</span>(<span class="at">type =</span><span class="st">&quot;file&quot;</span>, <span class="at">pattern =</span><span class="st">&quot;Takeout/takeout-*.zip&quot;</span>, <span class="at">n_max =</span> <span class="dv">100</span>)</span>
+<span id="cb2-5"><a href="google-maps-platform.html#cb2-5" aria-hidden="true" tabindex="-1"></a>ls <span class="ot">&lt;-</span> <span class="fu">drive_ls</span>(<span class="at">path =</span> <span class="st">&#39;/Takeout/&#39;</span>, </span>
+<span id="cb2-6"><a href="google-maps-platform.html#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">pattern =</span> <span class="st">&quot;*.*&quot;</span>)</span>
+<span id="cb2-7"><a href="google-maps-platform.html#cb2-7" aria-hidden="true" tabindex="-1"></a>ls<span class="sc">$</span>name</span>
+<span id="cb2-8"><a href="google-maps-platform.html#cb2-8" aria-hidden="true" tabindex="-1"></a>ls<span class="sc">$</span>id</span></code></pre></div>
+<p>여기에 <code>name</code>은 파일 이름이고 <code>id</code>가 있을 것입니다. <code>id</code>는 구글 파일을 다운로드 할 때 쓸 주소 같은 것으로 생각하시면됩니다. 압출 파일로 되어 있으니 다운로드 받아 보도록 하겠습니다. 저는 여러 이름 중에 2번째 파일을 다운로드 받겠습니다. 여러 분들오 몇번째 파일을 다운로드 받을 지 생각해보시고 해보세요.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb3-1"><a href="google-maps-platform.html#cb3-1" aria-hidden="true" tabindex="-1"></a>temp  <span class="ot">&lt;-</span> <span class="fu">tempfile</span>(<span class="at">fileext =</span> <span class="st">&quot;.zip&quot;</span>)</span>
+<span id="cb3-2"><a href="google-maps-platform.html#cb3-2" aria-hidden="true" tabindex="-1"></a>data1 <span class="ot">&lt;-</span> <span class="fu">drive_download</span>(<span class="fu">as_id</span>(ls<span class="sc">$</span>id[<span class="dv">2</span>]), </span>
+<span id="cb3-3"><a href="google-maps-platform.html#cb3-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">path =</span> temp, </span>
+<span id="cb3-4"><a href="google-maps-platform.html#cb3-4" aria-hidden="true" tabindex="-1"></a>                        <span class="at">overwrite =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb3-5"><a href="google-maps-platform.html#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="google-maps-platform.html#cb3-6" aria-hidden="true" tabindex="-1"></a>out <span class="ot">&lt;-</span> <span class="fu">unzip</span>(temp, <span class="at">exdir =</span> <span class="fu">paste0</span>(<span class="fu">getwd</span>(), <span class="st">&quot;/data&quot;</span>))</span>
+<span id="cb3-7"><a href="google-maps-platform.html#cb3-7" aria-hidden="true" tabindex="-1"></a>out</span></code></pre></div>
+<p>자 이제 준비가 거의 다 되었습니다.</p>
+</div>
+<div id="data-visualization" class="section level2" number="8.2">
+<h2><span class="header-section-number">8.2</span> Data visualization</h2>
+<p>json 파일로 되어 있으므로 이를 받아서 읽고 visualizaton을 해보도록 하겠습니다. 필요한 package를 다운로드 받아 보겠습니다.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb4-1"><a href="google-maps-platform.html#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(jsonlite)) <span class="fu">install.packages</span>(<span class="st">&#39;jsonlite&#39;</span>)</span>
+<span id="cb4-2"><a href="google-maps-platform.html#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(ggmap))    <span class="fu">install.packages</span>(<span class="st">&#39;ggmap&#39;</span>)</span>
+<span id="cb4-3"><a href="google-maps-platform.html#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="cf">if</span>(<span class="sc">!</span><span class="fu">require</span>(ggplot2))  <span class="fu">install.packages</span>(<span class="st">&#39;ggplot2&#39;</span>)</span>
+<span id="cb4-4"><a href="google-maps-platform.html#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(jsonlite)</span>
+<span id="cb4-5"><a href="google-maps-platform.html#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggmap)</span>
+<span id="cb4-6"><a href="google-maps-platform.html#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggplot2)</span>
+<span id="cb4-7"><a href="google-maps-platform.html#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div>
+<p>다운로드 경로가 아래와 같이 되었네요. 여기서 <code>location</code>을 가져와서 위도와 경도를 설정하고 그 위치에 맞게 점을 표시하려고 합니다.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb5-1"><a href="google-maps-platform.html#cb5-1" aria-hidden="true" tabindex="-1"></a>map_data <span class="ot">=</span> <span class="fu">fromJSON</span>(<span class="st">&quot;data/Takeout/Location History/Location History.json&quot;</span>)</span></code></pre></div>
+<p>위도와 경도를 생성해 주는 data step을 진행하고, 50000건의 정보만 남기겠습니다.</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb6-1"><a href="google-maps-platform.html#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">#map_data$locations</span></span>
+<span id="cb6-2"><a href="google-maps-platform.html#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="google-maps-platform.html#cb6-3" aria-hidden="true" tabindex="-1"></a>locations <span class="ot">=</span> map_data<span class="sc">$</span>locations</span>
+<span id="cb6-4"><a href="google-maps-platform.html#cb6-4" aria-hidden="true" tabindex="-1"></a>loc_dat1 <span class="ot">=</span>  locations <span class="sc">%&gt;%</span></span>
+<span id="cb6-5"><a href="google-maps-platform.html#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">lat =</span> latitudeE7<span class="sc">/</span><span class="fl">1e7</span>, </span>
+<span id="cb6-6"><a href="google-maps-platform.html#cb6-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">lng =</span> longitudeE7<span class="sc">/</span><span class="fl">1e7</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb6-7"><a href="google-maps-platform.html#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">year =</span> <span class="fu">str_sub</span>(timestampMs, <span class="dv">1</span>, <span class="dv">2</span>), </span>
+<span id="cb6-8"><a href="google-maps-platform.html#cb6-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">month=</span> <span class="fu">str_sub</span>(timestampMs, <span class="dv">3</span>, <span class="dv">4</span>))</span>
+<span id="cb6-9"><a href="google-maps-platform.html#cb6-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-10"><a href="google-maps-platform.html#cb6-10" aria-hidden="true" tabindex="-1"></a>loc_dat_sample <span class="ot">=</span> loc_dat1 <span class="sc">%&gt;%</span></span>
+<span id="cb6-11"><a href="google-maps-platform.html#cb6-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">slice</span>(<span class="dv">1</span><span class="sc">:</span><span class="dv">50000</span>)</span></code></pre></div>
+<p>구글 지도를 불러오겠습니다. 구글 지도를 사용할 때는 API key가 필요합니다. API key를 얻는 것은 다음 챕터에 설명이 되어 있으니 참고하세요.</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb7-1"><a href="google-maps-platform.html#cb7-1" aria-hidden="true" tabindex="-1"></a>key<span class="ot">&lt;-</span><span class="fu">read.csv</span>(<span class="st">&#39;security/gapi.csv&#39;</span>)</span>
+<span id="cb7-2"><a href="google-maps-platform.html#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">register_google</span>(<span class="at">key =</span> key[<span class="dv">1</span>,<span class="dv">2</span>])</span>
+<span id="cb7-3"><a href="google-maps-platform.html#cb7-3" aria-hidden="true" tabindex="-1"></a>map <span class="ot">=</span> <span class="fu">get_map</span>(<span class="fu">c</span>(<span class="fl">127.024612</span>, <span class="fl">37.532600</span>), </span>
+<span id="cb7-4"><a href="google-maps-platform.html#cb7-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">zoom =</span> <span class="dv">10</span>, </span>
+<span id="cb7-5"><a href="google-maps-platform.html#cb7-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">source =</span> <span class="st">&#39;stamen&#39;</span>, </span>
+<span id="cb7-6"><a href="google-maps-platform.html#cb7-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">maptype =</span> <span class="st">&quot;toner&quot;</span>)</span></code></pre></div>
+<pre><code>## Source : https://maps.googleapis.com/maps/api/staticmap?center=37.5326,127.024612&amp;zoom=10&amp;size=640x640&amp;scale=2&amp;maptype=terrain&amp;key=xxx</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/872/395.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/873/395.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/874/395.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/872/396.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/873/396.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/874/396.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/872/397.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/873/397.png</code></pre>
+<pre><code>## Source : http://tile.stamen.com/toner/10/874/397.png</code></pre>
+<p>이제 지도를 다운 받았으니, 여기에 제 위치를 살펴 보도록 하겠습니다. 월 별로 색을 다르게 하여 표시해 보겠습니다. 7월에는 원주 건강보험공단 빅데이터 분석한다고 다녔던게 남아 있네요. 나머지 달에는 여러 공장에 돌아다닌 것이 나타나네요.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb18-1"><a href="google-maps-platform.html#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggmap</span>(map) <span class="sc">+</span> </span>
+<span id="cb18-2"><a href="google-maps-platform.html#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">data =</span> loc_dat_sample, </span>
+<span id="cb18-3"><a href="google-maps-platform.html#cb18-3" aria-hidden="true" tabindex="-1"></a>             <span class="fu">aes</span>(<span class="at">x =</span> lng, <span class="at">y =</span> lat, <span class="at">color =</span> month), <span class="at">alpha =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb18-4"><a href="google-maps-platform.html#cb18-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">&#39;right&#39;</span>) <span class="sc">+</span></span>
+<span id="cb18-5"><a href="google-maps-platform.html#cb18-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-6"><a href="google-maps-platform.html#cb18-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">&#39;longitute&#39;</span>, </span>
+<span id="cb18-7"><a href="google-maps-platform.html#cb18-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">&#39;latitude&#39;</span>, </span>
+<span id="cb18-8"><a href="google-maps-platform.html#cb18-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">&quot;Location history of me&quot;</span></span>
+<span id="cb18-9"><a href="google-maps-platform.html#cb18-9" aria-hidden="true" tabindex="-1"></a>  )</span></code></pre></div>
+<pre><code>## Warning: Removed 6644 rows containing missing values (geom_point).</code></pre>
+<p><img src="dspub_project_files/figure-html/googlemap1%20myworkplace-1.png" width="672" /></p>
+</div>
+<div id="google-api" class="section level2" number="8.3">
+<h2><span class="header-section-number">8.3</span> google API</h2>
+<p>구글 map을 사용하기 위해서는 Geocoding API 를 이용해야 합니다.</p>
+<blockquote>
+<p>구글 map API</p>
+</blockquote>
+<ul>
+<li><a href="https://cloud.google.com/maps-platform/" class="uri">https://cloud.google.com/maps-platform/</a></li>
+<li>click <code>get start</code></li>
+<li><code>API library</code> and View all of Maps</li>
+<li><code>Maps Static API</code> → <code>Enable</code></li>
+<li><code>Credentials</code> → <code>API key</code></li>
+<li>copy and paste Key</li>
+</ul>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googlemap1.png" alt="" />
+<p class="caption">google map api 1</p>
+</div>
+</div>
+<p><br></p>
+<br>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googlemapapi1.png" alt="" />
+<p class="caption">google map api 2</p>
+</div>
+</div>
+<br>
+<div style="border:2px solid black">
+<div class="figure">
+<img src="img/googlemapapi2.png" alt="" />
+<p class="caption">google map api 2</p>
+</div>
+</div>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="database-in-r-and-sql-basic.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="other-maps.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/clipboard.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-clipboard.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"linkedin": false,
+"weibo": false,
+"instapaper": false,
+"vk": false,
+"all": ["facebook", "twitter", "linkedin", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"history": {
+"link": null,
+"text": null
+},
+"view": {
+"link": null,
+"text": null
+},
+"download": ["dspub_project.pdf", "dspub_project.epub"],
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>

@@ -4,11 +4,11 @@
 
   <meta charset="utf-8" />
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-  <title>Chapter 7 R and DB | DSpub-project</title>
+  <title>Chapter 7 DataBase in R | DSpub-project</title>
   <meta name="description" content="Dspub 다음 수업입니다. DSpub-project" />
   <meta name="generator" content="bookdown 0.21 and GitBook 2.6.7" />
 
-  <meta property="og:title" content="Chapter 7 R and DB | DSpub-project" />
+  <meta property="og:title" content="Chapter 7 DataBase in R | DSpub-project" />
   <meta property="og:type" content="book" />
   
   
@@ -16,7 +16,7 @@
   
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="Chapter 7 R and DB | DSpub-project" />
+  <meta name="twitter:title" content="Chapter 7 DataBase in R | DSpub-project" />
   
   <meta name="twitter:description" content="Dspub 다음 수업입니다. DSpub-project" />
   
@@ -24,7 +24,7 @@
 <meta name="author" content="Jinha Yoon" />
 
 
-<meta name="date" content="2021-03-24" />
+<meta name="date" content="2021-03-31" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -136,7 +136,15 @@
 <li class="chapter" data-level="6.5.2" data-path="time-series-data-analysis-regression.html"><a href="time-series-data-analysis-regression.html#aic-bic-in-generalize-additive-model"><i class="fa fa-check"></i><b>6.5.2</b> AIC BIC in generalize additive model</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="7" data-path="r-and-db.html"><a href="r-and-db.html"><i class="fa fa-check"></i><b>7</b> R and DB</a></li>
+<li class="chapter" data-level="7" data-path="database-in-r.html"><a href="database-in-r.html"><i class="fa fa-check"></i><b>7</b> DataBase in R</a>
+<ul>
+<li class="chapter" data-level="7.1" data-path="database-in-r.html"><a href="database-in-r.html#데이터-베이스와-데이터-베이스-시스템"><i class="fa fa-check"></i><b>7.1</b> 데이터 베이스와 데이터 베이스 시스템</a></li>
+<li class="chapter" data-level="7.2" data-path="database-in-r.html"><a href="database-in-r.html#관계형-데이터-베이서"><i class="fa fa-check"></i><b>7.2</b> 관계형 데이터 베이서</a></li>
+<li class="chapter" data-level="7.3" data-path="database-in-r.html"><a href="database-in-r.html#sql-structured-query-language"><i class="fa fa-check"></i><b>7.3</b> SQL (Structured Query Language)</a>
+<ul>
+<li class="chapter" data-level="7.3.1" data-path="database-in-r.html"><a href="database-in-r.html#r-and-dbi"><i class="fa fa-check"></i><b>7.3.1</b> R and DBI</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="8" data-path="google-maps-platform.html"><a href="google-maps-platform.html"><i class="fa fa-check"></i><b>8</b> Google Maps Platform</a>
 <ul>
 <li class="chapter" data-level="8.1" data-path="google-maps-platform.html"><a href="google-maps-platform.html#google-tackeout"><i class="fa fa-check"></i><b>8.1</b> Google Tackeout</a></li>
@@ -167,10 +175,193 @@
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="r-and-db" class="section level1" number="7">
-<h1><span class="header-section-number">Chapter 7</span> R and DB</h1>
-<p>** 유승찬**</p>
+<div id="database-in-r" class="section level1" number="7">
+<h1><span class="header-section-number">Chapter 7</span> DataBase in R</h1>
+<blockquote>
+<p>유승찬 (2021-03-31)</p>
+</blockquote>
+<div id="데이터-베이스와-데이터-베이스-시스템" class="section level2" number="7.1">
+<h2><span class="header-section-number">7.1</span> 데이터 베이스와 데이터 베이스 시스템</h2>
+<blockquote>
+<p>데이터베이스 (DataBase)</p>
+</blockquote>
+<ul>
+<li>데이터베이스
+<ul>
+<li>체계화된 데이터 모임</li>
+<li>작성된 목록으로써 여러 응용 시스템들의 통합된 정보들을 저장하여 운영할 수 있는 공용 데이터 묶음</li>
+</ul></li>
+<li>데이터베이스의 특징
+<ul>
+<li>실시간 접근성</li>
+<li>지속적인 변화</li>
+<li>동시 공유</li>
+<li>내용에 의한 참조</li>
+</ul></li>
+<li>데이터베이스의 개념
+<ul>
+<li>통합된 데이터(intergrated data)
+<ul>
+<li>다중 유저, 통합관리, 중복 최소화</li>
+</ul></li>
+<li>저장</li>
+<li>운용</li>
+<li>시스템</li>
+</ul></li>
+<li>데이터베이스관리 시스템
+<ul>
+<li>DBMS(DB management system)</li>
+<li>DBMS 기능</li>
+<li>정의: 데이터에 대한 형식, 구조, 제약조건들을 명세</li>
+<li>구축:DBMS가 관리하는 기억 장체 데이터를 저장</li>
+<li>조작:질의, 갱신, 보고서</li>
+<li>공유: 여러사람</li>
+<li>보호</li>
+<li>유지 보수</li>
+</ul></li>
+</ul>
+<blockquote>
+<p>데이터베이시의 특성</p>
+</blockquote>
+<div class="figure">
+<img src="img/db1.png" alt="" />
+<p class="caption">db 1</p>
+</div>
+<blockquote>
+<p>파일 시스템과 데이터 베이스 시스템 차이
+<img src="img/db2.png" alt="db 2" /></p>
+</blockquote>
+<table>
+<thead>
+<tr class="header">
+<th>데이터베이스 장점</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>중복과 불일치 감소</td>
+</tr>
+<tr class="even">
+<td>시스템 융통성</td>
+</tr>
+<tr class="odd">
+<td>시스템 개발 및 유지 비용 감소</td>
+</tr>
+<tr class="even">
+<td>표준화 시행이 용이</td>
+</tr>
+<tr class="odd">
+<td>보안이 향상됨</td>
+</tr>
+<tr class="even">
+<td>데이터 무결성이 향상됨</td>
+</tr>
+<tr class="odd">
+<td>조직체의 요구 사항을 파악하여 조정 가능</td>
+</tr>
+<tr class="even">
+<td>시스템의 고장으로 데이터 베이스 복구 가능</td>
+</tr>
+<tr class="odd">
+<td>DB 공유와 업그레이드 쉬음</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="관계형-데이터-베이서" class="section level2" number="7.2">
+<h2><span class="header-section-number">7.2</span> 관계형 데이터 베이서</h2>
+본 수업에서 주로 관계형 데이터 다룸
+열/행 →
+<p>
+</p>
+<div class="figure">
+<img src="img/db3.png" alt="" />
+<p class="caption">db 3</p>
+</div>
+<ul>
+<li>스키마
+<ul>
+<li>릴레이션의 기본적..</li>
+</ul></li>
+<li>튜플
+<ul>
+<li>각각의 행</li>
+<li>속성의 모임</li>
+</ul></li>
+<li>속성
+<ul>
+<li>가장 작은 논리적 단위</li>
+</ul></li>
+<li>도메인</li>
+</ul>
+<img src="img/db4.png" title="fig:" alt="db 4" />
+<p>
+</p>
+<p>대부분 key를 갖고 있다. <code>rownumber()</code>는 항상 변하니 <strong>key</strong>가 중요.
+&gt;유일하면서 null 이 없어야 primay key
+&gt;외래키: 다른 릴레이션의 기본 키를 참조하는 애트리뷰트
+<img src="img/db5.png" alt="db 5" /></p>
+<ul>
+<li>도메인 무결성 제약조건</li>
+<li>개체 무결성 제약조건</li>
+<li>참조 무결성 제약 조건</li>
+</ul>
+</div>
+<div id="sql-structured-query-language" class="section level2" number="7.3">
+<h2><span class="header-section-number">7.3</span> SQL (Structured Query Language)</h2>
+<p>IBM에서 개발 1972년부터 사용 세계 3대 coding language (1위 python, 2위 R, 3위 sql in kaggle)
+DataScience 할때 주로 상기 3개 언어를 사용한다고 함.</p>
+<ul>
+<li>3 function
+<ul>
+<li>데이터 정의어
+<ul>
+<li>데이터 저장 구종, 데이터 접근 방법, 데이터 형식 등 데이터베이스를 구추갛거나 수정</li>
+<li>SCHEMA, DOMAIN, TABLE, VIEW, INDEX</li>
+</ul></li>
+<li>데이터 조작어
+<ul>
+<li>SELECT, INSERT, UPDATE ,DELETE</li>
+</ul></li>
+<li>데이터 제어어
+<ul>
+<li>commit, rollback, grant, revoke</li>
+</ul></li>
+</ul></li>
+</ul>
+<div class="figure">
+<img src="img/sql1.png" alt="" />
+<p class="caption">sql example</p>
+</div>
+<blockquote>
+<p>sql cheat sheet 참조</p>
+</blockquote>
+<p><a href="https://www.sqltutorial.org/sql-cheat-sheet/">SQL 참조 site</a></p>
+<div class="figure">
+<embed src="img/sqlcheet.pdf" style="width:100.0%" />
+<p class="caption">SQL cheat sheet</p>
+</div>
+<blockquote>
+<p>sql 안에 sql</p>
+</blockquote>
+<div class="figure">
+<img src="img/sql2.png" alt="" />
+<p class="caption">sql in sql</p>
+</div>
+<div id="r-and-dbi" class="section level3" number="7.3.1">
+<h3><span class="header-section-number">7.3.1</span> R and DBI</h3>
+<p>R에서 DB를 사용하기 위해서, <code>DBI</code> 를 설치하고 이후 <code>Rposgres</code> 등 DBMS 페키지를 사용함.</p>
+<div class="figure">
+<img src="img/rdb1.png" alt="" />
+<p class="caption">R and DB 1</p>
+</div>
+<p><strong>실습 자료는</strong> OMOP-CDM 자료를 사용</p>
+<p><a href="https://github.com/OHDSI/CommonDataModel/wiki">OMOP CDM 참조 site</a></p>
+<p><img src="img/omopcdm1.png" alt="omop-cdm 1" />
+<img src="img/omopcdm2.png" alt="omop-cdm 1" /></p>
 
+</div>
+</div>
 </div>
             </section>
 
