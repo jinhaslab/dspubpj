@@ -312,3 +312,55 @@ con <-connect(dbms = "postgresql",
               password = 'j2data2020')
 ```
 
+#### R SQL example
+ 
+  
+  몇가지 실습을 해보도록 하겠습니다. 오늘은 딱 3가지 명령문을 사용하도록 하겠습니다. 
+  <iframe width="560" height="315" src="https://www.youtube.com/embed/ZwynB1801zQ" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+  
+
+|명령문|내용|
+|---|---|
+|dbGetQuery| DB에서 파일 불러오기|
+|dbSendStatement| PostgreSQL Schema, Table 관리|
+|dbWriteTable| DB에 Table 적제|
+
+```{r, eval = FALSE, message =FALSE, warning=FALSE}
+if(!require(DBI)) install.packages('DBI'); library(DBI)
+if(!require(odbc)) install.packages('odbc'); library(odbc)
+if(!require(tidyverse)) install.packages('tidyverse');library(tidyverse)
+odbc::odbcListDrivers()
+con <- DBI::dbConnect(odbc::odbc(),
+                      Driver   = "PostgreSQL Unicode",
+                      Server   = "localhost",
+                      Database = "ocdm",
+                      UID      = rstudioapi::askForPassword("Database user"),
+                      PWD      = rstudioapi::askForPassword("Database password"),
+                      Port     = 5432)
+
+
+## sql: dbGetQuery, dbSendStatement, dbWriteTable
+### dbGetQuery
+
+test <- dbGetQuery(con, "SELECT * from kosis.death LIMIT 10")
+lkup <- dbGetQuery(con, "SELECT * from kosis.death_region_lkup")
+View(lkup)
+dbSendStatement(con, "drop table if exists kosis.death_region_lkup")
+dbWriteTable(con, SQL("kosis.death_region_lkup"), value = lkup)
+dbSendStatement(con, "drop schema if exists kosis cascade")
+dbSendStatement(con, "drop schema if exists wanhyung cascade")
+
+## new kosis 
+
+death_dic = read_csv("death_dic.csv")
+death2019 = read_csv("death2019.csv")
+
+dbSendStatement(con, "create schema death")
+dbWriteTable(con, SQL("death.death_dic"), value = death_dic)
+dbWriteTable(con, SQL("death.death2019"), value = death2019)
+
+```
+
+
+
+ 

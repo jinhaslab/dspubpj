@@ -63,3 +63,4 @@ download-r-script-from-github
 r-postgresql-실습
 postgresql-설치
 r-로-db-확인
+r-sql-example
